@@ -1,13 +1,11 @@
 package com.damiankoziel.forum.dto;
 
 import com.damiankoziel.forum.domain.Post;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
-@Getter
-@Setter
+@Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class CategoryDto {
     private Long id;
 

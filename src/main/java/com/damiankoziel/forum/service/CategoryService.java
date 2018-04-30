@@ -1,14 +1,14 @@
 package com.damiankoziel.forum.service;
 
 import com.damiankoziel.forum.domain.Category;
-import com.damiankoziel.forum.domain.DtoConverter.ToDtoConverter;
+import com.damiankoziel.forum.dto.DtoConverter.ToDtoConverter;
 import com.damiankoziel.forum.dto.CategoryDto;
 import com.damiankoziel.forum.exceptions.CategoryException;
 import com.damiankoziel.forum.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.Collection;
 import java.util.stream.Collectors;
 
 @Service
@@ -22,33 +22,33 @@ public class CategoryService {
     }
 
     public CategoryDto create(final Category category) {
-        return ToDtoConverter.categoryToDto(this.categoryRepository.save(category));
+        this.categoryRepository.save(category);
+        return ToDtoConverter.categoryToDto(category);
     }
 
-    public Iterable<CategoryDto> getAll() {
-        return this.categoryRepository.findAll().stream()
+    public Collection<CategoryDto> getAll() {
+        Collection<Category> categories = this.categoryRepository.findAll();
+        return categories.stream()
                 .map(ToDtoConverter::categoryToDto)
                 .collect(Collectors.toList());
     }
 
     public CategoryDto getById(final Long id) {
-        return ToDtoConverter.categoryToDto(this.categoryRepository.findById(id).orElseThrow(
-                () -> new CategoryException("Category not found!")
-                )
+        Category category = this.categoryRepository.findById(id).orElseThrow(
+                () -> new CategoryException("Can't get. Category not found!")
         );
+        return ToDtoConverter.categoryToDto(category);
     }
 
     public CategoryDto update(final Category category) {
         this.categoryRepository.findById(category.getId()).orElseThrow(
-                () -> new CategoryException("Category not Found!")
+                () -> new CategoryException("Can't update. Category not Found!")
         );
-        return ToDtoConverter.categoryToDto(this.categoryRepository.save(category));
+        this.categoryRepository.save(category);
+        return ToDtoConverter.categoryToDto(category);
     }
 
     public void delete(final Long id){
-        this.categoryRepository.findById(id).orElseThrow(
-                () -> new CategoryException("Category not Found!")
-        );
         this.categoryRepository.deleteById(id);
     }
 }

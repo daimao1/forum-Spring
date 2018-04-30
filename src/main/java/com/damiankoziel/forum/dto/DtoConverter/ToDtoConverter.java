@@ -1,4 +1,4 @@
-package com.damiankoziel.forum.domain.DtoConverter;
+package com.damiankoziel.forum.dto.DtoConverter;
 
 import com.damiankoziel.forum.domain.Category;
 import com.damiankoziel.forum.domain.Comment;
@@ -11,12 +11,16 @@ import com.damiankoziel.forum.dto.UserDto;
 
 public final class ToDtoConverter {
 
+    private ToDtoConverter() {
+
+    }
+
     public static CategoryDto categoryToDto(Category category) {
-        return new CategoryDto(
-                category.getId(),
-                category.getName(),
-                category.getPost()
-        );
+        CategoryDto categoryDto = new CategoryDto();
+        categoryDto.setId(category.getId());
+        categoryDto.setName(category.getName());
+        categoryDto.setPost(category.getPost());
+        return categoryDto;
     }
 
     public static CommentDto commentToDto(Comment comment) {
@@ -46,6 +50,7 @@ public final class ToDtoConverter {
                 user.getEmail(),
                 user.getFirstName(),
                 user.getLastName(),
+                user.getIsActive(),
                 user.getRole(),
                 user.getAvatarUrl(),
                 user.getDateOfSignUp(),

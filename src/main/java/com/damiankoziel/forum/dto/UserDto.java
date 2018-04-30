@@ -22,6 +22,8 @@ public class UserDto {
 
     private String lastName;
 
+    private Boolean isActive;
+
     private Role role;
 
     private String avatarUrl;

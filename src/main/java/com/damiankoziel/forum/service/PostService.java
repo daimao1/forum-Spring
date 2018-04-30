@@ -1,6 +1,6 @@
 package com.damiankoziel.forum.service;
 
-import com.damiankoziel.forum.domain.DtoConverter.ToDtoConverter;
+import com.damiankoziel.forum.dto.DtoConverter.ToDtoConverter;
 import com.damiankoziel.forum.domain.Post;
 import com.damiankoziel.forum.dto.PostDto;
 import com.damiankoziel.forum.exceptions.PostException;
@@ -8,7 +8,7 @@ import com.damiankoziel.forum.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.Collection;
 import java.util.stream.Collectors;
 
 @Service
@@ -22,32 +22,32 @@ public class PostService {
     }
 
     public PostDto create(final Post post) {
-        return ToDtoConverter.postToDto(this.postRepository.save(post));
+        this.postRepository.save(post);
+        return ToDtoConverter.postToDto(post);
     }
 
-    public Iterable<PostDto> getAll() {
-        return this.postRepository.findAll().stream()
+    public Collection<PostDto> getAll() {
+        Collection<Post> posts = this.postRepository.findAll();
+        return posts.stream()
                 .map(ToDtoConverter::postToDto)
                 .collect(Collectors.toList());
     }
 
     public PostDto getById(final Long id) {
-        return ToDtoConverter.postToDto(this.postRepository.findById(id).orElseThrow(
-                () -> new PostException("Post not found!")
-        ));
+        Post post = this.postRepository.findById(id).orElseThrow(
+                () -> new PostException("Can't get. Post not found!"));
+        return ToDtoConverter.postToDto(post);
     }
 
-    public PostDto update(Post post) {
+    public PostDto update(final Post post) {
         this.postRepository.findById(post.getId()).orElseThrow(
-                () -> new PostException("Post not found!")
+                () -> new PostException("Can't update. Post not found!")
         );
-        return ToDtoConverter.postToDto(this.postRepository.save(post));
+        this.postRepository.save(post);
+        return ToDtoConverter.postToDto(post);
     }
 
-    public void delete(Long id) {
-        this.postRepository.findById(id).orElseThrow(
-                () -> new PostException("Post not found!")
-        );
+    public void delete(final Long id) {
         this.postRepository.deleteById(id);
     }
 

@@ -1,0 +1,20 @@
+<div class="row mt-4">
+    <div class="col-lg-10">
+        <ul class="list-group">
+            <li *ngFor="let post of posts" class="list-group-item clearfix">
+                <a
+                    class="media mb-2 mt-2 ml-2 mr-2 mr-4"
+                    href="#">
+                    <img
+                        class="mr-4" width="300px"
+                        src="{{ post.imageUrl }}"
+                        alt="{{ post.title }}">
+                    <div class="media-body">
+                        <h4 class="mt-0">{{ post.title }}</h4>
+                        {{ post.content }}
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>

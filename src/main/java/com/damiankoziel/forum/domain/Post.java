@@ -1,15 +1,14 @@
 package com.damiankoziel.forum.domain;
 
+import com.damiankoziel.forum.commons.Category;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Collection;
 import java.util.List;
 
 @Entity
@@ -24,13 +23,13 @@ public class Post {
 
     private String title;
 
+    @Column(columnDefinition = "TEXT")
     private String content;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
-    private LocalDateTime dateTimeOfPost;
+    private LocalDateTime dateTimeOfPost = LocalDateTime.now();
 
     private String imageUrl;
 
-    @OneToMany(mappedBy = "post")
-    private List<Category> categories;
+    @ElementCollection
+    private Collection<Category> categories;
 }

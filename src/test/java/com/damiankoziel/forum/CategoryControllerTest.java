@@ -1,8 +1,5 @@
 package com.damiankoziel.forum;
 
-import com.damiankoziel.forum.controller.CategoryController;
-import com.damiankoziel.forum.domain.Category;
-import com.damiankoziel.forum.service.CategoryService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;

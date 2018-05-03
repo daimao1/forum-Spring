@@ -11,8 +11,11 @@
                         alt="{{ post.title }}">
                     <div class="media-body">
                         <h4 class="mt-0">{{ post.title }}</h4>
-                        {{ post.content }}
+                        {{ post.content | shorterContent }}
                     </div>
+                    <!--Tutaj jest miejsce na date postu-->
+                    <span class="col-2"
+                          style="font-size: small; color:grey">{{ post.dateTimeOfPost | date:'short'}}</span>
                 </a>
             </li>
         </ul>

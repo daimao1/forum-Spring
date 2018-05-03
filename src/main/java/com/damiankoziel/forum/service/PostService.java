@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.stream.Collectors;
 
 @Service
@@ -29,6 +30,7 @@ public class PostService {
     public Collection<PostDto> getAll() {
         Collection<Post> posts = this.postRepository.findAll();
         return posts.stream()
+                .sorted(Comparator.comparing(Post::getDateTimeOfPost).reversed())
                 .map(ToDtoConverter::postToDto)
                 .collect(Collectors.toList());
     }

@@ -9,6 +9,7 @@ import {PostsListComponent} from './posts/posts-list/posts-list.component';
 import {PostsAddComponent} from './posts/posts-add/posts-add.component';
 import {PostService} from "./posts/post.service";
 import {HttpModule} from "@angular/http";
+import {ShorterContentPipe} from "./shorter-content.pipe";
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import {HttpModule} from "@angular/http";
       PostsComponent,
       HeaderComponent,
       PostsListComponent,
-      PostsAddComponent
+      PostsAddComponent,
+      ShorterContentPipe
   ],
   imports: [
       BrowserModule,

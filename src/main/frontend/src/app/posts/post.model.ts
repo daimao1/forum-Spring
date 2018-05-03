@@ -1,7 +1,7 @@
 export class Post {
     public id: number;
     public title: string;
-    public content: string;
+    public content: string[20];
     public dateTimeOfPost: string;
     public imageUrl: string;
 

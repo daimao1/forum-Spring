@@ -1,13 +1,9 @@
 package com.damiankoziel.forum;
 
-import com.damiankoziel.forum.domain.Category;
-import com.damiankoziel.forum.repository.CategoryRepository;
-import com.damiankoziel.forum.service.CategoryService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import static org.mockito.Mockito.verify;
 

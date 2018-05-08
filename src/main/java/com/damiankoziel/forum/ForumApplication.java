@@ -27,15 +27,22 @@ public class ForumApplication {
             categories.add(Category.PEOPLE);
             postService.create(new Post(1L, "Lana Del Rey",
                     "Lana Del Rey, właśc. Elizabeth Woolridge Grant – amerykańska wokalistka indierockowa, " +
-                            "kompozytorka i autorka tekstów piosenek aktywna w przemyśle muzycznym od 2005 roku.",
+                            "kompozytorka i autorka tekstów piosenek aktywna w przemyśle muzycznym od 2005 roku.Lana Del Rey\",\n" +
+                            "                    \"Lana Del Rey, właśc. Elizabeth Woolridge Grant – amerykańska wokalistka indierockowa, \" +\n" +
+                            "                            \"kompozytorka i autorka tekstów piosenek aktywna w przemyśle muzycznym od 2005 roku." +
+                            "",
                     LocalDateTime.now(), "http://qultqultury.pl/wp-content/uploads/2015/09/lana-del-rey.jpg", categories));
             postService.create(new Post(2L, "Lana Del Rey",
                     "Lana Del Rey, właśc. Elizabeth Woolridge Grant – amerykańska wokalistka indierockowa, " +
-                            "kompozytorka i autorka tekstów piosenek aktywna w przemyśle muzycznym od 2005 roku.",
+                            "kompozytorka i autorka tekstów piosenek aktywna w przemyśle muzycznym od 2005 roku.Lana Del Rey\",\n" +
+                            "                    \"Lana Del Rey, właśc. Elizabeth Woolridge Grant – amerykańska wokalistka indierockowa, \" +\n" +
+                            "                            \"kompozytorka i autorka tekstów piosenek aktywna w przemyśle muzycznym od 2005 roku.",
                     LocalDateTime.now(), "http://qultqultury.pl/wp-content/uploads/2015/09/lana-del-rey.jpg", categories));
             postService.create(new Post(3L, "Lana Del Rey",
                     "Lana Del Rey, właśc. Elizabeth Woolridge Grant – amerykańska wokalistka indierockowa, " +
-                            "kompozytorka i autorka tekstów piosenek aktywna w przemyśle muzycznym od 2005 roku.",
+                            "kompozytorka i autorka tekstów piosenek aktywna w przemyśle muzycznym od 2005 roku.Lana Del Rey\",\n" +
+                            "                    \"Lana Del Rey, właśc. Elizabeth Woolridge Grant – amerykańska wokalistka indierockowa, \" +\n" +
+                            "                            \"kompozytorka i autorka tekstów piosenek aktywna w przemyśle muzycznym od 2005 roku.",
                     LocalDateTime.now(), "http://qultqultury.pl/wp-content/uploads/2015/09/lana-del-rey.jpg", categories));
         };
     }

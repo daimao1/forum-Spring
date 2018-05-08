@@ -8,7 +8,6 @@ import {PostService} from "../post.service";
     styleUrls: ['./posts-list.component.css']
 })
 export class PostsListComponent implements OnInit {
-
     posts: Post[] = [];
 
     constructor(private postService: PostService) {

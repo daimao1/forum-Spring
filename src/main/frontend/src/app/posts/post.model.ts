@@ -1,15 +1,16 @@
+
 export class Post {
     public id: number;
     public title: string;
-    public content: string[20];
-    public dateTimeOfPost: string;
+    public content: string;
+    public dateTimeOfPost: Date;
     public imageUrl: string;
+    public categories: string[];
 
-    constructor(id: number, title: string, content: string, dateTimeOfPost: string, imageUrl: string) {
-        this.id = id;
+    constructor(title: string, content: string, imageUrl: string, categories: string[]) {
         this.title = title;
         this.content = content;
-        this.dateTimeOfPost = dateTimeOfPost;
         this.imageUrl = imageUrl;
+        this.categories = categories;
     }
 }

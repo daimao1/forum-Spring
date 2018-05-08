@@ -1,7 +1,6 @@
 package com.damiankoziel.forum.domain;
 
 import com.damiankoziel.forum.commons.Category;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,7 +8,6 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Collection;
-import java.util.List;
 
 @Entity
 @Data
@@ -32,4 +30,5 @@ public class Post {
 
     @ElementCollection
     private Collection<Category> categories;
+
 }

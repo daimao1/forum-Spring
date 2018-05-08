@@ -1,4 +1,4 @@
-#Forum application# 
+#Forum application
 **Using technologies:** 
 - Spring Boot, 
 - Hibernate, 

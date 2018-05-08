@@ -8,8 +8,11 @@ import {HeaderComponent} from './header/header.component';
 import {PostsListComponent} from './posts/posts-list/posts-list.component';
 import {PostsAddComponent} from './posts/posts-add/posts-add.component';
 import {PostService} from "./posts/post.service";
-import {HttpModule} from "@angular/http";
 import {ShorterContentPipe} from "./shorter-content.pipe";
+import {CategoriesFormatPipe} from "./categories-format.pipe";
+import {AppRoutingModule} from "./app-routing.module";
+import {FormsModule} from "@angular/forms";
+import {HttpClientModule} from "@angular/common/http";
 
 
 @NgModule({
@@ -19,11 +22,14 @@ import {ShorterContentPipe} from "./shorter-content.pipe";
       HeaderComponent,
       PostsListComponent,
       PostsAddComponent,
-      ShorterContentPipe
+      ShorterContentPipe,
+      CategoriesFormatPipe
   ],
   imports: [
       BrowserModule,
-      HttpModule
+      HttpClientModule,
+      AppRoutingModule,
+      FormsModule
   ],
     providers: [PostService],
   bootstrap: [AppComponent]

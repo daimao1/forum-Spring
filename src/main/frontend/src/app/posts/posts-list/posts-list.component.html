@@ -1,21 +1,22 @@
 <div class="row mt-4">
     <div class="col-lg-10">
         <ul class="list-group">
-            <li *ngFor="let post of posts" class="list-group-item clearfix">
+            <li *ngFor="let post of posts" class="list-group-item clearfix" style="background-color: snow">
                 <a
                     class="media mb-2 mt-2 ml-2 mr-2 mr-4"
                     href="#">
-                    <img
-                        class="mr-4" width="300px"
-                        src="{{ post.imageUrl }}"
-                        alt="{{ post.title }}">
+                    <figure class="figure mb-0">
+                        <img
+                            class="mr-4 rounded" width="300px"
+                            src="{{ post.imageUrl }}"
+                            alt="{{ post.title }}">
+                        <figcaption class="figure-caption">{{ post.categories | categoriesFormat}}</figcaption>
+                    </figure>
                     <div class="media-body">
                         <h4 class="mt-0">{{ post.title }}</h4>
                         {{ post.content | shorterContent }}
                     </div>
-                    <!--Tutaj jest miejsce na date postu-->
-                    <span class="col-2"
-                          style="font-size: small; color:grey">{{ post.dateTimeOfPost | date:'short'}}</span>
+                    <small class="text-muted">{{ post.dateTimeOfPost | date:'short'}}</small>
                 </a>
             </li>
         </ul>

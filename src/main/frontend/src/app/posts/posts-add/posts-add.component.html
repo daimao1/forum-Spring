@@ -1,7 +1,7 @@
 <div class="container-fluid h-100">
     <div class="row mt-4 justify-content-center align-items-center h-auto">
         <div class="col-lg-8">
-            <form (ngSubmit)="onAddPost(f)" #f="ngForm">
+            <form (ngSubmit)="onAddPost()" #f="ngForm">
                 <div id="post-data">
                     <div class="form-group text-center">
                         <label for="title" class="font-weight-bold">Tytuł:</label>
@@ -29,15 +29,15 @@
                     <label for="categories"
                            class="row justify-content-center h-auto font-weight-bold">Kategorie:</label>
                     <div id="categories"
-                         class=" row mt-4 justify-content-center h-auto mb-2"
-                         ngModelGroup="categories">
+                         class="row mt-4 justify-content-center h-auto mb-2"
+                         ngModelGroup="categories"
+                         name="categories">
                         <div class="form-group">
                             <div class="form-check form-check-inline">
                                 <input
                                     class="form-check-input"
                                     type="checkbox"
                                     id="celebrity"
-                                    value="CELEBRITY"
                                     ngModel
                                     name="celebrity">
                                 <label class="form-check-label" for="celebrity">Celebryci</label>
@@ -47,7 +47,6 @@
                                     class="form-check-input"
                                     type="checkbox"
                                     id="animal"
-                                    value="ANIMAL"
                                     ngModel
                                     name="animal">
                                 <label class="form-check-label" for="animal">Zwierzęta</label>
@@ -57,7 +56,6 @@
                                     class="form-check-input"
                                     type="checkbox"
                                     id="people"
-                                    value="PEOPLE"
                                     ngModel name="people">
                                 <label class="form-check-label" for="people">Ludzie</label>
                             </div>
@@ -66,7 +64,6 @@
                                     class="form-check-input"
                                     type="checkbox"
                                     id="curiosity"
-                                    value="CURIOSITY"
                                     ngModel
                                     name="curiosity">
                                 <label class="form-check-label" for="curiosity">Ciekawostki</label>
@@ -76,7 +73,6 @@
                                     class="form-check-input"
                                     type="checkbox"
                                     id="science"
-                                    value="SCIENCE"
                                     ngModel
                                     name="science">
                                 <label class="form-check-label" for="science">Nauka</label>
@@ -88,7 +84,6 @@
                                     class="form-check-input"
                                     type="checkbox"
                                     id="funny"
-                                    value="FUNNY"
                                     ngModel
                                     name="funny">
                                 <label class="form-check-label" for="funny">Zabawne</label>
@@ -98,7 +93,6 @@
                                     class="form-check-input"
                                     type="checkbox"
                                     id="nature"
-                                    value="NATURE"
                                     ngModel
                                     name="nature">
                                 <label class="form-check-label" for="nature">Natura</label>
@@ -108,7 +102,6 @@
                                     class="form-check-input"
                                     type="checkbox"
                                     id="interestingPlace"
-                                    value="INTERESTING_PLACE"
                                     ngModel
                                     name="interestingPlace">
                                 <label class="form-check-label" for="interestingPlace">Interesujące miejsca</label>
@@ -118,7 +111,6 @@
                                     class="form-check-input"
                                     type="checkbox"
                                     id="art"
-                                    value="ART"
                                     ngModel
                                     name="art">
                                 <label class="form-check-label" for="art">Sztuka</label>
@@ -128,7 +120,6 @@
                                     class="form-check-input"
                                     type="checkbox"
                                     id="movie"
-                                    value="MOVIE"
                                     ngModel
                                     name="movie">
                                 <label class="form-check-label" for="movie">Film</label>
@@ -140,7 +131,6 @@
                                     class="form-check-input"
                                     type="checkbox"
                                     id="fashion"
-                                    value="FASHION"
                                     ngModel
                                     name="fashion">
                                 <label class="form-check-label" for="fashion">Moda</label>
@@ -150,7 +140,6 @@
                                     class="form-check-input"
                                     type="checkbox"
                                     id="sale"
-                                    value="SALE"
                                     ngModel
                                     name="sale">
                                 <label class="form-check-label" for="sale">Wyprzedaże</label>
@@ -160,7 +149,6 @@
                                     class="form-check-input"
                                     type="checkbox"
                                     id="music"
-                                    value="MUSIC"
                                     ngModel
                                     name="music">
                                 <label class="form-check-label" for="music">Muzyka</label>
@@ -170,7 +158,6 @@
                                     class="form-check-input"
                                     type="checkbox"
                                     id="culture"
-                                    value="CULTURE"
                                     ngModel
                                     name="culture">
                                 <label class="form-check-label" for="culture">Kultura</label>
@@ -180,7 +167,6 @@
                                     class="form-check-input"
                                     type="checkbox"
                                     id="sport"
-                                    value="SPORT"
                                     ngModel
                                     name="sport">
                                 <label class="form-check-label" for="sport">Sport</label>
@@ -192,7 +178,6 @@
                                     class="form-check-input"
                                     type="checkbox"
                                     id="warszawa"
-                                    value="WARSZAWA"
                                     ngModel
                                     name="warszawa">
                                 <label class="form-check-label" for="warszawa">Warszawa</label>
@@ -202,7 +187,6 @@
                                     class="form-check-input"
                                     type="checkbox"
                                     id="lublin"
-                                    value="LUBLIN"
                                     ngModel
                                     name="lublin">
                                 <label class="form-check-label" for="lublin">Lublin</label>
@@ -212,7 +196,6 @@
                                     class="form-check-input"
                                     type="checkbox"
                                     id="poznan"
-                                    value="POZNAN"
                                     ngModel
                                     name="poznan">
                                 <label class="form-check-label" for="poznan">Poznań</label>
@@ -222,7 +205,6 @@
                                     class="form-check-input"
                                     type="checkbox"
                                     id="kielce"
-                                    value="KIELCE"
                                     ngModel
                                     name="kielce">
                                 <label class="form-check-label" for="kielce">Kielce</label>
@@ -232,7 +214,6 @@
                                     class="form-check-input"
                                     type="checkbox"
                                     id="katowice"
-                                    value="KATOWICE"
                                     ngModel
                                     name="katowice">
                                 <label class="form-check-label" for="katowice">Katowice</label>
@@ -244,7 +225,6 @@
                                     class="form-check-input"
                                     type="checkbox"
                                     id="gdansk"
-                                    value="GDANSK"
                                     ngModel
                                     name="gdansk">
                                 <label class="form-check-label" for="gdansk">Gdańsk</label>
@@ -254,7 +234,6 @@
                                     class="form-check-input"
                                     type="checkbox"
                                     id="gdynia"
-                                    value="GDYNIA"
                                     ngModel
                                     name="gdynia">
                                 <label class="form-check-label" for="gdynia">Gdynia</label>
@@ -264,7 +243,6 @@
                                     class="form-check-input"
                                     type="checkbox"
                                     id="krakow"
-                                    value="KRAKOW"
                                     ngModel
                                     name="krakow">
                                 <label class="form-check-label" for="krakow">Kraków</label>
@@ -274,7 +252,6 @@
                                     class="form-check-input"
                                     type="checkbox"
                                     id="wroclaw"
-                                    value="WROCLAW"
                                     ngModel
                                     name="wroclaw">
                                 <label class="form-check-label" for="wroclaw">Wrocław</label>

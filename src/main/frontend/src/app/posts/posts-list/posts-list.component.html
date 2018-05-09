@@ -4,7 +4,7 @@
             <li *ngFor="let post of posts" class="list-group-item clearfix" style="background-color: snow">
                 <a
                     class="media mb-2 mt-2 ml-2 mr-2 mr-4"
-                    href="#">
+                    [routerLink]="['/posts/', post.id]">
                     <figure class="figure mb-0">
                         <img
                             class="mr-4 rounded" width="300px"

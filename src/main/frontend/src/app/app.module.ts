@@ -13,6 +13,7 @@ import {CategoriesFormatPipe} from "./categories-format.pipe";
 import {AppRoutingModule} from "./app-routing.module";
 import {FormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
+import {PostDetailsComponent} from './posts/post-details/post-details.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import {HttpClientModule} from "@angular/common/http";
       PostsListComponent,
       PostsAddComponent,
       ShorterContentPipe,
-      CategoriesFormatPipe
+      CategoriesFormatPipe,
+      PostDetailsComponent,
   ],
   imports: [
       BrowserModule,

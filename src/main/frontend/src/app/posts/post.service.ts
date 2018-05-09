@@ -2,6 +2,7 @@ import {Injectable} from "@angular/core";
 import "rxjs/add/operator/map";
 import {Post} from "./post.model";
 import {HttpClient} from "@angular/common/http";
+import {Observable} from "rxjs/Observable";
 
 @Injectable()
 export class PostService {
@@ -20,6 +21,10 @@ export class PostService {
                 console.log(response);
             }
         );
+    }
+
+    getPostById(id: number) {
+        return this.http.get('/api/posts/' + id);
     }
 
 

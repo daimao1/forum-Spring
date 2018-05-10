@@ -3,6 +3,7 @@ import {NgForm} from "@angular/forms";
 import {PostService} from "../post.service";
 import {Post} from "../post.model";
 import {Router} from "@angular/router";
+import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 
 @Component({
     selector: 'app-posts-add',
@@ -12,7 +13,7 @@ import {Router} from "@angular/router";
 export class PostsAddComponent implements OnInit {
     @ViewChild('f') addPostForm: NgForm;
 
-    constructor(private postService: PostService, private router: Router) {
+    constructor(private postService: PostService, private router: Router, private http: HttpClient) {
     }
 
     ngOnInit() {
@@ -24,6 +25,12 @@ export class PostsAddComponent implements OnInit {
         const newPost = new Post(value.title, value.content, tempImageUrl, this.addCategories());
         this.postService.savePost(newPost);
         this.router.navigate(['/posts-list']);
+    }
+
+    onImageUpload(files: any) {
+
+        let file: File = files[0];
+        this.postService.upload(file);
     }
 
     addCategories() {

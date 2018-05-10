@@ -259,10 +259,11 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="imagePost" class="font-weight-light">Wybierz plik ze zdjęciem</label>
-                        <input type="file" class="form-control-file" id="imagePost">
+                        <label for="imagePost" class="font-weight-light">Wybierz plik z obrazkiem</label>
+                        <input type="file" class="form-control-file" id="imagePost" accept="image/*" #fileInput>
                     </div>
-                    <button type="submit" class="btn btn-outline-success btn-lg col-lg-3 mx-auto d-block"
+                    <button type="submit" (click)="onImageUpload(fileInput.files)"
+                            class="btn btn-outline-success btn-lg col-lg-3 mx-auto d-block"
                             [disabled]="!f.valid">Dodaj post
                     </button>
                 </div>

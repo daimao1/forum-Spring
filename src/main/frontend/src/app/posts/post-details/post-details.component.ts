@@ -9,7 +9,8 @@ import {Post} from "../post.model";
     styleUrls: ['./post-details.component.css']
 })
 export class PostDetailsComponent implements OnInit {
-    post: Post = {...};
+    //post: Post = {};
+    post = {} as Post;
     id: number;
 
     constructor(private postService: PostService, private route: ActivatedRoute) {
@@ -19,7 +20,8 @@ export class PostDetailsComponent implements OnInit {
         this.route.params.subscribe(
             (params: Params) => {
                 this.id = +params['id'];
-                this.postService.getPostById(this.id).subscribe(
+                this.postService.getPostById(this.id)
+                    .subscribe(
                     (data: Post) => {
                         this.post = data;
                         console.log(this.post);

@@ -7,10 +7,9 @@ export class Post {
     public imageUrl: string;
     public categories: string[];
 
-    constructor(title: string, content: string, imageUrl: string, categories: string[]) {
+    constructor(title: string, content: string, categories: string[]) {
         this.title = title;
         this.content = content;
-        this.imageUrl = imageUrl;
         this.categories = categories;
     }
 }

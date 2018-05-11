@@ -2,7 +2,6 @@ import {Injectable} from "@angular/core";
 import "rxjs/add/operator/map";
 import {Post} from "./post.model";
 import {HttpClient, HttpErrorResponse} from "@angular/common/http";
-import {Observable} from "rxjs/Observable";
 
 @Injectable()
 export class PostService {
@@ -27,7 +26,7 @@ export class PostService {
         return this.http.get('/api/posts/' + id);
     }
 
-    upload(file: File) {
+    uploadImage(file: File) {
         let formData = new FormData();
         formData.append('file', file);
         const req = this.http.post('/api/posts/upload', formData);

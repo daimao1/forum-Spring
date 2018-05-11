@@ -12,8 +12,17 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Comparator;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -58,7 +67,15 @@ public class PostService {
     }
 
     public void uploadImage(MultipartFile file) throws IOException {
-        File convertFile = new File("src/main/resources/static/images/" + file.getOriginalFilename());
+        UUID imgGeneratedId = UUID.nameUUIDFromBytes(file.getBytes());
+
+        File convertFile = new File("src/main/frontend/src/assets/images/" + imgGeneratedId + file.getOriginalFilename());
+
+        Post foundPost = postRepository.findFirstByOrderByIdDesc();
+        foundPost.setImageUrl("./assets/images/" + imgGeneratedId + file.getOriginalFilename());
+        postRepository.save(foundPost);
+        System.out.println(postRepository.findFirstByOrderByIdDesc());
+
         convertFile.createNewFile();
         FileOutputStream fout = new FileOutputStream(convertFile);
         fout.write(file.getBytes());

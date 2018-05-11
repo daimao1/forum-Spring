@@ -9,7 +9,6 @@ import {Post} from "../post.model";
     styleUrls: ['./post-details.component.css']
 })
 export class PostDetailsComponent implements OnInit {
-    //post: Post = {};
     post = {} as Post;
     id: number;
 

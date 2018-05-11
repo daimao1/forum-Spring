@@ -3,7 +3,7 @@ import {NgForm} from "@angular/forms";
 import {PostService} from "../post.service";
 import {Post} from "../post.model";
 import {Router} from "@angular/router";
-import {HttpClient, HttpErrorResponse} from "@angular/common/http";
+import {HttpClient} from "@angular/common/http";
 
 @Component({
     selector: 'app-posts-add',
@@ -19,18 +19,16 @@ export class PostsAddComponent implements OnInit {
     ngOnInit() {
     }
 
-    onAddPost() {
-        const tempImageUrl = 'http://qultqultury.pl/wp-content/uploads/2015/09/lana-del-rey.jpg';
+    onAddPost(files: any) {
         const value = this.addPostForm.value;
-        const newPost = new Post(value.title, value.content, tempImageUrl, this.addCategories());
-        this.postService.savePost(newPost);
-        this.router.navigate(['/posts-list']);
-    }
-
-    onImageUpload(files: any) {
+        const newPost = new Post(value.title, value.content, this.addCategories());
 
         let file: File = files[0];
-        this.postService.upload(file);
+        console.log(file);
+        this.postService.uploadImage(file);
+        this.postService.savePost(newPost);
+
+        // this.router.navigate(['/posts-list']);
     }
 
     addCategories() {

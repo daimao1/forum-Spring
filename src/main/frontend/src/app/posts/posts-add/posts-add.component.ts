@@ -22,12 +22,10 @@ export class PostsAddComponent implements OnInit {
     onAddPost(files: any) {
         const value = this.addPostForm.value;
         const newPost = new Post(value.title, value.content, this.addCategories());
-
         let file: File = files[0];
         console.log(file);
-        this.postService.uploadImage(file);
-        this.postService.savePost(newPost);
 
+        this.postService.savePost(newPost, file);
         // this.router.navigate(['/posts-list']);
     }
 

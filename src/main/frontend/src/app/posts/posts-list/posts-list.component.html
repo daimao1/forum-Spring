@@ -10,14 +10,19 @@
                             class="mr-4 rounded" width="300px"
                             src="{{ post.imageUrl }}"
                             alt="{{ post.title }}">
-                        <figcaption class="figure-caption">{{ post.categories | categoriesFormat}}</figcaption>
+                        <figcaption class="figure-caption text-center">{{ post.categories | categoriesFormat}}
+                        </figcaption>
                     </figure>
                     <div class="media-body">
                         <h4 class="mt-0">{{ post.title }}</h4>
                         {{ post.content | shorterContent }}
+
                     </div>
+
                     <small class="text-muted">{{ post.dateTimeOfPost | date:'short'}}</small>
                 </a>
+                <div class="text-right mt-0"><span class="font-weight-light">Ocena:</span> {{ post.ratingPoints }}</div>
+
             </li>
         </ul>
     </div>

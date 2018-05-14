@@ -6,10 +6,12 @@ export class Post {
     public dateTimeOfPost: Date;
     public imageUrl: string;
     public categories: string[];
+    public ratingPoints: number;
 
     constructor(title: string, content: string, categories: string[]) {
         this.title = title;
         this.content = content;
         this.categories = categories;
+        this.ratingPoints = 0;
     }
 }

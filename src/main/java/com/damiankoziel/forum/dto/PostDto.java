@@ -24,4 +24,6 @@ public class PostDto {
     private String imageUrl;
 
     private Collection<Category> categories;
+
+    private Integer ratingPoints;
 }

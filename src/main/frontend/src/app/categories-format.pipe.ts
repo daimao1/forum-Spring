@@ -105,6 +105,10 @@ export class CategoriesFormatPipe implements PipeTransform {
                     list += 'Wrocław  ';
                     break;
                 }
+                default: {
+                    list += ' ';
+                    break;
+                }
             }
         }
         return list;

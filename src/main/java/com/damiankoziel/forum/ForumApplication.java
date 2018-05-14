@@ -31,19 +31,19 @@ public class ForumApplication {
                             "                    \"Lana Del Rey, właśc. Elizabeth Woolridge Grant – amerykańska wokalistka indierockowa, \" +\n" +
                             "                            \"kompozytorka i autorka tekstów piosenek aktywna w przemyśle muzycznym od 2005 roku." +
                             "",
-                    LocalDateTime.now(), "http://qultqultury.pl/wp-content/uploads/2015/09/lana-del-rey.jpg", categories));
+                    LocalDateTime.now(), "http://qultqultury.pl/wp-content/uploads/2015/09/lana-del-rey.jpg", categories, 30));
             postService.create(new Post(2L, "Lana Del Rey",
                     "Lana Del Rey, właśc. Elizabeth Woolridge Grant – amerykańska wokalistka indierockowa, " +
                             "kompozytorka i autorka tekstów piosenek aktywna w przemyśle muzycznym od 2005 roku.Lana Del Rey\",\n" +
                             "                    \"Lana Del Rey, właśc. Elizabeth Woolridge Grant – amerykańska wokalistka indierockowa, \" +\n" +
                             "                            \"kompozytorka i autorka tekstów piosenek aktywna w przemyśle muzycznym od 2005 roku.",
-                    LocalDateTime.now(), "http://qultqultury.pl/wp-content/uploads/2015/09/lana-del-rey.jpg", categories));
+                    LocalDateTime.now(), "http://qultqultury.pl/wp-content/uploads/2015/09/lana-del-rey.jpg", categories, 40));
             postService.create(new Post(3L, "Lana Del Rey",
                     "Lana Del Rey, właśc. Elizabeth Woolridge Grant – amerykańska wokalistka indierockowa, " +
                             "kompozytorka i autorka tekstów piosenek aktywna w przemyśle muzycznym od 2005 roku.Lana Del Rey\",\n" +
                             "                    \"Lana Del Rey, właśc. Elizabeth Woolridge Grant – amerykańska wokalistka indierockowa, \" +\n" +
                             "                            \"kompozytorka i autorka tekstów piosenek aktywna w przemyśle muzycznym od 2005 roku.",
-                    LocalDateTime.now(), "http://qultqultury.pl/wp-content/uploads/2015/09/lana-del-rey.jpg", categories));
+                    LocalDateTime.now(), "http://qultqultury.pl/wp-content/uploads/2015/09/lana-del-rey.jpg", categories, 50));
         };
     }
 }

@@ -68,18 +68,15 @@ public class PostService {
 
     public void uploadImage(MultipartFile file) throws IOException {
         UUID imgGeneratedId = UUID.nameUUIDFromBytes(file.getBytes());
-
         File convertFile = new File("src/main/frontend/src/assets/images/" + imgGeneratedId + file.getOriginalFilename());
-
         Post foundPost = postRepository.findFirstByOrderByIdDesc();
         foundPost.setImageUrl("./assets/images/" + imgGeneratedId + file.getOriginalFilename());
-        postRepository.save(foundPost);
-        System.out.println(postRepository.findFirstByOrderByIdDesc());
-
         convertFile.createNewFile();
         FileOutputStream fout = new FileOutputStream(convertFile);
         fout.write(file.getBytes());
         fout.close();
+
+        postRepository.save(foundPost);
     }
 
 

@@ -32,4 +32,6 @@ public class Post {
     @ElementCollection
     private Collection<Category> categories;
 
+    private Integer ratingPoints;
+
 }

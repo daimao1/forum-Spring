@@ -29,7 +29,8 @@ public final class ToDtoConverter {
                 post.getContent(),
                 post.getDateTimeOfPost(),
                 post.getImageUrl(),
-                post.getCategories()
+                post.getCategories(),
+                post.getRatingPoints()
                 );
     }
 

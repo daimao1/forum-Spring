@@ -14,19 +14,21 @@ export class PostService {
         return this.http.get('/api/posts');
     }
 
-    savePost(newPost: Post) {
+    savePost(newPost: Post, file: File) {
         return this.http.post('/api/posts', newPost).subscribe(
             (response: Response) => {
                 console.log(response);
+                this.uploadImage(file);
             }
         );
+
     }
 
     getPostById(id: number) {
         return this.http.get('/api/posts/' + id);
     }
 
-    uploadImage(file: File) {
+    private uploadImage(file: File) {
         let formData = new FormData();
         formData.append('file', file);
         const req = this.http.post('/api/posts/upload', formData);
@@ -43,6 +45,13 @@ export class PostService {
         })
     }
 
+    //TODO:
+    increaseRatingPoints() {
 
+    }
+
+    decreaseRatingPoints() {
+
+    }
 
 }

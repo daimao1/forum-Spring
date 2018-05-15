@@ -14,6 +14,7 @@ import {AppRoutingModule} from "./app-routing.module";
 import {FormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import {PostDetailsComponent} from './posts/post-details/post-details.component';
+import {AuthServiceImitation} from "./auth/auth.service";
 
 
 @NgModule({
@@ -33,7 +34,7 @@ import {PostDetailsComponent} from './posts/post-details/post-details.component'
       AppRoutingModule,
       FormsModule
   ],
-    providers: [PostService],
+    providers: [PostService, AuthServiceImitation],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

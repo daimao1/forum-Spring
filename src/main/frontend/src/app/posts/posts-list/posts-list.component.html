@@ -1,5 +1,10 @@
 <div class="row mt-4">
     <div class="col-lg-10">
+
+        <button *ngIf="!authService.isAdminMode()" class="btn btn-primary" (click)="authService.setAdminMode()"
+                [disabled]="authService.isAdminMode()">Tryb admina
+        </button>
+
         <ul class="list-group mb-5">
             <li *ngFor="let post of posts" class="list-group-item clearfix" style="background-color: snow">
                 <a
@@ -22,7 +27,6 @@
                     <small class="text-muted">{{ post.dateTimeOfPost | date:'short'}}</small>
                 </a>
                 <div class="text-right mt-0"><span class="font-weight-light">Ocena:</span> {{ post.ratingPoints }}</div>
-
             </li>
         </ul>
     </div>

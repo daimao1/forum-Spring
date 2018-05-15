@@ -21,7 +21,6 @@ export class PostService {
                 this.uploadImage(file);
             }
         );
-
     }
 
     getPostById(id: number) {
@@ -45,13 +44,20 @@ export class PostService {
         })
     }
 
-    //TODO:
-    increaseRatingPoints() {
-
+    changeRatingPoints(id: number, buttonState: number) {
+        console.log("changeRatingPoints: id:" + id + " buttonState: " + buttonState);
+        return this.http.put("/api/posts/" + id + "/rate", buttonState).subscribe(
+            (response: Response) => {
+                console.log(response);
+            }
+        );
     }
 
-    decreaseRatingPoints() {
-
+    deletePost(id: number) {
+        this.http.delete("/api/posts/" + id).subscribe(
+            () => {
+                console.log('Deleted post with id: ' + id);
+            }
+        );
     }
-
 }

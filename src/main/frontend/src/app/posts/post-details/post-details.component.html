@@ -2,13 +2,20 @@
     <div class="row mt-4 justify-content-center align-items-center h-auto">
         <div class="col-lg-9  ">
             <h1 class="mt-4">{{ post.title }}</h1>
+            <button *ngIf="authService.isAdminMode()" class="btn btn-danger" (click)="onClickDelete()"
+                    routerLink="/posts-list">USUŃ
+            </button>
             <hr>
             <img class="img-fluid rounded" src="{{ post.imageUrl }}" alt="">
             <hr>
             <p>{{ post.content }}</p>
             <div class="text-right">
-                <button type="button" class="btn-sm btn-success">Fajne</button>
-                <button type="button" class="btn-sm btn-danger">Słabe</button>
+                <button type="button" class="btn-sm btn-success" aria-pressed="false" [disabled]="!allowRate"
+                        (click)="onClickRate(1)">Fajne
+                </button>
+                <button type="button" class="btn-sm btn-danger" aria-pressed="false" [disabled]="!allowRate"
+                        (click)="onClickRate(0)">Słabe
+                </button>
             </div>
             <hr>
             <div class="card my-4">

@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {PostService} from "../post.service";
 import {ActivatedRoute, Params} from "@angular/router";
 import {Post} from "../post.model";
+import {AuthServiceImitation} from "../../auth/auth.service";
 
 @Component({
     selector: 'app-post-details',
@@ -11,12 +12,13 @@ import {Post} from "../post.model";
 export class PostDetailsComponent implements OnInit {
     post = {} as Post;
     id: number;
+    allowRate = true;
 
-    constructor(private postService: PostService, private route: ActivatedRoute) {
+    constructor(private postService: PostService, private router: ActivatedRoute, private authService: AuthServiceImitation) {
     }
 
     ngOnInit() {
-        this.route.params.subscribe(
+        this.router.params.subscribe(
             (params: Params) => {
                 this.id = +params['id'];
                 this.postService.getPostById(this.id)
@@ -29,5 +31,14 @@ export class PostDetailsComponent implements OnInit {
                 );
             }
         );
+    }
+
+    onClickRate(buttonState: number) {
+        this.allowRate = false;
+        this.postService.changeRatingPoints(this.id, buttonState);
+    }
+
+    onClickDelete() {
+        this.postService.deletePost(this.id);
     }
 }

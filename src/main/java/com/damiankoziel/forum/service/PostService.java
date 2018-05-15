@@ -12,14 +12,6 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.time.LocalDateTime;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.UUID;
@@ -79,5 +71,14 @@ public class PostService {
         postRepository.save(foundPost);
     }
 
-
+    public PostDto rate(final Long id, final Integer buttonState) {
+        Post foundPost = postRepository.findById(id).get();
+        if (buttonState.equals(0)) {
+            foundPost.setRatingPoints(foundPost.getRatingPoints() - 1);
+        } else if (buttonState.equals(1)) {
+            foundPost.setRatingPoints(foundPost.getRatingPoints() + 1);
+        }
+        postRepository.save(foundPost);
+        return ToDtoConverter.postToDto(foundPost);
+    }
 }

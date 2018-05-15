@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Post} from "../post.model";
 import {PostService} from "../post.service";
+import {AuthServiceImitation} from "../../auth/auth.service";
 
 @Component({
     selector: 'app-posts-list',
@@ -10,7 +11,7 @@ import {PostService} from "../post.service";
 export class PostsListComponent implements OnInit {
     posts: Post[] = [];
 
-    constructor(private postService: PostService) {
+    constructor(private postService: PostService, private authService: AuthServiceImitation) {
     }
 
     ngOnInit() {

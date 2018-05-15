@@ -1,4 +1,6 @@
 import {Component, OnInit} from '@angular/core';
+import {PostService} from "../posts/post.service";
+import {AuthServiceImitation} from "../auth/auth.service";
 
 @Component({
     selector: 'app-header',

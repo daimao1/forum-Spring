@@ -1,6 +1,6 @@
 <div class="row mt-4">
-    <div class="col-lg-10">
-
+    <h2 *ngIf="posts.length === 0">Brak postów.</h2>
+    <div class="col-lg-10" *ngIf="posts.length > 0">
         <button *ngIf="!authService.isAdminMode()" class="btn btn-primary" (click)="authService.setAdminMode()"
                 [disabled]="authService.isAdminMode()">Tryb admina
         </button>

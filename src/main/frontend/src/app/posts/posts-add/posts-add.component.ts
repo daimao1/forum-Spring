@@ -24,9 +24,12 @@ export class PostsAddComponent implements OnInit {
         const newPost = new Post(value.title, value.content, this.addCategories());
         let file: File = files[0];
         console.log(file);
-
         this.postService.savePost(newPost, file);
-        // this.router.navigate(['/posts-list']);
+        this.router.navigate(['/posts-list']);
+    }
+
+    categoryChecked() {
+        console.log("Category is checked.");
     }
 
     addCategories() {

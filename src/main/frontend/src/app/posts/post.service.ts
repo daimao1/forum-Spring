@@ -2,11 +2,12 @@ import {Injectable} from "@angular/core";
 import "rxjs/add/operator/map";
 import {Post} from "./post.model";
 import {HttpClient, HttpErrorResponse} from "@angular/common/http";
+import {Router, RouterLinkActive} from "@angular/router";
 
 @Injectable()
 export class PostService {
 
-    constructor(private http: HttpClient) {
+    constructor(private http: HttpClient, private router: Router) {
 
     }
 
@@ -41,7 +42,8 @@ export class PostService {
             else {
                 console.log('Backend returned code', err.status, 'body was ', err.error);
             }
-        })
+        });
+
     }
 
     changeRatingPoints(id: number, buttonState: number) {
@@ -59,5 +61,14 @@ export class PostService {
                 console.log('Deleted post with id: ' + id);
             }
         );
+    }
+
+    updatePost(updatedPost: Post, file: File) {
+        return this.http.put('api/posts', updatedPost).subscribe(
+            (response: Response) => {
+                console.log(response);
+                this.uploadImage(file);
+            }
+        )
     }
 }

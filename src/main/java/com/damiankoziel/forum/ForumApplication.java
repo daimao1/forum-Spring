@@ -26,24 +26,42 @@ public class ForumApplication {
             categories.add(Category.CELEBRITY);
             categories.add(Category.PEOPLE);
             postService.create(new Post(1L, "Lana Del Rey",
-                    "Lana Del Rey, właśc. Elizabeth Woolridge Grant – amerykańska wokalistka indierockowa, " +
-                            "kompozytorka i autorka tekstów piosenek aktywna w przemyśle muzycznym od 2005 roku.Lana Del Rey\",\n" +
-                            "                    \"Lana Del Rey, właśc. Elizabeth Woolridge Grant – amerykańska wokalistka indierockowa, \" +\n" +
-                            "                            \"kompozytorka i autorka tekstów piosenek aktywna w przemyśle muzycznym od 2005 roku." +
-                            "",
+                    "amerykańska wokalistka indierockowa, kompozytorka i autorka tekstów piosenek[10] aktywna w przemyśle muzycznym" +
+                            " od 2005 roku[11]. Jej pseudonim artystyczny jest połączeniem imienia hollywoodzkiej gwiazdy Lany Turner i nazwy" +
+                            " Forda Del Rey[10][12]. Nazywana gangsta Nancy Sinatra (ang. „gangsterska Nancy Sinatra”)[9][13][14][15] przez krytyków" +
+                            " muzycznych. Była trzykrotnie nominowana do nagrody Grammy. Dwukrotnie w 2014 roku w kategorii „Najlepszy album pop” za" +
+                            " minialbum Paradise oraz w kategorii „Najlepsza piosenka filmowa” za utwór „Young and Beautiful”[16]. W 2016 roku uzyskała" +
+                            " nominację wraz z The Weeknd do tejże nagrody w kategorii „Album roku” za wydawnictwo zatytułowane Beauty Behind the Madness," +
+                            " które współtworzyła wraz z nim i wieloma innymi artystami[17]. W 2015 roku otrzymała nominację do Złotego Globu w kategorii" +
+                            " „Najlepsza piosenka” za utwór „Big Eyes” wykorzystany w filmie Wielkie oczy[18]. Jej debiutancki album Born to Die rozszedł" +
+                            " się w nakładzie 7 milionów egzemplarzy na całym świecie[19][20], zaś album Ultraviolence w ponadmilionowym nakładzie[21]." +
+                            " Według Nielsen SoundScan szacowany nakład ze sprzedaży utworów Del Rey w samych Stanach Zjednoczonych wynosi 4 miliony 500" +
+                            " tysięcy egzemplarzy[22]. ",
                     LocalDateTime.now(), "http://qultqultury.pl/wp-content/uploads/2015/09/lana-del-rey.jpg", categories, 30));
             postService.create(new Post(2L, "Lana Del Rey",
-                    "Lana Del Rey, właśc. Elizabeth Woolridge Grant – amerykańska wokalistka indierockowa, " +
-                            "kompozytorka i autorka tekstów piosenek aktywna w przemyśle muzycznym od 2005 roku.Lana Del Rey\",\n" +
-                            "                    \"Lana Del Rey, właśc. Elizabeth Woolridge Grant – amerykańska wokalistka indierockowa, \" +\n" +
-                            "                            \"kompozytorka i autorka tekstów piosenek aktywna w przemyśle muzycznym od 2005 roku.",
-                    LocalDateTime.now(), "http://qultqultury.pl/wp-content/uploads/2015/09/lana-del-rey.jpg", categories, 40));
+                    "amerykańska wokalistka indierockowa, kompozytorka i autorka tekstów piosenek[10] aktywna w przemyśle muzycznym" +
+                            " od 2005 roku[11]. Jej pseudonim artystyczny jest połączeniem imienia hollywoodzkiej gwiazdy Lany Turner i nazwy" +
+                            " Forda Del Rey[10][12]. Nazywana gangsta Nancy Sinatra (ang. „gangsterska Nancy Sinatra”)[9][13][14][15] przez krytyków" +
+                            " muzycznych. Była trzykrotnie nominowana do nagrody Grammy. Dwukrotnie w 2014 roku w kategorii „Najlepszy album pop” za" +
+                            " minialbum Paradise oraz w kategorii „Najlepsza piosenka filmowa” za utwór „Young and Beautiful”[16]. W 2016 roku uzyskała" +
+                            " nominację wraz z The Weeknd do tejże nagrody w kategorii „Album roku” za wydawnictwo zatytułowane Beauty Behind the Madness," +
+                            " które współtworzyła wraz z nim i wieloma innymi artystami[17]. W 2015 roku otrzymała nominację do Złotego Globu w kategorii" +
+                            " „Najlepsza piosenka” za utwór „Big Eyes” wykorzystany w filmie Wielkie oczy[18]. Jej debiutancki album Born to Die rozszedł" +
+                            " się w nakładzie 7 milionów egzemplarzy na całym świecie[19][20], zaś album Ultraviolence w ponadmilionowym nakładzie[21]." +
+                            " Według Nielsen SoundScan szacowany nakład ze sprzedaży utworów Del Rey w samych Stanach Zjednoczonych wynosi 4 miliony 500" +
+                            " tysięcy egzemplarzy[22]. ", LocalDateTime.now(), "http://qultqultury.pl/wp-content/uploads/2015/09/lana-del-rey.jpg", categories, 40));
             postService.create(new Post(3L, "Lana Del Rey",
-                    "Lana Del Rey, właśc. Elizabeth Woolridge Grant – amerykańska wokalistka indierockowa, " +
-                            "kompozytorka i autorka tekstów piosenek aktywna w przemyśle muzycznym od 2005 roku.Lana Del Rey\",\n" +
-                            "                    \"Lana Del Rey, właśc. Elizabeth Woolridge Grant – amerykańska wokalistka indierockowa, \" +\n" +
-                            "                            \"kompozytorka i autorka tekstów piosenek aktywna w przemyśle muzycznym od 2005 roku.",
-                    LocalDateTime.now(), "http://qultqultury.pl/wp-content/uploads/2015/09/lana-del-rey.jpg", categories, 50));
+                    "amerykańska wokalistka indierockowa, kompozytorka i autorka tekstów piosenek[10] aktywna w przemyśle muzycznym" +
+                            " od 2005 roku[11]. Jej pseudonim artystyczny jest połączeniem imienia hollywoodzkiej gwiazdy Lany Turner i nazwy" +
+                            " Forda Del Rey[10][12]. Nazywana gangsta Nancy Sinatra (ang. „gangsterska Nancy Sinatra”)[9][13][14][15] przez krytyków" +
+                            " muzycznych. Była trzykrotnie nominowana do nagrody Grammy. Dwukrotnie w 2014 roku w kategorii „Najlepszy album pop” za" +
+                            " minialbum Paradise oraz w kategorii „Najlepsza piosenka filmowa” za utwór „Young and Beautiful”[16]. W 2016 roku uzyskała" +
+                            " nominację wraz z The Weeknd do tejże nagrody w kategorii „Album roku” za wydawnictwo zatytułowane Beauty Behind the Madness," +
+                            " które współtworzyła wraz z nim i wieloma innymi artystami[17]. W 2015 roku otrzymała nominację do Złotego Globu w kategorii" +
+                            " „Najlepsza piosenka” za utwór „Big Eyes” wykorzystany w filmie Wielkie oczy[18]. Jej debiutancki album Born to Die rozszedł" +
+                            " się w nakładzie 7 milionów egzemplarzy na całym świecie[19][20], zaś album Ultraviolence w ponadmilionowym nakładzie[21]." +
+                            " Według Nielsen SoundScan szacowany nakład ze sprzedaży utworów Del Rey w samych Stanach Zjednoczonych wynosi 4 miliony 500" +
+                            " tysięcy egzemplarzy[22]. ", LocalDateTime.now(), "http://qultqultury.pl/wp-content/uploads/2015/09/lana-del-rey.jpg", categories, 50));
         };
     }
 }

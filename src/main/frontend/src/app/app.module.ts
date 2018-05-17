@@ -15,6 +15,7 @@ import {FormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import {PostDetailsComponent} from './posts/post-details/post-details.component';
 import {AuthServiceImitation} from "./auth/auth.service";
+import {PostEditComponent} from './posts/post-edit/post-edit.component';
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import {AuthServiceImitation} from "./auth/auth.service";
       ShorterContentPipe,
       CategoriesFormatPipe,
       PostDetailsComponent,
+      PostEditComponent,
   ],
   imports: [
       BrowserModule,

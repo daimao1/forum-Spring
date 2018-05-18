@@ -1,6 +1,6 @@
 <div class="container-fluid h-100">
     <div class="row mt-4 justify-content-center align-items-center h-auto">
-        <div class="col-lg-9  ">
+        <div class="col-lg-11">
             <h1 class="mt-1">{{ post.title }}</h1>
             <button *ngIf="authService.isAdminMode()" class="btn btn-danger" (click)="onClickDelete()"
                     routerLink="/posts-list">USUŃ

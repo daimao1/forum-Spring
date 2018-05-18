@@ -14,6 +14,7 @@ export class PostEditComponent implements OnInit {
     editedPost = {} as Post;
     id: number;
     isSend: boolean;
+    isImageSelect: boolean;
 
     constructor(private postService: PostService, private router: ActivatedRoute) {
     }
@@ -40,15 +41,23 @@ export class PostEditComponent implements OnInit {
         console.log(file);
         const value = this.addPostForm.value;
         const updatedPost = {} as Post;
+
         updatedPost.id = this.id;
         updatedPost.title = value.title.toString();
         updatedPost.content = value.content.toString();
         updatedPost.ratingPoints = this.editedPost.ratingPoints;
         updatedPost.categories = this.editedPost.categories;
+        updatedPost.imageUrl = this.editedPost.imageUrl;
+
         console.log(updatedPost);
         console.log(file);
-        this.postService.updatePost(updatedPost, file);
+        if (file == null) {
+            console.log("file is empty or undefined");
+            this.postService.updatePost(updatedPost, null);
+        }
+        else {
+            this.postService.updatePost(updatedPost, file);
+        }
         this.isSend = true;
     }
-
 }

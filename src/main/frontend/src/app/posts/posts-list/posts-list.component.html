@@ -1,10 +1,9 @@
 <div class="row mt-4">
-    <h2 *ngIf="posts.length === 0">Brak postów.</h2>
-    <div class="col-lg-10" *ngIf="posts.length > 0">
+    <h5 *ngIf="posts.length === 0">Brak postów</h5>
+    <div class="col-lg-12" *ngIf="posts.length > 0">
         <button *ngIf="!authService.isAdminMode()" class="btn btn-primary" (click)="authService.setAdminMode()"
                 [disabled]="authService.isAdminMode()">Tryb admina
         </button>
-
         <ul class="list-group mb-5">
             <li *ngFor="let post of posts" class="list-group-item clearfix" style="background-color: snow">
                 <a

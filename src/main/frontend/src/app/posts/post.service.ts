@@ -67,7 +67,9 @@ export class PostService {
         return this.http.put('api/posts', updatedPost).subscribe(
             (response: Response) => {
                 console.log(response);
-                this.uploadImage(file);
+                if (file != null) {
+                    this.uploadImage(file);
+                }
             }
         )
     }

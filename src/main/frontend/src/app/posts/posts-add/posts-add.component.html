@@ -3,24 +3,24 @@
         <div class="col-lg-10">
             <form (ngSubmit)="onAddPost(fileInput.files)" #f="ngForm">
                 <div id="post-data">
-                    <div class="form-group text-center">
+                    <div class="text-center">
                         <label for="title" class="font-weight-bold">Tytuł:</label>
                         <input
+                            style="border: 1px solid black; background-color: #f8f4ff;"
                             type="text"
-                            class="form-control"
-                            style="background-color: lemonchiffon"
+                            class="form-control font-weight-bold"
                             id="title"
                             required
                             ngModel
                             name="title">
                     </div>
-                    <div class="form-group text-center">
+                    <div class="form-group text-center mt-4">
                         <label for="content" class="font-weight-bold">Treść:</label>
                         <textarea
+                            style="border: 1px solid black; background-color: #f8f4ff"
                             class="form-control"
                             id="content"
-                            style="background-color: lemonchiffon"
-                            rows="7"
+                            rows="12"
                             required
                             ngModel
                             name="content"></textarea>
@@ -33,228 +33,253 @@
                          name="categories">
                         <div class="form-group">
                             <div class="form-check form-check-inline">
-                                <input
+                                <mat-checkbox
+                                    color="primary"
                                     class="form-check-input"
                                     type="checkbox"
                                     id="celebrity"
                                     ngModel
                                     name="celebrity"
-                                >
-                                <label class="form-check-label" for="celebrity">Celebryci</label>
+                                >Celebryci
+                                </mat-checkbox>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input
+                                <mat-checkbox
+                                    color="primary"
                                     class="form-check-input"
                                     type="checkbox"
                                     id="animal"
                                     ngModel
-                                    name="animal">
-                                <label class="form-check-label" for="animal">Zwierzęta</label>
+                                    name="animal">Zwierzęta
+                                </mat-checkbox>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input
+                                <mat-checkbox
+                                    color="primary"
                                     class="form-check-input"
                                     type="checkbox"
                                     id="people"
-                                    ngModel name="people">
-                                <label class="form-check-label" for="people">Ludzie</label>
+                                    ngModel
+                                    name="people">Ludzie
+                                </mat-checkbox>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input
+                                <mat-checkbox
+                                    color="primary"
                                     class="form-check-input"
                                     type="checkbox"
                                     id="curiosity"
                                     ngModel
-                                    name="curiosity">
-                                <label class="form-check-label" for="curiosity">Ciekawostki</label>
+                                    name="curiosity">Ciekawostki
+                                </mat-checkbox>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input
+                                <mat-checkbox
+                                    color="primary"
                                     class="form-check-input"
                                     type="checkbox"
                                     id="science"
                                     ngModel
-                                    name="science">
-                                <label class="form-check-label" for="science">Nauka</label>
+                                    name="science">Nauka
+                                </mat-checkbox>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="form-check form-check-inline">
-                                <input
+                                <mat-checkbox
+                                    color="primary"
                                     class="form-check-input"
                                     type="checkbox"
                                     id="funny"
                                     ngModel
-                                    name="funny">
-                                <label class="form-check-label" for="funny">Zabawne</label>
+                                    name="funny">Zabawne
+                                </mat-checkbox>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input
+                                <mat-checkbox
+                                    color="primary"
                                     class="form-check-input"
                                     type="checkbox"
                                     id="nature"
                                     ngModel
-                                    name="nature">
-                                <label class="form-check-label" for="nature">Natura</label>
+                                    name="nature">Natura
+                                </mat-checkbox>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input
+                                <mat-checkbox
+                                    color="primary"
                                     class="form-check-input"
                                     type="checkbox"
                                     id="interestingPlace"
                                     ngModel
-                                    name="interestingPlace">
-                                <label class="form-check-label" for="interestingPlace">Interesujące miejsca</label>
+                                    name="interestingPlace">Interesujące miejsca
+                                </mat-checkbox>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input
+                                <mat-checkbox
+                                    color="primary"
                                     class="form-check-input"
                                     type="checkbox"
                                     id="art"
                                     ngModel
-                                    name="art">
-                                <label class="form-check-label" for="art">Sztuka</label>
+                                    name="art">Sztuka
+                                </mat-checkbox>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input
+                                <mat-checkbox
+                                    color="primary"
                                     class="form-check-input"
                                     type="checkbox"
                                     id="movie"
                                     ngModel
-                                    name="movie">
-                                <label class="form-check-label" for="movie">Film</label>
+                                    name="movie">Film
+                                </mat-checkbox>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="form-check form-check-inline">
-                                <input
+                                <mat-checkbox
+                                    color="primary"
                                     class="form-check-input"
                                     type="checkbox"
                                     id="fashion"
                                     ngModel
-                                    name="fashion">
-                                <label class="form-check-label" for="fashion">Moda</label>
+                                    name="fashion">Moda
+                                </mat-checkbox>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input
+                                <mat-checkbox
+                                    color="primary"
                                     class="form-check-input"
                                     type="checkbox"
                                     id="sale"
                                     ngModel
-                                    name="sale">
-                                <label class="form-check-label" for="sale">Wyprzedaże</label>
+                                    name="sale">Wyprzedaże
+                                </mat-checkbox>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input
+                                <mat-checkbox
+                                    color="primary"
                                     class="form-check-input"
                                     type="checkbox"
                                     id="music"
                                     ngModel
-                                    name="music">
-                                <label class="form-check-label" for="music">Muzyka</label>
+                                    name="music">Muzyka
+                                </mat-checkbox>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input
+                                <mat-checkbox
+                                    color="primary"
                                     class="form-check-input"
                                     type="checkbox"
                                     id="culture"
                                     ngModel
-                                    name="culture">
-                                <label class="form-check-label" for="culture">Kultura</label>
+                                    name="culture">Kultura
+                                </mat-checkbox>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input
+                                <mat-checkbox
+                                    color="primary"
                                     class="form-check-input"
                                     type="checkbox"
                                     id="sport"
                                     ngModel
-                                    name="sport">
-                                <label class="form-check-label" for="sport">Sport</label>
+                                    name="sport">Sport
+                                </mat-checkbox>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="form-check form-check-inline">
-                                <input
+                                <mat-checkbox
+                                    color="primary"
                                     class="form-check-input"
                                     type="checkbox"
                                     id="warszawa"
                                     ngModel
-                                    name="warszawa">
-                                <label class="form-check-label" for="warszawa">Warszawa</label>
+                                    name="warszawa">Warszawa
+                                </mat-checkbox>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input
+                                <mat-checkbox
+                                    color="primary"
                                     class="form-check-input"
                                     type="checkbox"
                                     id="lublin"
                                     ngModel
-                                    name="lublin">
-                                <label class="form-check-label" for="lublin">Lublin</label>
+                                    name="lublin">Lublin
+                                </mat-checkbox>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input
+                                <mat-checkbox
+                                    color="primary"
                                     class="form-check-input"
                                     type="checkbox"
                                     id="poznan"
                                     ngModel
-                                    name="poznan">
-                                <label class="form-check-label" for="poznan">Poznań</label>
+                                    name="poznan">Poznań
+                                </mat-checkbox>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input
+                                <mat-checkbox
+                                    color="primary"
                                     class="form-check-input"
                                     type="checkbox"
                                     id="kielce"
                                     ngModel
-                                    name="kielce">
-                                <label class="form-check-label" for="kielce">Kielce</label>
+                                    name="kielce">Kielce
+                                </mat-checkbox>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input
+                                <mat-checkbox
+                                    color="primary"
                                     class="form-check-input"
                                     type="checkbox"
                                     id="katowice"
                                     ngModel
-                                    name="katowice">
-                                <label class="form-check-label" for="katowice">Katowice</label>
+                                    name="katowice">Katowice
+                                </mat-checkbox>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="form-check form-check-inline">
-                                <input
+                                <mat-checkbox
+                                    color="primary"
                                     class="form-check-input"
                                     type="checkbox"
                                     id="gdansk"
                                     ngModel
-                                    name="gdansk">
-                                <label class="form-check-label" for="gdansk">Gdańsk</label>
+                                    name="gdansk">Gdańsk
+                                </mat-checkbox>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input
+                                <mat-checkbox
+                                    color="primary"
                                     class="form-check-input"
                                     type="checkbox"
                                     id="gdynia"
                                     ngModel
-                                    name="gdynia">
-                                <label class="form-check-label" for="gdynia">Gdynia</label>
+                                    name="gdynia">Gdynia
+                                </mat-checkbox>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input
+                                <mat-checkbox
+                                    color="primary"
                                     class="form-check-input"
                                     type="checkbox"
                                     id="krakow"
                                     ngModel
-                                    name="krakow">
-                                <label class="form-check-label" for="krakow">Kraków</label>
+                                    name="krakow">Kraków
+                                </mat-checkbox>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input
+                                <mat-checkbox
+                                    color="primary"
                                     class="form-check-input"
                                     type="checkbox"
                                     id="wroclaw"
                                     ngModel
-                                    name="wroclaw">
-                                <label class="form-check-label" for="wroclaw">Wrocław</label>
+                                    name="wroclaw">Wrocław
+                                </mat-checkbox>
                             </div>
                         </div>
                     </div>
@@ -263,8 +288,9 @@
                         <input type="file" class="form-control-file" id="imagePost" accept="image/*" #fileInput
                                required>
                     </div>
-                    <button type="submit"
-                            class="btn btn-outline-success btn-lg col-lg-3 mx-auto d-block"
+                    <button
+                        type="submit"
+                        class="btn btn-outline-primary btn-lg col-lg-3 mx-auto d-block mb-4"
                             [disabled]="!f.valid">Dodaj post
                     </button>
                 </div>

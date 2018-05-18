@@ -1,19 +1,23 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, NgModule, OnInit, ViewChild} from '@angular/core';
 import {NgForm} from "@angular/forms";
 import {PostService} from "../post.service";
 import {Post} from "../post.model";
 import {Router} from "@angular/router";
-import {HttpClient} from "@angular/common/http";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 @Component({
     selector: 'app-posts-add',
     templateUrl: './posts-add.component.html',
     styleUrls: ['./posts-add.component.css']
 })
+
+@NgModule({
+    imports: [BrowserAnimationsModule]
+})
 export class PostsAddComponent implements OnInit {
     @ViewChild('f') addPostForm: NgForm;
 
-    constructor(private postService: PostService, private router: Router, private http: HttpClient) {
+    constructor(private postService: PostService, private router: Router) {
     }
 
     ngOnInit() {

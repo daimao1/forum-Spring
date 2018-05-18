@@ -16,6 +16,7 @@ import {HttpClientModule} from "@angular/common/http";
 import {PostDetailsComponent} from './posts/post-details/post-details.component';
 import {AuthServiceImitation} from "./auth/auth.service";
 import {PostEditComponent} from './posts/post-edit/post-edit.component';
+import {MaterialModule} from "../shared/material.module";
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import {PostEditComponent} from './posts/post-edit/post-edit.component';
       BrowserModule,
       HttpClientModule,
       AppRoutingModule,
-      FormsModule
+      FormsModule,
+      MaterialModule
   ],
     providers: [PostService, AuthServiceImitation],
   bootstrap: [AppComponent]

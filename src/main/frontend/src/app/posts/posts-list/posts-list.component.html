@@ -1,5 +1,5 @@
 <div class="row mt-4">
-    <h5 *ngIf="posts.length === 0">Brak postów</h5>
+    <mat-spinner *ngIf="posts.length === 0">Brak postów</mat-spinner>
     <div class="col-lg-12" *ngIf="posts.length > 0">
         <button *ngIf="!authService.isAdminMode()" class="btn btn-primary" (click)="authService.setAdminMode()"
                 [disabled]="authService.isAdminMode()">Tryb admina

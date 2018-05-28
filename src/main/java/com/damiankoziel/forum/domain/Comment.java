@@ -26,4 +26,8 @@ public class Comment {
     @OneToOne
     @JoinColumn(name="user_id")
     private User user;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name="post_id")
+    private Post post;
 }

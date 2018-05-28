@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {Post} from "../post.model";
-import {PostService} from "../post.service";
+import {Post} from "../../model/post.model";
+import {PostService} from "../../service/post.service";
 import {AuthServiceImitation} from "../../auth/auth.service";
 
 @Component({

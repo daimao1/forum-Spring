@@ -9,7 +9,6 @@
             <img class="img-fluid rounded" src="{{ post.imageUrl }}" alt="">
             <hr>
             <p>{{ post.content }}</p>
-
             <div class="text-right">
                 <button mat-raised-button color="primary" aria-pressed="false" [disabled]="!allowRate"
                         (click)="onClickRate(1)">Fajne
@@ -18,31 +17,12 @@
                         (click)="onClickRate(0)">Słabe
                 </button>
             </div>
+            <span *ngIf="!allowRate" class="float-right mt-1">Zagłosowano!</span>
             <div class="text-left">
                 <button type="button" class="btn btn-light" [routerLink]="['/posts/edit/',post.id]">Edytuj</button>
             </div>
             <hr>
-            <div class="card my-4">
-                <h5 class="card-header">Zostaw komentarz:</h5>
-                <div class="card-body">
-                    <form>
-                        <div class="form-group">
-                            <textarea class="form-control" rows="4"></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Wyślij</button>
-                    </form>
-                </div>
-            </div>
-            <div class="media mb-4">
-                <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
-                <div class="media-body">
-                    <h5 class="mt-0">Commenter Name</h5>
-                    Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras
-                    purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi
-                    vulputate fringilla. Donec lacinia congue felis in faucibus.
-
-                </div>
-            </div>
+            <app-comments></app-comments>
         </div>
     </div>
 </div>

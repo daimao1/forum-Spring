@@ -46,4 +46,9 @@ public class CommentController {
         this.commentService.delete(id);
         return new ResponseEntity(HttpStatus.OK);
     }
+
+    @GetMapping("/post/{id}")
+    public ResponseEntity<Collection<CommentDto>> getCommentsByPostId(@PathVariable final Long id) {
+        return new ResponseEntity<>(this.commentService.getByPostId(id), HttpStatus.OK);
+    }
 }

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
@@ -50,5 +51,12 @@ public class CommentService {
 
     public void delete(final Long id) {
         this.commentRepository.deleteById(id);
+    }
+
+    public List<CommentDto> getByPostId(Long id) {
+        Collection<Comment> foundComments = this.commentRepository.findByPost_Id(id);
+        return foundComments.stream()
+                .map(ToDtoConverter::commentToDto)
+                .collect(Collectors.toList());
     }
 }

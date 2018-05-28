@@ -1,5 +1,6 @@
 package com.damiankoziel.forum.dto;
 
+import com.damiankoziel.forum.domain.Post;
 import com.damiankoziel.forum.domain.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -18,4 +19,6 @@ public class CommentDto {
     private LocalDateTime dateTimeOfComment;
 
     private User user;
+
+    private Post post;
 }

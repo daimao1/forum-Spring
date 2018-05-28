@@ -1,7 +1,7 @@
 import {Component, NgModule, OnInit, ViewChild} from '@angular/core';
 import {NgForm} from "@angular/forms";
-import {PostService} from "../post.service";
-import {Post} from "../post.model";
+import {PostService} from "../../service/post.service";
+import {Post} from "../../model/post.model";
 import {Router} from "@angular/router";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 

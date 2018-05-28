@@ -1,12 +1,13 @@
 
 export class Post {
-    public id: number;
-    public title: string;
-    public content: string;
-    public dateTimeOfPost: Date;
-    public imageUrl: string;
-    public categories: string[];
-    public ratingPoints: number;
+    id: number;
+    title: string;
+    content: string;
+    dateTimeOfPost: Date;
+    imageUrl: string;
+    categories: string[];
+    ratingPoints: number;
+    comments: Comment[];
 
     constructor(title: string, content: string, categories: string[]) {
         this.title = title;

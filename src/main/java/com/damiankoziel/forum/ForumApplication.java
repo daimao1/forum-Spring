@@ -1,7 +1,9 @@
 package com.damiankoziel.forum;
 
 import com.damiankoziel.forum.commons.Category;
+import com.damiankoziel.forum.domain.Comment;
 import com.damiankoziel.forum.domain.Post;
+import com.damiankoziel.forum.service.CommentService;
 import com.damiankoziel.forum.service.PostService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -20,12 +22,12 @@ public class ForumApplication {
     }
 
     @Bean
-    CommandLineRunner runner(PostService postService) {
+    CommandLineRunner runner(PostService postService, CommentService commentService) {
         return args -> {
             List<Category> categories = new ArrayList<>();
             categories.add(Category.CELEBRITY);
             categories.add(Category.PEOPLE);
-            postService.create(new Post(1L, "Lana Del Rey",
+            Post post = new Post(4L, "Lana Del Rey",
                     "amerykańska wokalistka indierockowa, kompozytorka i autorka tekstów piosenek[10] aktywna w przemyśle muzycznym" +
                             " od 2005 roku[11]. Jej pseudonim artystyczny jest połączeniem imienia hollywoodzkiej gwiazdy Lany Turner i nazwy" +
                             " Forda Del Rey[10][12]. Nazywana gangsta Nancy Sinatra (ang. „gangsterska Nancy Sinatra”)[9][13][14][15] przez krytyków" +
@@ -37,8 +39,9 @@ public class ForumApplication {
                             " się w nakładzie 7 milionów egzemplarzy na całym świecie[19][20], zaś album Ultraviolence w ponadmilionowym nakładzie[21]." +
                             " Według Nielsen SoundScan szacowany nakład ze sprzedaży utworów Del Rey w samych Stanach Zjednoczonych wynosi 4 miliony 500" +
                             " tysięcy egzemplarzy[22]. ",
-                    LocalDateTime.now(), "http://qultqultury.pl/wp-content/uploads/2015/09/lana-del-rey.jpg", categories, 30));
-            postService.create(new Post(2L, "Lana Del Rey",
+                    LocalDateTime.now(), "http://qultqultury.pl/wp-content/uploads/2015/09/lana-del-rey.jpg", categories, 30);
+            postService.create(post);
+            postService.create(new Post(5L, "Lana Del Rey",
                     "amerykańska wokalistka indierockowa, kompozytorka i autorka tekstów piosenek[10] aktywna w przemyśle muzycznym" +
                             " od 2005 roku[11]. Jej pseudonim artystyczny jest połączeniem imienia hollywoodzkiej gwiazdy Lany Turner i nazwy" +
                             " Forda Del Rey[10][12]. Nazywana gangsta Nancy Sinatra (ang. „gangsterska Nancy Sinatra”)[9][13][14][15] przez krytyków" +
@@ -50,7 +53,7 @@ public class ForumApplication {
                             " się w nakładzie 7 milionów egzemplarzy na całym świecie[19][20], zaś album Ultraviolence w ponadmilionowym nakładzie[21]." +
                             " Według Nielsen SoundScan szacowany nakład ze sprzedaży utworów Del Rey w samych Stanach Zjednoczonych wynosi 4 miliony 500" +
                             " tysięcy egzemplarzy[22]. ", LocalDateTime.now(), "http://qultqultury.pl/wp-content/uploads/2015/09/lana-del-rey.jpg", categories, 40));
-            postService.create(new Post(3L, "Lana Del Rey",
+            postService.create(new Post(6L, "Lana Del Rey",
                     "amerykańska wokalistka indierockowa, kompozytorka i autorka tekstów piosenek[10] aktywna w przemyśle muzycznym" +
                             " od 2005 roku[11]. Jej pseudonim artystyczny jest połączeniem imienia hollywoodzkiej gwiazdy Lany Turner i nazwy" +
                             " Forda Del Rey[10][12]. Nazywana gangsta Nancy Sinatra (ang. „gangsterska Nancy Sinatra”)[9][13][14][15] przez krytyków" +
@@ -62,6 +65,15 @@ public class ForumApplication {
                             " się w nakładzie 7 milionów egzemplarzy na całym świecie[19][20], zaś album Ultraviolence w ponadmilionowym nakładzie[21]." +
                             " Według Nielsen SoundScan szacowany nakład ze sprzedaży utworów Del Rey w samych Stanach Zjednoczonych wynosi 4 miliony 500" +
                             " tysięcy egzemplarzy[22]. ", LocalDateTime.now(), "http://qultqultury.pl/wp-content/uploads/2015/09/lana-del-rey.jpg", categories, 50));
+
+            Comment comment1 = new Comment(1L, "To jest komentarz numer 1", LocalDateTime.now(), null, post);
+            Comment comment2 = new Comment(2L, "To jest komentarz numer 2", LocalDateTime.now(), null, post);
+            Comment comment3 = new Comment(3L, "To jest komentarz numer 3", LocalDateTime.now(), null, post);
+            commentService.create(comment1);
+            commentService.create(comment2);
+            commentService.create(comment3);
         };
+
+
     }
 }

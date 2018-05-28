@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {PostService} from "../post.service";
+import {PostService} from "../../service/post.service";
 import {ActivatedRoute, Params} from "@angular/router";
-import {Post} from "../post.model";
+import {Post} from "../../model/post.model";
 import {AuthServiceImitation} from "../../auth/auth.service";
 
 @Component({

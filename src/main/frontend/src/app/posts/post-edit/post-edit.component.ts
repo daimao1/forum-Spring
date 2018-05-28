@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {PostService} from "../post.service";
+import {PostService} from "../../service/post.service";
 import {ActivatedRoute, Params} from "@angular/router";
-import {Post} from "../post.model";
+import {Post} from "../../model/post.model";
 import {NgForm} from "@angular/forms";
 
 @Component({

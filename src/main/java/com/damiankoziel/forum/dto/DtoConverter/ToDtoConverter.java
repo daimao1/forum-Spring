@@ -18,7 +18,8 @@ public final class ToDtoConverter {
                 comment.getId(),
                 comment.getContent(),
                 comment.getDateTimeOfComment(),
-                comment.getUser()
+                comment.getUser(),
+                comment.getPost()
         );
     }
 
@@ -31,6 +32,7 @@ public final class ToDtoConverter {
                 post.getImageUrl(),
                 post.getCategories(),
                 post.getRatingPoints()
+//                post.getComments()
                 );
     }
 

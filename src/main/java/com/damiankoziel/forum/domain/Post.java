@@ -34,4 +34,7 @@ public class Post {
 
     private Integer ratingPoints;
 
+//    @OneToMany(cascade=CascadeType.ALL, mappedBy="post")
+//    private Collection<Comment> comments;
+
 }

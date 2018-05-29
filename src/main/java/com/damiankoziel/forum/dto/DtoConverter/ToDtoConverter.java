@@ -32,7 +32,6 @@ public final class ToDtoConverter {
                 post.getImageUrl(),
                 post.getCategories(),
                 post.getRatingPoints()
-//                post.getComments()
                 );
     }
 

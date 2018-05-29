@@ -5,6 +5,7 @@ import {Post} from "../../model/post.model";
 import {PostService} from "../../service/post.service";
 import {ActivatedRoute, Params} from "@angular/router";
 import {Comment} from "../../model/comment.model";
+import {PostDetailsComponent} from "../../posts/post-details/post-details.component";
 
 @Component({
     selector: 'app-comment-add',
@@ -16,29 +17,18 @@ export class CommentAddComponent implements OnInit {
     post = {} as Post;
     id: number;
 
-    constructor(private commentService: CommentService, private postService: PostService, private router: ActivatedRoute) {
+    constructor(private commentService: CommentService, private postService: PostService, private router: ActivatedRoute, private postDetailsComponent: PostDetailsComponent) {
     }
 
     ngOnInit() {
-        //get actual post
-        this.router.params.subscribe(
-            (params: Params) => {
-                this.id = +params['id'];
-                this.postService.getPostById(this.id)
-                    .subscribe(
-                        (data: Post) => {
-                            this.post = data;
-                            console.log(this.post);
-                        },
-                        (error) => console.log(error)
-                    );
-            }
-        );
     }
 
-    //TODO:
     onAddComment() {
         const value = this.addCommentForm.value;
+        const newComment = new Comment(value.content, this.postDetailsComponent.post);
+        console.log(this.postDetailsComponent.post);
+        console.log('New comment: ' + newComment.post);
+        this.commentService.saveComment(newComment);
     }
 
 }

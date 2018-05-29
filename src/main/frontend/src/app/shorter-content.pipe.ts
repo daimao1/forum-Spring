@@ -9,5 +9,6 @@ export class ShorterContentPipe implements PipeTransform {
             return value.substr(0, 200) + ' ...';
         }
         return value;
+
     }
 }

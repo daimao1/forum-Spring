@@ -27,7 +27,7 @@ public class ForumApplication {
             List<Category> categories = new ArrayList<>();
             categories.add(Category.CELEBRITY);
             categories.add(Category.PEOPLE);
-            Post post = new Post(4L, "Lana Del Rey",
+            Post post1 = new Post(4L, "Lana Del Rey",
                     "amerykańska wokalistka indierockowa, kompozytorka i autorka tekstów piosenek[10] aktywna w przemyśle muzycznym" +
                             " od 2005 roku[11]. Jej pseudonim artystyczny jest połączeniem imienia hollywoodzkiej gwiazdy Lany Turner i nazwy" +
                             " Forda Del Rey[10][12]. Nazywana gangsta Nancy Sinatra (ang. „gangsterska Nancy Sinatra”)[9][13][14][15] przez krytyków" +
@@ -40,8 +40,7 @@ public class ForumApplication {
                             " Według Nielsen SoundScan szacowany nakład ze sprzedaży utworów Del Rey w samych Stanach Zjednoczonych wynosi 4 miliony 500" +
                             " tysięcy egzemplarzy[22]. ",
                     LocalDateTime.now(), "http://qultqultury.pl/wp-content/uploads/2015/09/lana-del-rey.jpg", categories, 30);
-            postService.create(post);
-            postService.create(new Post(5L, "Lana Del Rey",
+            Post post2 = new Post(5L, "Lana Del Rey",
                     "amerykańska wokalistka indierockowa, kompozytorka i autorka tekstów piosenek[10] aktywna w przemyśle muzycznym" +
                             " od 2005 roku[11]. Jej pseudonim artystyczny jest połączeniem imienia hollywoodzkiej gwiazdy Lany Turner i nazwy" +
                             " Forda Del Rey[10][12]. Nazywana gangsta Nancy Sinatra (ang. „gangsterska Nancy Sinatra”)[9][13][14][15] przez krytyków" +
@@ -52,8 +51,8 @@ public class ForumApplication {
                             " „Najlepsza piosenka” za utwór „Big Eyes” wykorzystany w filmie Wielkie oczy[18]. Jej debiutancki album Born to Die rozszedł" +
                             " się w nakładzie 7 milionów egzemplarzy na całym świecie[19][20], zaś album Ultraviolence w ponadmilionowym nakładzie[21]." +
                             " Według Nielsen SoundScan szacowany nakład ze sprzedaży utworów Del Rey w samych Stanach Zjednoczonych wynosi 4 miliony 500" +
-                            " tysięcy egzemplarzy[22]. ", LocalDateTime.now(), "http://qultqultury.pl/wp-content/uploads/2015/09/lana-del-rey.jpg", categories, 40));
-            postService.create(new Post(6L, "Lana Del Rey",
+                            " tysięcy egzemplarzy[22]. ", LocalDateTime.now(), "http://qultqultury.pl/wp-content/uploads/2015/09/lana-del-rey.jpg", categories, 40);
+            Post post3 = new Post(6L, "Lana Del Rey",
                     "amerykańska wokalistka indierockowa, kompozytorka i autorka tekstów piosenek[10] aktywna w przemyśle muzycznym" +
                             " od 2005 roku[11]. Jej pseudonim artystyczny jest połączeniem imienia hollywoodzkiej gwiazdy Lany Turner i nazwy" +
                             " Forda Del Rey[10][12]. Nazywana gangsta Nancy Sinatra (ang. „gangsterska Nancy Sinatra”)[9][13][14][15] przez krytyków" +
@@ -64,11 +63,12 @@ public class ForumApplication {
                             " „Najlepsza piosenka” za utwór „Big Eyes” wykorzystany w filmie Wielkie oczy[18]. Jej debiutancki album Born to Die rozszedł" +
                             " się w nakładzie 7 milionów egzemplarzy na całym świecie[19][20], zaś album Ultraviolence w ponadmilionowym nakładzie[21]." +
                             " Według Nielsen SoundScan szacowany nakład ze sprzedaży utworów Del Rey w samych Stanach Zjednoczonych wynosi 4 miliony 500" +
-                            " tysięcy egzemplarzy[22]. ", LocalDateTime.now(), "http://qultqultury.pl/wp-content/uploads/2015/09/lana-del-rey.jpg", categories, 50));
+                            " tysięcy egzemplarzy[22]. ", LocalDateTime.now(), "http://qultqultury.pl/wp-content/uploads/2015/09/lana-del-rey.jpg", categories, 50);
 
-            Comment comment1 = new Comment(1L, "To jest komentarz numer 1", LocalDateTime.now(), null, post);
-            Comment comment2 = new Comment(2L, "To jest komentarz numer 2", LocalDateTime.now(), null, post);
-            Comment comment3 = new Comment(3L, "To jest komentarz numer 3", LocalDateTime.now(), null, post);
+            Comment comment1 = new Comment(1L, "To jest komentarz numer 1", LocalDateTime.now(), null, post1);
+            Comment comment2 = new Comment(1L, "To jest komentarz numer 2", LocalDateTime.now(), null, post2);
+            Comment comment3 = new Comment(1L, "To jest komentarz numer 3", LocalDateTime.now(), null, post3);
+
             commentService.create(comment1);
             commentService.create(comment2);
             commentService.create(comment3);

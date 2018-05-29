@@ -23,7 +23,7 @@
 
                     </div>
 
-                    <small class="text-muted">{{ post.dateTimeOfPost | date:'short'}}</small>
+                    <small class="text-muted">{{ post.dateTimeOfPost | timeAgo}}</small>
                 </a>
                 <div class="text-right mt-0"><span class="font-weight-light">Ocena:</span> {{ post.ratingPoints }}</div>
             </li>

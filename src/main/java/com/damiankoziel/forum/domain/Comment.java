@@ -23,11 +23,9 @@ public class Comment {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
     private LocalDateTime dateTimeOfComment;
 
-    @OneToOne
-    @JoinColumn(name="user_id")
+    @ManyToOne
     private User user;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-//    @JoinColumn(name="post_id")
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     private Post post;
 }

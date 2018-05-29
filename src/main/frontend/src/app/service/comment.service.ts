@@ -21,7 +21,6 @@ export class CommentService {
         return this.http.get('/api/comments');
     }
 
-    //TODO:
     getCommentsWithPostId(id: number) {
         return this.http.get('/api/comments/post/' + id);
     }

@@ -28,6 +28,4 @@ public class PostDto {
     private Collection<Category> categories;
 
     private Integer ratingPoints;
-
-//    private Collection<Comment> comments;
 }

@@ -1,7 +1,11 @@
 <li *ngFor="let comment of comments" class="media mb-4">
     <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
     <div class="media-body">
-        <h5 class="mt-0">Commenter Name</h5>
+        <div class="float-right">
+            <small class="text-muted">{{ comment.dateTimeOfComment | timeAgo}}</small>
+        </div>
+        <div class="row ml-0"><h5 class="mt-0">Commenter Name</h5>
+        </div>
         {{ comment.content }}
     </div>
 </li>

@@ -1,9 +1,11 @@
 package com.damiankoziel.forum.service;
 
+import com.damiankoziel.forum.domain.Comment;
 import com.damiankoziel.forum.dto.DtoConverter.ToDtoConverter;
 import com.damiankoziel.forum.domain.Post;
 import com.damiankoziel.forum.dto.PostDto;
 import com.damiankoziel.forum.exceptions.PostException;
+import com.damiankoziel.forum.repository.CommentRepository;
 import com.damiankoziel.forum.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,10 +23,12 @@ import java.util.stream.Collectors;
 public class PostService {
 
     private final PostRepository postRepository;
+    private final CommentRepository commentRepository;
 
     @Autowired
-    public PostService(final PostRepository postRepository) {
+    public PostService(final PostRepository postRepository, final CommentRepository commentRepository) {
         this.postRepository = postRepository;
+        this.commentRepository = commentRepository;
     }
 
     public PostDto create(final Post post) {
@@ -55,6 +59,12 @@ public class PostService {
     }
 
     public void delete(final Long id) {
+        Collection<Comment> relatedComments = commentRepository.findByPost_Id(id);
+        if (relatedComments.size() > 0) {
+            for (Comment comment : relatedComments) {
+                commentRepository.deleteById(comment.getId());
+            }
+        }
         this.postRepository.deleteById(id);
     }
 

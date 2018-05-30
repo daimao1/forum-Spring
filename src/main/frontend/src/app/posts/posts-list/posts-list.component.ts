@@ -23,5 +23,4 @@ export class PostsListComponent implements OnInit {
                 (error) => console.log(error)
             );
     }
-
 }

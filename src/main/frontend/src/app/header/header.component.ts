@@ -1,6 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {PostService} from "../service/post.service";
-import {AuthServiceImitation} from "../auth/auth.service";
 
 @Component({
     selector: 'app-header',
@@ -13,6 +11,11 @@ export class HeaderComponent implements OnInit {
     }
 
     ngOnInit() {
+    }
+
+    //TODO
+    onSignup() {
+
     }
 
 }

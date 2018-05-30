@@ -1,0 +1,48 @@
+<div class="container-fluid h-100">
+    <div class="row mt-4 justify-content-center align-items-center h-auto">
+        <div class="col-lg-10">
+            <form (ngSubmit)="onSignup()" #f="ngForm">
+                <div class="form-group">
+                    <label for="email">Email:*</label>
+                    <input
+                        type="email"
+                        class="form-control"
+                        id="email"
+                        required
+                        ngModel
+                        name="email">
+                </div>
+                <div class="form-group">
+                    <label for="password">Hasło:*</label>
+                    <input
+                        type="password"
+                        class="form-control"
+                        id="password"
+                        required
+                        ngModel
+                        name="password">
+                </div>
+                <div class="form-group">
+                    <label for="firstName">Imię:</label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="firstName"
+                        ngModel
+                        name="firstName">
+                </div>
+                <div class="form-group">
+                    <label for="lastName">Nazwisko:</label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="lastName"
+                        ngModel
+                        name="lastName">
+                </div>
+                <button type="submit" class="btn btn-primary col-lg-3 mx-auto d-block mb-4 mt-3">Zarejestruj się
+                </button>
+            </form>
+        </div>
+    </div>
+</div>

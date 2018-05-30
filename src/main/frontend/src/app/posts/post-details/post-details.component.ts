@@ -33,12 +33,12 @@ export class PostDetailsComponent implements OnInit {
         );
     }
 
-    onClickRate(buttonState: number) {
+    onRate(buttonState: number) {
         this.allowRate = false;
         this.postService.changeRatingPoints(this.id, buttonState);
     }
 
-    onClickDelete() {
+    onDeletePost() {
         this.postService.deletePost(this.id);
     }
 }

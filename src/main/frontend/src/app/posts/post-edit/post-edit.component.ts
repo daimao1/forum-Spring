@@ -49,8 +49,8 @@ export class PostEditComponent implements OnInit {
         updatedPost.categories = this.editedPost.categories;
         updatedPost.imageUrl = this.editedPost.imageUrl;
 
-        console.log(updatedPost);
-        console.log(file);
+        console.log('updated post:' + updatedPost);
+        console.log('file: ' + file);
         if (file == null) {
             console.log("file is empty or undefined");
             this.postService.updatePost(updatedPost, null);

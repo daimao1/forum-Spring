@@ -45,8 +45,7 @@ public final class ToDtoConverter {
                 user.getIsActive(),
                 user.getRole(),
                 user.getAvatarUrl(),
-                user.getDateOfSignUp(),
-                user.getComment()
+                user.getDateOfSignUp()
         );
     }
 

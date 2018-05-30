@@ -22,6 +22,8 @@ import {CommentAddComponent} from './comments/comment-add/comment-add.component'
 import {CommentsListComponent} from './comments/comments-list/comments-list.component';
 import {CommentService} from "./service/comment.service";
 import {TimeAgoPipe} from "time-ago-pipe";
+import {SignupComponent} from './auth/signup/signup.component';
+import {SigninComponent} from './auth/signin/signin.component';
 
 
 @NgModule({
@@ -38,7 +40,9 @@ import {TimeAgoPipe} from "time-ago-pipe";
         CommentsComponent,
         CommentAddComponent,
         CommentsListComponent,
-        TimeAgoPipe
+        TimeAgoPipe,
+        SignupComponent,
+        SigninComponent
     ],
     imports: [
         BrowserModule,

@@ -32,11 +32,7 @@ export class PostsAddComponent implements OnInit {
         this.router.navigate(['/posts-list']);
     }
 
-    categoryChecked() {
-        console.log("Category is checked.");
-    }
-
-    addCategories() {
+    private addCategories() {
         let newCategories: string[] = [];
 
         if (this.addPostForm.value.categories.celebrity === true) {

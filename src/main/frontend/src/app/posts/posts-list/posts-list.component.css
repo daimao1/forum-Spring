@@ -2,3 +2,7 @@ a {
     color: black;
     text-decoration: none;
 }
+
+#postsList {
+    background-color: snow;
+}

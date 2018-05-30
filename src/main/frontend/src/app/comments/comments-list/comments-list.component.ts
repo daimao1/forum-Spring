@@ -1,9 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {PostService} from "../../service/post.service";
-import {ActivatedRoute, Params} from "@angular/router";
-import {Post} from "../../model/post.model";
+import {ActivatedRoute} from "@angular/router";
 import {CommentService} from "../../service/comment.service";
 import {PostDetailsComponent} from "../../posts/post-details/post-details.component";
+import {AuthServiceImitation} from "../../auth/auth.service";
 
 @Component({
     selector: 'app-comments-list',
@@ -13,7 +12,8 @@ import {PostDetailsComponent} from "../../posts/post-details/post-details.compon
 export class CommentsListComponent implements OnInit {
     comments: Comment[] = [];
 
-    constructor(private commentService: CommentService, private router: ActivatedRoute, private postDetailsComponent: PostDetailsComponent) {
+    constructor(private commentService: CommentService, private router: ActivatedRoute, private postDetailsComponent: PostDetailsComponent,
+                private authService: AuthServiceImitation) {
     }
 
     ngOnInit() {
@@ -26,6 +26,10 @@ export class CommentsListComponent implements OnInit {
                 },
                 (error) => console.log(error)
             );
+    }
+
+    onDeleteComment(id: number) {
+        this.commentService.deleteComment(id);
     }
 
 }

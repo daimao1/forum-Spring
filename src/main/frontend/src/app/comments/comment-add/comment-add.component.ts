@@ -3,7 +3,7 @@ import {NgForm} from "@angular/forms";
 import {CommentService} from "../../service/comment.service";
 import {Post} from "../../model/post.model";
 import {PostService} from "../../service/post.service";
-import {ActivatedRoute, Params} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {Comment} from "../../model/comment.model";
 import {PostDetailsComponent} from "../../posts/post-details/post-details.component";
 
@@ -17,7 +17,8 @@ export class CommentAddComponent implements OnInit {
     post = {} as Post;
     id: number;
 
-    constructor(private commentService: CommentService, private postService: PostService, private router: ActivatedRoute, private postDetailsComponent: PostDetailsComponent) {
+    constructor(private commentService: CommentService, private postService: PostService, private router: ActivatedRoute,
+                private postDetailsComponent: PostDetailsComponent) {
     }
 
     ngOnInit() {
@@ -27,7 +28,6 @@ export class CommentAddComponent implements OnInit {
         const value = this.addCommentForm.value;
         const newComment = new Comment(value.content, this.postDetailsComponent.post);
         console.log(this.postDetailsComponent.post);
-        console.log('New comment: ' + newComment.post);
         this.commentService.saveComment(newComment);
     }
 

@@ -39,8 +39,4 @@ public class User {
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private LocalDate dateOfSignUp;
-
-
-    @OneToOne(mappedBy = "user")
-    private Comment comment;
 }

@@ -2,12 +2,11 @@ import {Injectable} from "@angular/core";
 import "rxjs/add/operator/map";
 import {Post} from "../model/post.model";
 import {HttpClient, HttpErrorResponse} from "@angular/common/http";
-import {Router, RouterLinkActive} from "@angular/router";
 
 @Injectable()
 export class PostService {
 
-    constructor(private http: HttpClient, private router: Router) {
+    constructor(private http: HttpClient) {
 
     }
 

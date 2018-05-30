@@ -1,6 +1,5 @@
 package com.damiankoziel.forum.domain;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,8 +19,7 @@ public class Comment {
 
     private String content;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
-    private LocalDateTime dateTimeOfComment;
+    private LocalDateTime dateTimeOfComment = LocalDateTime.now();
 
     @ManyToOne
     private User user;

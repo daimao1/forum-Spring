@@ -29,6 +29,4 @@ public class UserDto {
     private String avatarUrl;
 
     private LocalDate dateOfSignUp;
-
-    private Comment comment;
 }

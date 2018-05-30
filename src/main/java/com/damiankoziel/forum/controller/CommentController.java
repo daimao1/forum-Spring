@@ -26,9 +26,9 @@ public class CommentController {
         return new ResponseEntity<>(this.commentService.create(comment), HttpStatus.OK);
     }
 
-    @GetMapping
-    public ResponseEntity<Collection<CommentDto>> getAllComments() {
-        return new ResponseEntity<>(this.commentService.getAll(), HttpStatus.OK);
+    @GetMapping("/post/{id}")
+    public ResponseEntity<Collection<CommentDto>> getCommentsByPostId(@PathVariable final Long id) {
+        return new ResponseEntity<>(this.commentService.getAllByPostId(id), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
@@ -45,10 +45,5 @@ public class CommentController {
     public ResponseEntity deleteCommentById(@PathVariable final Long id) {
         this.commentService.delete(id);
         return new ResponseEntity(HttpStatus.OK);
-    }
-
-    @GetMapping("/post/{id}")
-    public ResponseEntity<Collection<CommentDto>> getCommentsByPostId(@PathVariable final Long id) {
-        return new ResponseEntity<>(this.commentService.getByPostId(id), HttpStatus.OK);
     }
 }

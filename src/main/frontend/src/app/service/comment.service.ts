@@ -6,7 +6,6 @@ import {Comment} from "../model/comment.model";
 export class CommentService {
 
     constructor(private http: HttpClient) {
-
     }
 
     saveComment(newComment: Comment) {
@@ -17,11 +16,15 @@ export class CommentService {
         );
     }
 
-    getComments() {
-        return this.http.get('/api/comments');
-    }
-
     getCommentsWithPostId(id: number) {
         return this.http.get('/api/comments/post/' + id);
+    }
+
+    deleteComment(id: number) {
+        this.http.delete('api/comments/' + id).subscribe(
+            () => {
+                console.log('Deleted comment with id: ' + id);
+            }
+        )
     }
 }

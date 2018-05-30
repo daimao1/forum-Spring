@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -27,9 +28,10 @@ public class CommentService {
         return ToDtoConverter.commentToDto(comment);
     }
 
-    public Collection<CommentDto> getAll() {
-        Collection<Comment> comments = this.commentRepository.findAll();
-        return comments.stream()
+    public List<CommentDto> getAllByPostId(Long id) {
+        Collection<Comment> foundComments = this.commentRepository.findByPost_Id(id);
+        return foundComments.stream()
+                .sorted(Comparator.comparing(Comment::getDateTimeOfComment).reversed())
                 .map(ToDtoConverter::commentToDto)
                 .collect(Collectors.toList());
     }
@@ -51,12 +53,5 @@ public class CommentService {
 
     public void delete(final Long id) {
         this.commentRepository.deleteById(id);
-    }
-
-    public List<CommentDto> getByPostId(Long id) {
-        Collection<Comment> foundComments = this.commentRepository.findByPost_Id(id);
-        return foundComments.stream()
-                .map(ToDtoConverter::commentToDto)
-                .collect(Collectors.toList());
     }
 }

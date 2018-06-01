@@ -3,14 +3,14 @@
         <div class="col-lg-10">
             <form (ngSubmit)="onSignup()" #f="ngForm">
                 <div class="form-group">
-                    <label for="email">Email:*</label>
+                    <label for="username">Login:*</label>
                     <input
-                        type="email"
+                        type="username"
                         class="form-control"
-                        id="email"
+                        id="username"
                         required
                         ngModel
-                        name="email">
+                        name="username">
                 </div>
                 <div class="form-group">
                     <label for="password">Hasło:*</label>

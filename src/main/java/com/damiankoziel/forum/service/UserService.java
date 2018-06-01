@@ -6,7 +6,9 @@ import com.damiankoziel.forum.dto.UserDto;
 import com.damiankoziel.forum.exceptions.UserException;
 import com.damiankoziel.forum.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.Collection;
 import java.util.stream.Collectors;
@@ -15,16 +17,25 @@ import java.util.stream.Collectors;
 public class UserService {
 
     private final UserRepository userRepository;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Autowired
-    public UserService(final UserRepository userRepository) {
+    public UserService(final UserRepository userRepository, final BCryptPasswordEncoder bCryptPasswordEncoder) {
         this.userRepository = userRepository;
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+    }
+
+    public void signUp(final User user) {
+        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        this.userRepository.save(user);
     }
 
     public UserDto create(final User user) {
         this.userRepository.save(user);
         return ToDtoConverter.userToDto(user);
     }
+
+    /////////////////////////////////////////////
 
     public Collection<UserDto> getAll() {
         Collection<User> users = this.userRepository.findAll();

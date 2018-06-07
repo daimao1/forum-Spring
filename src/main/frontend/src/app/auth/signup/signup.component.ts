@@ -1,4 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {NgForm} from "@angular/forms";
+import {AuthServiceImitation} from "../auth.service";
 
 @Component({
     selector: 'app-signup',
@@ -6,11 +8,19 @@ import {Component, OnInit} from '@angular/core';
     styleUrls: ['./signup.component.css']
 })
 export class SignupComponent implements OnInit {
+    @ViewChild('f') signupUserForm: NgForm;
 
-    constructor() {
+    constructor(private authService: AuthServiceImitation) {
     }
 
     ngOnInit() {
+    }
+
+    onSignup() {
+        const value = this.signupUserForm.value;
+        const username = value.username;
+        const password = value.password;
+        this.authService.signupUser(username, password);
     }
 
 }

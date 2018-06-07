@@ -26,13 +26,6 @@ public class UserController {
         this.userService.signUp(user);
     }
 
-    /////////////////////////////////
-
-    @PostMapping
-    public ResponseEntity<UserDto> createUser(@RequestBody final User user) {
-        return new ResponseEntity<>(this.userService.create(user), HttpStatus.OK);
-    }
-
     @GetMapping
     public ResponseEntity<Collection<UserDto>> getAllUsers() {
         return new ResponseEntity<>(this.userService.getAll(), HttpStatus.OK);

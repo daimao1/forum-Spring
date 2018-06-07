@@ -1,8 +1,11 @@
 package com.damiankoziel.forum;
 
 import com.damiankoziel.forum.commons.Category;
+import com.damiankoziel.forum.commons.RoleName;
+import com.damiankoziel.forum.domain.Authority;
 import com.damiankoziel.forum.domain.Comment;
 import com.damiankoziel.forum.domain.Post;
+import com.damiankoziel.forum.repository.AuthorityRepository;
 import com.damiankoziel.forum.service.CommentService;
 import com.damiankoziel.forum.service.PostService;
 import org.springframework.boot.CommandLineRunner;
@@ -28,7 +31,7 @@ public class ForumApplication {
     }
 
     @Bean
-    CommandLineRunner runner(PostService postService, CommentService commentService) {
+    CommandLineRunner runner(PostService postService, CommentService commentService, AuthorityRepository authorityRepository) {
         return args -> {
             List<Category> categories = new ArrayList<>();
             categories.add(Category.CELEBRITY);
@@ -78,6 +81,17 @@ public class ForumApplication {
             commentService.create(comment1);
             commentService.create(comment2);
             commentService.create(comment3);
+
+            //Load authorities
+            Authority userAuthority = new Authority();
+            userAuthority.setName(RoleName.ROLE_USER);
+            userAuthority.setId(1L);
+            Authority adminAuthority = new Authority();
+            adminAuthority.setName(RoleName.ROLE_ADMIN);
+            adminAuthority.setId(2L);
+            authorityRepository.save(userAuthority);
+            authorityRepository.save(adminAuthority);
+
         };
 
 

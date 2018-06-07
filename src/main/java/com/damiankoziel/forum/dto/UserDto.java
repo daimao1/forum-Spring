@@ -1,12 +1,12 @@
 package com.damiankoziel.forum.dto;
 
-import com.damiankoziel.forum.domain.Comment;
-import com.damiankoziel.forum.domain.Role;
+import com.damiankoziel.forum.domain.Authority;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Getter
 @Setter
@@ -24,9 +24,9 @@ public class UserDto {
 
     private Boolean isActive;
 
-    private Role role;
-
     private String avatarUrl;
 
     private LocalDate dateOfSignUp;
+
+    private List<Authority> authorities;
 }

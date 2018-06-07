@@ -1,3 +1,4 @@
+/*
 package com.damiankoziel.forum.domain;
 
 import com.damiankoziel.forum.commons.RoleName;
@@ -25,3 +26,4 @@ public class Role {
     @OneToOne(mappedBy = "role")
     private User user;
 }
+*/

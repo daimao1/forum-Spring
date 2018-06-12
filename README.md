@@ -3,11 +3,13 @@
 - Spring Boot, 
 - Hibernate, 
 - Spring Data JPA,
+- Spring Security
 - Java 8,
 - Angular 5, 
 - JUnit
 - Mockito 
 - PostgreSQL, 
+- JWT
 - Gradle
 
 

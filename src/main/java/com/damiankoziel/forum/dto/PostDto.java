@@ -1,15 +1,12 @@
 package com.damiankoziel.forum.dto;
 
 import com.damiankoziel.forum.commons.Category;
-import com.damiankoziel.forum.domain.Comment;
-import com.damiankoziel.forum.domain.Post;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
 import java.util.Collection;
-import java.util.List;
 
 @Getter
 @Setter

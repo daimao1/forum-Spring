@@ -1,6 +1,6 @@
 package com.damiankoziel.forum.dto;
 
-import com.damiankoziel.forum.domain.Authority;
+import com.damiankoziel.forum.domain.Role;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -27,6 +27,4 @@ public class UserDto {
     private String avatarUrl;
 
     private LocalDate dateOfSignUp;
-
-    private List<Authority> authorities;
 }

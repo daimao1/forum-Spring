@@ -68,7 +68,7 @@ public class PostService {
         this.postRepository.deleteById(id);
     }
 
-    public void uploadImage(MultipartFile file) throws IOException {
+    public void uploadImage(final MultipartFile file) throws IOException {
         UUID imgGeneratedId = UUID.nameUUIDFromBytes(file.getBytes());
         File convertFile = new File("src/main/frontend/src/assets/images/" + imgGeneratedId + file.getOriginalFilename());
         Post foundPost = postRepository.findFirstByOrderByIdDesc();

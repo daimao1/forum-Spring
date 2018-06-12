@@ -28,7 +28,7 @@ public class CommentService {
         return ToDtoConverter.commentToDto(comment);
     }
 
-    public List<CommentDto> getAllByPostId(Long id) {
+    public List<CommentDto> getAllByPostId(final Long id) {
         Collection<Comment> foundComments = this.commentRepository.findByPost_Id(id);
         return foundComments.stream()
                 .sorted(Comparator.comparing(Comment::getDateTimeOfComment).reversed())

@@ -2,17 +2,16 @@ package com.damiankoziel.forum;
 
 import com.damiankoziel.forum.commons.Category;
 import com.damiankoziel.forum.commons.RoleName;
-import com.damiankoziel.forum.domain.Authority;
 import com.damiankoziel.forum.domain.Comment;
 import com.damiankoziel.forum.domain.Post;
-import com.damiankoziel.forum.repository.AuthorityRepository;
+import com.damiankoziel.forum.domain.Role;
+import com.damiankoziel.forum.repository.RoleRepository;
 import com.damiankoziel.forum.service.CommentService;
 import com.damiankoziel.forum.service.PostService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -26,13 +25,10 @@ public class ForumApplication {
     }
 
     @Bean
-    public BCryptPasswordEncoder bCryptPasswordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
-
-    @Bean
-    CommandLineRunner runner(PostService postService, CommentService commentService, AuthorityRepository authorityRepository) {
+    CommandLineRunner runner(PostService postService, CommentService commentService, RoleRepository roleRepository) {
         return args -> {
+
+            //Load posts
             List<Category> categories = new ArrayList<>();
             categories.add(Category.CELEBRITY);
             categories.add(Category.PEOPLE);
@@ -74,6 +70,7 @@ public class ForumApplication {
                             " Według Nielsen SoundScan szacowany nakład ze sprzedaży utworów Del Rey w samych Stanach Zjednoczonych wynosi 4 miliony 500" +
                             " tysięcy egzemplarzy[22]. ", LocalDateTime.now(), "http://qultqultury.pl/wp-content/uploads/2015/09/lana-del-rey.jpg", categories, 50);
 
+            //Load comments
             Comment comment1 = new Comment(1L, "To jest komentarz numer 1", LocalDateTime.now(), null, post1);
             Comment comment2 = new Comment(1L, "To jest komentarz numer 2", LocalDateTime.now(), null, post2);
             Comment comment3 = new Comment(1L, "To jest komentarz numer 3", LocalDateTime.now(), null, post3);
@@ -83,14 +80,14 @@ public class ForumApplication {
             commentService.create(comment3);
 
             //Load authorities
-            Authority userAuthority = new Authority();
-            userAuthority.setName(RoleName.ROLE_USER);
-            userAuthority.setId(1L);
-            Authority adminAuthority = new Authority();
-            adminAuthority.setName(RoleName.ROLE_ADMIN);
-            adminAuthority.setId(2L);
-            authorityRepository.save(userAuthority);
-            authorityRepository.save(adminAuthority);
+            Role userRole = new Role();
+            userRole.setName(RoleName.ROLE_USER);
+            userRole.setId(1L);
+            Role adminRole = new Role();
+            adminRole.setName(RoleName.ROLE_ADMIN);
+            adminRole.setId(2L);
+            roleRepository.save(userRole);
+            roleRepository.save(adminRole);
 
         };
 

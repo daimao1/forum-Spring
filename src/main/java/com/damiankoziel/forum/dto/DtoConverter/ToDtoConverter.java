@@ -1,6 +1,5 @@
 package com.damiankoziel.forum.dto.DtoConverter;
 
-import com.damiankoziel.forum.domain.Authority;
 import com.damiankoziel.forum.domain.Comment;
 import com.damiankoziel.forum.domain.Post;
 import com.damiankoziel.forum.domain.User;
@@ -16,7 +15,7 @@ public final class ToDtoConverter {
 
     }
 
-    public static CommentDto commentToDto(Comment comment) {
+    public static CommentDto commentToDto(final Comment comment) {
         return new CommentDto(
                 comment.getId(),
                 comment.getContent(),
@@ -26,7 +25,7 @@ public final class ToDtoConverter {
         );
     }
 
-    public static PostDto postToDto(Post post) {
+    public static PostDto postToDto(final Post post) {
         return new PostDto(
                 post.getId(),
                 post.getTitle(),
@@ -38,7 +37,7 @@ public final class ToDtoConverter {
                 );
     }
 
-    public static UserDto userToDto(User user) {
+    public static UserDto userToDto(final User user) {
         return new UserDto(
                 user.getId(),
                 user.getUsername(),
@@ -47,8 +46,7 @@ public final class ToDtoConverter {
                 user.getLastName(),
                 user.getIsActive(),
                 user.getAvatarUrl(),
-                user.getDateOfSignUp(),
-                (List<Authority>) user.getAuthorities()
+                user.getDateOfSignUp()
         );
     }
 

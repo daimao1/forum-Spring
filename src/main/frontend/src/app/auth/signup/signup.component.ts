@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {NgForm} from "@angular/forms";
-import {AuthServiceImitation} from "../auth.service";
+import {AuthService} from "../auth.service";
 
 @Component({
     selector: 'app-signup',
@@ -10,7 +10,7 @@ import {AuthServiceImitation} from "../auth.service";
 export class SignupComponent implements OnInit {
     @ViewChild('f') signupUserForm: NgForm;
 
-    constructor(private authService: AuthServiceImitation) {
+    constructor(private authService: AuthService) {
     }
 
     ngOnInit() {

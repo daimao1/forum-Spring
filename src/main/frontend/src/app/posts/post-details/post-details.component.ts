@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {PostService} from "../../service/post.service";
 import {ActivatedRoute, Params} from "@angular/router";
 import {Post} from "../../model/post.model";
-import {AuthServiceImitation} from "../../auth/auth.service";
+import {AuthService} from "../../auth/auth.service";
 
 @Component({
     selector: 'app-post-details',
@@ -14,7 +14,7 @@ export class PostDetailsComponent implements OnInit {
     id: number;
     allowRate = true;
 
-    constructor(private postService: PostService, private router: ActivatedRoute, private authService: AuthServiceImitation) {
+    constructor(private postService: PostService, private router: ActivatedRoute, private authService: AuthService) {
     }
 
     ngOnInit() {

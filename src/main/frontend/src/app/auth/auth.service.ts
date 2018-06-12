@@ -1,8 +1,9 @@
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
+import {Observable} from "rxjs/Observable";
 
 @Injectable()
-export class AuthServiceImitation {
+export class AuthService {
     adminMode = false;
 
     user = {
@@ -23,8 +24,10 @@ export class AuthServiceImitation {
         )
     }
 
-    getToken() {
-
+    attemptAuth(username: string, password: string): Observable<any> {
+        const credentials = {username: username, password: password};
+        console.log('token is generating...');
+        return this.http.post('/api/token/generate-token', credentials);
     }
 
     setAdminMode() {

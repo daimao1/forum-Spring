@@ -75,9 +75,9 @@ public class ForumApplication {
             Comment comment2 = new Comment(1L, "To jest komentarz numer 2", LocalDateTime.now(), null, post2);
             Comment comment3 = new Comment(1L, "To jest komentarz numer 3", LocalDateTime.now(), null, post3);
 
-            commentService.create(comment1);
+/*            commentService.create(comment1);
             commentService.create(comment2);
-            commentService.create(comment3);
+            commentService.create(comment3);*/
 
             //Load authorities
             Role userRole = new Role();

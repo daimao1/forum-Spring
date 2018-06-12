@@ -6,6 +6,7 @@ import com.damiankoziel.forum.dto.CommentDto;
 import com.damiankoziel.forum.exceptions.CommentException;
 import com.damiankoziel.forum.repository.CommentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
@@ -23,6 +24,7 @@ public class CommentService {
         this.commentRepository = commentRepository;
     }
 
+    @PreAuthorize("hasRole('USER')")
     public CommentDto create(final Comment comment) {
         this.commentRepository.save(comment);
         return ToDtoConverter.commentToDto(comment);

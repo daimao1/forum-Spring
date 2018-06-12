@@ -54,6 +54,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/token/**",
                         "/users/**",
                         "/posts/**").permitAll()
+                .antMatchers("/comments/**").hasRole("USER")
                 .anyRequest().authenticated()
                 .and()
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()

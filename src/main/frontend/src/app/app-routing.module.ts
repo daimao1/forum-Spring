@@ -6,13 +6,14 @@ import {PostDetailsComponent} from "./posts/post-details/post-details.component"
 import {PostEditComponent} from "./posts/post-edit/post-edit.component";
 import {SignupComponent} from "./auth/signup/signup.component";
 import {SigninComponent} from "./auth/signin/signin.component";
+import {AuthGuard} from "./auth/auth-guard.service";
 
 const appRoutes: Routes = [
     {path: '', redirectTo: '/posts-list', pathMatch: 'full'},
     {path: 'posts-list', component: PostsListComponent},
-    {path: 'posts-add', component: PostsAddComponent},
+    {path: 'posts-add', component: PostsAddComponent, canActivate: [AuthGuard]},
     {path: 'posts/:id', component: PostDetailsComponent},
-    {path: 'posts/edit/:id', component: PostEditComponent},
+    {path: 'posts/edit/:id', component: PostEditComponent, canActivate: [AuthGuard]},
     {path: 'signup', component: SignupComponent},
     {path: 'signin', component: SigninComponent}
 ];

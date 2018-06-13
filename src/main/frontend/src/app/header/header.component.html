@@ -18,12 +18,20 @@
             </li>
         </ul>
         <ul class="navbar-nav mr-2">
-            <li class="nav-item" routerLinkActive="active">
-                <a class="nav-link" routerLink="/signup">Rejestracja</a>
-            </li>
-            <li class="nav-item" routerLinkActive="active">
-                <a class="nav-link" routerLink="/signin">Zaloguj</a>
-            </li>
+            <ng-template [ngIf]="!authService.isAuthenticated()">
+                <li class="nav-item" routerLinkActive="active">
+                    <a class="nav-link" routerLink="/signup">Rejestracja</a>
+                </li>
+                <li class="nav-item" routerLinkActive="active">
+                    <a class="nav-link" routerLink="/signin">Zaloguj</a>
+                </li>
+            </ng-template>
+            <ng-template
+                [ngIf]="authService.isAuthenticated()">
+                <li class="nav-item" routerLinkActive="active">
+                    <a class="nav-link" style="cursor: pointer;" (click)="logoutUser()">Wyloguj</a>
+                </li>
+            </ng-template>
         </ul>
         <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="search" placeholder="tytuł, autor, kategoria" aria-label="Search">

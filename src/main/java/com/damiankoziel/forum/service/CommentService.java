@@ -24,7 +24,7 @@ public class CommentService {
         this.commentRepository = commentRepository;
     }
 
-    @PreAuthorize("hasRole('USER')")
+    //    @PreAuthorize("hasRole('USER')")
     public CommentDto create(final Comment comment) {
         this.commentRepository.save(comment);
         return ToDtoConverter.commentToDto(comment);

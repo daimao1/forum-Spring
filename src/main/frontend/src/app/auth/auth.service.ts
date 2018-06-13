@@ -1,18 +1,24 @@
 import {Injectable} from "@angular/core";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {Observable} from "rxjs/Observable";
+import {TokenStorage} from "../token.storage";
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/observable/throw';
+import {Router} from "@angular/router";
 
 @Injectable()
 export class AuthService {
     adminMode = false;
+    badCredentials = false;
 
     user = {
         username: '',
         password: ''
     };
 
-    constructor(private http: HttpClient) {
+    constructor(private http: HttpClient, private token: TokenStorage) {
     }
+
 
     signupUser(username: string, password: string) {
         this.user.username = username;
@@ -27,7 +33,17 @@ export class AuthService {
     attemptAuth(username: string, password: string): Observable<any> {
         const credentials = {username: username, password: password};
         console.log('token is generating...');
-        return this.http.post('/api/token/generate-token', credentials);
+        return this.http.post('/api/token/generate-token', credentials)
+            .catch(
+                (err) => {
+                    this.badCredentials = true;
+                    console.log('Error. Bad credentials!');
+                    return Observable.throw(err)
+                })
+    }
+
+    logout() {
+        this.token.signOut();
     }
 
     setAdminMode() {
@@ -38,4 +54,13 @@ export class AuthService {
     isAdminMode() {
         return this.adminMode;
     }
+
+    isAuthenticated() {
+        return this.token.getToken() != null;
+    }
+
+    isBadCredentials() {
+        return this.badCredentials;
+    }
+
 }

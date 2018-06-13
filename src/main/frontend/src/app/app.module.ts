@@ -26,6 +26,7 @@ import {SignupComponent} from './auth/signup/signup.component';
 import {SigninComponent} from './auth/signin/signin.component';
 import {Interceptor} from "./app.interceptor";
 import {TokenStorage} from "./token.storage";
+import {AuthGuard} from "./auth/auth-guard.service";
 
 
 @NgModule({
@@ -57,7 +58,7 @@ import {TokenStorage} from "./token.storage";
         provide: HTTP_INTERCEPTORS,
         useClass: Interceptor,
         multi: true
-    }],
+    }, AuthGuard],
     bootstrap: [AppComponent]
 })
 export class AppModule {

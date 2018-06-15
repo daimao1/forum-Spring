@@ -2,6 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {NgForm} from "@angular/forms";
 import {AuthService} from "../auth.service";
 import {Router} from "@angular/router";
+import {User} from "../../model/user.model";
 
 @Component({
     selector: 'app-signup',
@@ -19,9 +20,9 @@ export class SignupComponent implements OnInit {
 
     onSignup() {
         const value = this.signupUserForm.value;
-        const username = value.username;
+        const user = new User(value.username, null, value.firstName, value.lastName, null);
         const password = value.password;
-        this.authService.signupUser(username, password);
+        this.authService.signupUser(user.username, password);
         this.router.navigate(['posts-list']);
     }
 

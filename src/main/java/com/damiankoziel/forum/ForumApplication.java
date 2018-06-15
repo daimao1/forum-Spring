@@ -5,9 +5,11 @@ import com.damiankoziel.forum.commons.RoleName;
 import com.damiankoziel.forum.domain.Comment;
 import com.damiankoziel.forum.domain.Post;
 import com.damiankoziel.forum.domain.Role;
+import com.damiankoziel.forum.domain.User;
 import com.damiankoziel.forum.repository.RoleRepository;
 import com.damiankoziel.forum.service.CommentService;
 import com.damiankoziel.forum.service.PostService;
+import com.damiankoziel.forum.service.UserService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -25,8 +27,12 @@ public class ForumApplication {
     }
 
     @Bean
-    CommandLineRunner runner(PostService postService, CommentService commentService, RoleRepository roleRepository) {
+    CommandLineRunner runner(CommentService commentService, RoleRepository roleRepository, UserService userService) {
         return args -> {
+            User user1 = new User();
+            user1.setUsername("User1");
+            user1.setPassword("pass123");
+            userService.signUp(user1);
 
             //Load posts
             List<Category> categories = new ArrayList<>();
@@ -44,7 +50,7 @@ public class ForumApplication {
                             " się w nakładzie 7 milionów egzemplarzy na całym świecie[19][20], zaś album Ultraviolence w ponadmilionowym nakładzie[21]." +
                             " Według Nielsen SoundScan szacowany nakład ze sprzedaży utworów Del Rey w samych Stanach Zjednoczonych wynosi 4 miliony 500" +
                             " tysięcy egzemplarzy[22]. ",
-                    LocalDateTime.now(), "http://qultqultury.pl/wp-content/uploads/2015/09/lana-del-rey.jpg", categories, 30);
+                    LocalDateTime.now(), "http://qultqultury.pl/wp-content/uploads/2015/09/lana-del-rey.jpg", categories, 30, user1);
             Post post2 = new Post(5L, "Lana Del Rey",
                     "amerykańska wokalistka indierockowa, kompozytorka i autorka tekstów piosenek[10] aktywna w przemyśle muzycznym" +
                             " od 2005 roku[11]. Jej pseudonim artystyczny jest połączeniem imienia hollywoodzkiej gwiazdy Lany Turner i nazwy" +
@@ -56,7 +62,7 @@ public class ForumApplication {
                             " „Najlepsza piosenka” za utwór „Big Eyes” wykorzystany w filmie Wielkie oczy[18]. Jej debiutancki album Born to Die rozszedł" +
                             " się w nakładzie 7 milionów egzemplarzy na całym świecie[19][20], zaś album Ultraviolence w ponadmilionowym nakładzie[21]." +
                             " Według Nielsen SoundScan szacowany nakład ze sprzedaży utworów Del Rey w samych Stanach Zjednoczonych wynosi 4 miliony 500" +
-                            " tysięcy egzemplarzy[22]. ", LocalDateTime.now(), "http://qultqultury.pl/wp-content/uploads/2015/09/lana-del-rey.jpg", categories, 40);
+                            " tysięcy egzemplarzy[22]. ", LocalDateTime.now(), "http://qultqultury.pl/wp-content/uploads/2015/09/lana-del-rey.jpg", categories, 40, user1);
             Post post3 = new Post(6L, "Lana Del Rey",
                     "amerykańska wokalistka indierockowa, kompozytorka i autorka tekstów piosenek[10] aktywna w przemyśle muzycznym" +
                             " od 2005 roku[11]. Jej pseudonim artystyczny jest połączeniem imienia hollywoodzkiej gwiazdy Lany Turner i nazwy" +
@@ -68,12 +74,12 @@ public class ForumApplication {
                             " „Najlepsza piosenka” za utwór „Big Eyes” wykorzystany w filmie Wielkie oczy[18]. Jej debiutancki album Born to Die rozszedł" +
                             " się w nakładzie 7 milionów egzemplarzy na całym świecie[19][20], zaś album Ultraviolence w ponadmilionowym nakładzie[21]." +
                             " Według Nielsen SoundScan szacowany nakład ze sprzedaży utworów Del Rey w samych Stanach Zjednoczonych wynosi 4 miliony 500" +
-                            " tysięcy egzemplarzy[22]. ", LocalDateTime.now(), "http://qultqultury.pl/wp-content/uploads/2015/09/lana-del-rey.jpg", categories, 50);
+                            " tysięcy egzemplarzy[22]. ", LocalDateTime.now(), "http://qultqultury.pl/wp-content/uploads/2015/09/lana-del-rey.jpg", categories, 50, user1);
 
             //Load comments
-            Comment comment1 = new Comment(1L, "To jest komentarz numer 1", LocalDateTime.now(), null, post1);
-            Comment comment2 = new Comment(1L, "To jest komentarz numer 2", LocalDateTime.now(), null, post2);
-            Comment comment3 = new Comment(1L, "To jest komentarz numer 3", LocalDateTime.now(), null, post3);
+            Comment comment1 = new Comment(1L, "To jest komentarz numer 1", LocalDateTime.now(), user1, post1);
+            Comment comment2 = new Comment(1L, "To jest komentarz numer 2", LocalDateTime.now(), user1, post2);
+            Comment comment3 = new Comment(1L, "To jest komentarz numer 3", LocalDateTime.now(), user1, post3);
 
             commentService.create(comment1);
             commentService.create(comment2);

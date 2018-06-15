@@ -80,7 +80,7 @@ public class PostService {
         postRepository.save(foundPost);
     }
 
-    public PostDto rate(final Long id, final Integer buttonState) {
+    public void rate(final Long id, final Integer buttonState) {
         Post foundPost = postRepository.findById(id).get();
         if (buttonState.equals(0)) {
             foundPost.setRatingPoints(foundPost.getRatingPoints() - 1);
@@ -88,6 +88,5 @@ public class PostService {
             foundPost.setRatingPoints(foundPost.getRatingPoints() + 1);
         }
         postRepository.save(foundPost);
-        return ToDtoConverter.postToDto(foundPost);
     }
 }

@@ -27,6 +27,7 @@ import {SigninComponent} from './auth/signin/signin.component';
 import {Interceptor} from "./app.interceptor";
 import {TokenStorage} from "./token.storage";
 import {AuthGuard} from "./auth/auth-guard.service";
+import {UserService} from "./service/user.service";
 
 
 @NgModule({
@@ -54,7 +55,7 @@ import {AuthGuard} from "./auth/auth-guard.service";
         FormsModule,
         MaterialModule
     ],
-    providers: [PostService, CommentService, AuthService, TokenStorage, {
+    providers: [PostService, CommentService, UserService, AuthService, TokenStorage, {
         provide: HTTP_INTERCEPTORS,
         useClass: Interceptor,
         multi: true

@@ -6,6 +6,8 @@ import {PostService} from "../../service/post.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Comment} from "../../model/comment.model";
 import {PostDetailsComponent} from "../../posts/post-details/post-details.component";
+import {User} from "../../model/user.model";
+import {UserService} from "../../service/user.service";
 
 @Component({
     selector: 'app-comment-add',
@@ -16,17 +18,25 @@ export class CommentAddComponent implements OnInit {
     @ViewChild('f') addCommentForm: NgForm;
     post = {} as Post;
     id: number;
+    currentUser = {} as User;
 
-    constructor(private commentService: CommentService, private postService: PostService, private router: ActivatedRoute,
+    constructor(private commentService: CommentService, private postService: PostService, private userService: UserService, private router: ActivatedRoute,
                 private postDetailsComponent: PostDetailsComponent) {
     }
 
     ngOnInit() {
+        this.userService.getCurrentUser().subscribe(
+            (data: User) => {
+                this.currentUser = data;
+                console.log(this.currentUser);
+            },
+            (error) => console.log(error)
+        );
     }
 
     onAddComment() {
         const value = this.addCommentForm.value;
-        const newComment = new Comment(value.content, this.postDetailsComponent.post);
+        const newComment = new Comment(value.content, this.currentUser, this.postDetailsComponent.post);
         console.log(this.postDetailsComponent.post);
         this.commentService.saveComment(newComment);
     }

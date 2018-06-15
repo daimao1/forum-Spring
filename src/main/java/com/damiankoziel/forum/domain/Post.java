@@ -33,4 +33,7 @@ public class Post {
 
     private Integer ratingPoints;
 
+    @ManyToOne
+    private User user;
+
 }

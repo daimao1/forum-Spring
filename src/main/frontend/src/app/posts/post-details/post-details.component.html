@@ -5,6 +5,7 @@
             <button *ngIf="authService.isAdminMode()" class="btn btn-danger" (click)="onDeletePost()"
                     routerLink="/posts-list">USUŃ
             </button>
+            <small id="author" class="form-text text-muted">@{{author}}</small>
             <hr>
             <img class="img-fluid rounded" src="{{ post.imageUrl }}" alt="">
             <hr>

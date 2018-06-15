@@ -58,6 +58,7 @@ public class PostController {
 
     @PutMapping("/{id}/rate")
     public ResponseEntity<PostDto> ratePost(@PathVariable final Long id, @RequestBody final Integer buttonState) {
-        return new ResponseEntity<>(this.postService.rate(id, buttonState), HttpStatus.OK);
+        this.postService.rate(id, buttonState);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

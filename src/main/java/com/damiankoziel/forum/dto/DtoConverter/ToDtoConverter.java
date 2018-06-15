@@ -33,7 +33,8 @@ public final class ToDtoConverter {
                 post.getDateTimeOfPost(),
                 post.getImageUrl(),
                 post.getCategories(),
-                post.getRatingPoints()
+                post.getRatingPoints(),
+                userToDto(post.getUser())
                 );
     }
 

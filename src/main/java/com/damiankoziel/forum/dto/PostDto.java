@@ -1,6 +1,7 @@
 package com.damiankoziel.forum.dto;
 
 import com.damiankoziel.forum.commons.Category;
+import com.damiankoziel.forum.domain.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -25,4 +26,6 @@ public class PostDto {
     private Collection<Category> categories;
 
     private Integer ratingPoints;
+
+    private UserDto user;
 }

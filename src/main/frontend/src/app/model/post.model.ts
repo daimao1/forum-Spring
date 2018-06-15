@@ -1,3 +1,5 @@
+import {User} from "./user.model";
+
 export class Post {
     id: number;
     title: string;
@@ -6,12 +8,13 @@ export class Post {
     imageUrl: string;
     categories: string[];
     ratingPoints: number;
-    comments: Comment[];
+    user: User;
 
-    constructor(title: string, content: string, categories: string[]) {
+    constructor(title: string, content: string, categories: string[], user: User) {
         this.title = title;
         this.content = content;
         this.categories = categories;
         this.ratingPoints = 0;
+        this.user = user;
     }
 }

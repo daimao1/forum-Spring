@@ -4,6 +4,8 @@ import {PostService} from "../../service/post.service";
 import {Post} from "../../model/post.model";
 import {Router} from "@angular/router";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {User} from "../../model/user.model";
+import {UserService} from "../../service/user.service";
 
 @Component({
     selector: 'app-posts-add',
@@ -16,16 +18,24 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 })
 export class PostsAddComponent implements OnInit {
     @ViewChild('f') addPostForm: NgForm;
+    currentUser = {} as User;
 
-    constructor(private postService: PostService, private router: Router) {
+    constructor(private postService: PostService, private userService: UserService, private router: Router) {
     }
 
     ngOnInit() {
+        this.userService.getCurrentUser().subscribe(
+            (data: User) => {
+                this.currentUser = data;
+                console.log(this.currentUser);
+            },
+            (error) => console.log(error)
+        );
     }
 
     onAddPost(files: any) {
         const value = this.addPostForm.value;
-        const newPost = new Post(value.title, value.content, this.addCategories());
+        const newPost = new Post(value.title, value.content, this.addCategories(), this.currentUser);
         let file: File = files[0];
         console.log(file);
         this.postService.savePost(newPost, file);

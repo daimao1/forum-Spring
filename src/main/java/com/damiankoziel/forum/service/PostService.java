@@ -8,6 +8,7 @@ import com.damiankoziel.forum.exceptions.PostException;
 import com.damiankoziel.forum.repository.CommentRepository;
 import com.damiankoziel.forum.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 

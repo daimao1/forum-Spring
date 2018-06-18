@@ -3,6 +3,8 @@ import {PostService} from "../../service/post.service";
 import {ActivatedRoute, Params} from "@angular/router";
 import {Post} from "../../model/post.model";
 import {NgForm} from "@angular/forms";
+import {User} from "../../model/user.model";
+import {UserService} from "../../service/user.service";
 
 @Component({
     selector: 'app-post-edit',
@@ -15,8 +17,9 @@ export class PostEditComponent implements OnInit {
     id: number;
     isSend: boolean;
     isImageSelect: boolean;
+    currentUser = {} as User;
 
-    constructor(private postService: PostService, private router: ActivatedRoute) {
+    constructor(private postService: PostService, private userService: UserService, private router: ActivatedRoute) {
     }
 
     ngOnInit() {
@@ -28,6 +31,7 @@ export class PostEditComponent implements OnInit {
                     .subscribe(
                         (data: Post) => {
                             this.editedPost = data;
+                            this.currentUser = data.user;
                             console.log(this.editedPost);
                         },
                         (error) => console.log(error)
@@ -48,6 +52,7 @@ export class PostEditComponent implements OnInit {
         updatedPost.ratingPoints = this.editedPost.ratingPoints;
         updatedPost.categories = this.editedPost.categories;
         updatedPost.imageUrl = this.editedPost.imageUrl;
+        updatedPost.user = this.currentUser;
 
         console.log('updated post:' + updatedPost);
         console.log('file: ' + file);

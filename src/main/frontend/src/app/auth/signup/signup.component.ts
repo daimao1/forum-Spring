@@ -20,9 +20,8 @@ export class SignupComponent implements OnInit {
 
     onSignup() {
         const value = this.signupUserForm.value;
-        const user = new User(value.username, null, value.firstName, value.lastName, null);
-        const password = value.password;
-        this.authService.signupUser(user.username, password);
+        const user = new User(value.username, value.password, value.email, value.firstName, value.lastName, null);
+        this.authService.signupUser(user);
         this.router.navigate(['posts-list']);
     }
 

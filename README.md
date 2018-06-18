@@ -1,17 +1,16 @@
-#Forum application
+# Forum application
 **Using technologies:** 
 - Spring Boot, 
 - Hibernate, 
 - Spring Data JPA,
-- Spring Security
+- Spring Security,
 - Java 8,
 - Angular 5, 
-- JUnit
-- Mockito 
+- JUnit,
+- Mockito,
 - PostgreSQL, 
-- JWT
+- JWT,
 - Gradle
-
 
 
 **To run backend:**

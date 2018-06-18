@@ -1,29 +1,23 @@
 import {Injectable} from "@angular/core";
-import {HttpClient, HttpErrorResponse} from "@angular/common/http";
+import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs/Observable";
 import {TokenStorage} from "../token.storage";
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
-import {Router} from "@angular/router";
+import {User} from "../model/user.model";
 
 @Injectable()
 export class AuthService {
     adminMode = false;
     badCredentials = false;
 
-    user = {
-        username: '',
-        password: ''
-    };
+    user = {} as User;
 
     constructor(private http: HttpClient, private token: TokenStorage) {
     }
 
-
-    signupUser(username: string, password: string) {
-        this.user.username = username;
-        this.user.password = password;
-        this.http.post('/api/users/signup', this.user).subscribe(
+    signupUser(user: User) {
+        this.http.post('/api/users/signup', user).subscribe(
             () => {
                 console.log("User signed up!");
             }

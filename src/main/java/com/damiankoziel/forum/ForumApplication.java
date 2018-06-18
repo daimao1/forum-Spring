@@ -1,14 +1,13 @@
 package com.damiankoziel.forum;
 
 import com.damiankoziel.forum.commons.Category;
-import com.damiankoziel.forum.commons.RoleName;
 import com.damiankoziel.forum.domain.Comment;
 import com.damiankoziel.forum.domain.Post;
 import com.damiankoziel.forum.domain.Role;
 import com.damiankoziel.forum.domain.User;
 import com.damiankoziel.forum.repository.RoleRepository;
+import com.damiankoziel.forum.repository.UserRepository;
 import com.damiankoziel.forum.service.CommentService;
-import com.damiankoziel.forum.service.PostService;
 import com.damiankoziel.forum.service.UserService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -24,17 +23,20 @@ import java.util.Set;
 @SpringBootApplication
 public class ForumApplication {
 
+
     public static void main(String[] args) {
         SpringApplication.run(ForumApplication.class, args);
     }
-
     @Bean
-    CommandLineRunner runner(CommentService commentService, RoleRepository roleRepository, UserService userService) {
+    CommandLineRunner runner(CommentService commentService, RoleRepository roleRepository, UserService userService, UserRepository userRepository) {
         return args -> {
-
             User user1 = new User();
             user1.setUsername("User1");
             user1.setPassword("pass123");
+            Role role = roleRepository.findRoleByName("USER");
+            Set<Role> roles = new HashSet<>();
+            roles.add(role);
+            user1.setRoles(roles);
             userService.signUp(user1);
 
             //Load posts
@@ -80,9 +82,9 @@ public class ForumApplication {
                             " tysięcy egzemplarzy[22]. ", LocalDateTime.now(), "http://qultqultury.pl/wp-content/uploads/2015/09/lana-del-rey.jpg", categories, 50, user1);
 
             //Load comments
-            Comment comment1 = new Comment(1L, "To jest komentarz numer 1", LocalDateTime.now(), user1, post1);
-            Comment comment2 = new Comment(1L, "To jest komentarz numer 2", LocalDateTime.now(), user1, post2);
-            Comment comment3 = new Comment(1L, "To jest komentarz numer 3", LocalDateTime.now(), user1, post3);
+            Comment comment1 = new Comment(12L, "To jest komentarz numer 1", LocalDateTime.now(), user1, post1);
+            Comment comment2 = new Comment(13L, "To jest komentarz numer 2", LocalDateTime.now(), user1, post2);
+            Comment comment3 = new Comment(14L, "To jest komentarz numer 3", LocalDateTime.now(), user1, post3);
 
             commentService.create(comment1);
             commentService.create(comment2);
@@ -98,7 +100,5 @@ public class ForumApplication {
             roleRepository.save(adminRole);
             roleRepository.save(userRole);
         };
-
-
     }
 }

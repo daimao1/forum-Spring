@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -27,4 +28,6 @@ public class UserDto {
     private String avatarUrl;
 
     private LocalDate dateOfSignUp;
+
+    private Set<Role> roles;
 }

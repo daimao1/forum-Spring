@@ -45,4 +45,9 @@ public class UserController {
     public ResponseEntity<UserDto> deactivateUserById(@PathVariable final Long id) {
         return new ResponseEntity<>(this.userService.deactivate(id), HttpStatus.OK);
     }
+
+    @PostMapping("/create-admin")
+    public void createAdminAccount() {
+        userService.createAdmin();
+    }
 }

@@ -5,6 +5,7 @@ import {TokenStorage} from "../token.storage";
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 import {User} from "../model/user.model";
+import {UserService} from "../service/user.service";
 
 @Injectable()
 export class AuthService {
@@ -37,12 +38,18 @@ export class AuthService {
     }
 
     logout() {
+        this.adminMode = false;
         this.token.signOut();
     }
 
     setAdminMode() {
-        this.adminMode = !this.adminMode;
+        this.adminMode = true;
         console.log("admin mode is on");
+    }
+
+    deactivateAdminMode() {
+        this.adminMode = false;
+        console.log("admin mode is off")
     }
 
     isAdminMode() {

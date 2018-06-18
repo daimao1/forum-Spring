@@ -44,6 +44,17 @@ public class UserService implements UserDetailsService {
         this.userRepository.save(user);
     }
 
+    public void createAdmin() {
+        User adminAccount = new User();
+        adminAccount.setUsername("admin");
+        adminAccount.setPassword(bCryptPasswordEncoder.encode(("admin")));
+        Role role = roleRepository.findRoleByName("ADMIN");
+        Set<Role> roles = new HashSet<>();
+        roles.add(role);
+        adminAccount.setRoles(roles);
+        this.userRepository.save(adminAccount);
+    }
+
     //       @PreAuthorize("hasRole('USER')")
     public Collection<UserDto> getAll() {
         Collection<User> users = this.userRepository.findAll();
@@ -91,10 +102,8 @@ public class UserService implements UserDetailsService {
     private Set<SimpleGrantedAuthority> getAuthority(User user) {
         Set<SimpleGrantedAuthority> authorities = new HashSet<>();
         user.getRoles().forEach(role -> {
-            //authorities.add(new SimpleGrantedAuthority(role.getName()));
             authorities.add(new SimpleGrantedAuthority("ROLE_" + role.getName()));
         });
         return authorities;
-        //return Arrays.asList(new SimpleGrantedAuthority("ROLE_ADMIN"));
     }
 }

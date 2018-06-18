@@ -8,6 +8,7 @@ export class User {
     isActive: boolean;
     avatarUrl: string;
     dateOfSignUp: Date;
+    role: string;
 
     constructor(username: string, password: string, email: string, firstName: string, lastName: string, avatarUrl: string) {
         this.username = username;

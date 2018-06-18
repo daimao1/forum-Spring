@@ -47,7 +47,8 @@ public final class ToDtoConverter {
                 user.getLastName(),
                 user.getIsActive(),
                 user.getAvatarUrl(),
-                user.getDateOfSignUp()
+                user.getDateOfSignUp(),
+                user.getRoles()
         );
     }
 

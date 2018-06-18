@@ -3,6 +3,7 @@ import {AuthService} from "../auth.service";
 import {TokenStorage} from "../../token.storage";
 import {NgForm} from "@angular/forms";
 import {Router} from "@angular/router";
+import {UserService} from "../../service/user.service";
 
 @Component({
     selector: 'app-signin',
@@ -12,7 +13,7 @@ import {Router} from "@angular/router";
 export class SigninComponent implements OnInit {
     @ViewChild('f') signinUserForm: NgForm;
 
-    constructor(private authService: AuthService, private token: TokenStorage, private router: Router) {
+    constructor(private authService: AuthService, private token: TokenStorage, private router: Router, private userService: UserService) {
     }
 
     ngOnInit() {
@@ -25,6 +26,18 @@ export class SigninComponent implements OnInit {
         this.authService.attemptAuth(username, password).subscribe(
             data => {
                 this.token.saveToken(data.token);
+
+                this.userService.getCurrentUser().subscribe(
+                    (currentUser: any) => {
+                        if (currentUser.roles[0].name === "ADMIN") {
+                            this.authService.setAdminMode();
+                            console.log("JESTEŚ ADMINEM");
+                        }
+                        else {
+                            this.authService.deactivateAdminMode();
+                        }
+                    }
+                );
                 this.router.navigate(['posts-list']);
             }
         );

@@ -1,7 +1,6 @@
 package com.damiankoziel.forum.service;
 
-import com.damiankoziel.forum.commons.RoleName;
-
+import com.damiankoziel.forum.domain.Role;
 import com.damiankoziel.forum.dto.DtoConverter.ToDtoConverter;
 import com.damiankoziel.forum.domain.User;
 import com.damiankoziel.forum.dto.UserDto;
@@ -10,6 +9,7 @@ import com.damiankoziel.forum.repository.RoleRepository;
 import com.damiankoziel.forum.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -17,9 +17,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -39,11 +37,14 @@ public class UserService implements UserDetailsService {
 
     public void signUp(final User user) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        user.setRole(roleRepository.findByName(RoleName.ROLE_USER));
+        Role role = roleRepository.findRoleByName("USER");
+        Set<Role> roles = new HashSet<>();
+        roles.add(role);
+        user.setRoles(roles);
         this.userRepository.save(user);
     }
 
-    //    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    //       @PreAuthorize("hasRole('USER')")
     public Collection<UserDto> getAll() {
         Collection<User> users = this.userRepository.findAll();
         return users.stream()
@@ -84,9 +85,16 @@ public class UserService implements UserDetailsService {
         if (user == null) {
             throw new UsernameNotFoundException("Invalid username or password.");
         }
-        List<SimpleGrantedAuthority> authorities = Arrays.asList(new SimpleGrantedAuthority(user.getRole().getAuthority()));
-        System.out.println(authorities);
-        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(),
-                authorities);
+        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), getAuthority(user));
+    }
+
+    private Set<SimpleGrantedAuthority> getAuthority(User user) {
+        Set<SimpleGrantedAuthority> authorities = new HashSet<>();
+        user.getRoles().forEach(role -> {
+            //authorities.add(new SimpleGrantedAuthority(role.getName()));
+            authorities.add(new SimpleGrantedAuthority("ROLE_" + role.getName()));
+        });
+        return authorities;
+        //return Arrays.asList(new SimpleGrantedAuthority("ROLE_ADMIN"));
     }
 }

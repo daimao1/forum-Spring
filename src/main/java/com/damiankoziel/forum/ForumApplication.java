@@ -17,7 +17,9 @@ import org.springframework.context.annotation.Bean;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @SpringBootApplication
 public class ForumApplication {
@@ -29,6 +31,7 @@ public class ForumApplication {
     @Bean
     CommandLineRunner runner(CommentService commentService, RoleRepository roleRepository, UserService userService) {
         return args -> {
+
             User user1 = new User();
             user1.setUsername("User1");
             user1.setPassword("pass123");
@@ -86,15 +89,14 @@ public class ForumApplication {
             commentService.create(comment3);
 
             //Load authorities
-            Role userRole = new Role();
-            userRole.setName(RoleName.ROLE_USER);
-            userRole.setId(1L);
             Role adminRole = new Role();
-            adminRole.setName(RoleName.ROLE_ADMIN);
-            adminRole.setId(2L);
-            roleRepository.save(userRole);
+            adminRole.setName("ADMIN");
+            adminRole.setId(1L);
+            Role userRole = new Role();
+            userRole.setName("USER");
+            userRole.setId(2L);
             roleRepository.save(adminRole);
-
+            roleRepository.save(userRole);
         };
 
 

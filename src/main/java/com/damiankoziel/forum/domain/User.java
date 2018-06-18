@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Set;
 
 @Entity(name = "users")
 @AllArgsConstructor
@@ -50,6 +51,9 @@ public class User {
 
     @Getter
     @Setter
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private Role role;
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(name = "USER_ROLES", joinColumns = {
+            @JoinColumn(name = "USER_ID")}, inverseJoinColumns = {
+            @JoinColumn(name = "ROLE_ID")})
+    private Set<Role> roles;
 }

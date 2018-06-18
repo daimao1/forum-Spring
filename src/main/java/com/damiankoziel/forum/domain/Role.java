@@ -1,32 +1,21 @@
 package com.damiankoziel.forum.domain;
 
-import com.damiankoziel.forum.commons.RoleName;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
-import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
 
 @Entity
 @Data
-public class Role implements GrantedAuthority {
+public class Role {
 
     @Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
 
-    @JsonIgnore
-    Long id;
+    @Column
+    private String name;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "name")
-
-    @JsonIgnore
-    RoleName name;
-
-    @Override
-    public String getAuthority() {
-        return name.name();
-    }
+    @Column
+    private String description;
 
 }

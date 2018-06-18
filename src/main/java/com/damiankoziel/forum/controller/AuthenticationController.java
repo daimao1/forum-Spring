@@ -2,10 +2,9 @@ package com.damiankoziel.forum.controller;
 
 import com.damiankoziel.forum.dto.DtoConverter.ToDtoConverter;
 import com.damiankoziel.forum.dto.UserDto;
-import com.damiankoziel.forum.security.JwtTokenUtil;
 import com.damiankoziel.forum.domain.AuthToken;
 import com.damiankoziel.forum.domain.LoginUser;
-import com.damiankoziel.forum.domain.User;
+import com.damiankoziel.forum.security.TokenProvider;
 import com.damiankoziel.forum.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,21 +22,17 @@ import org.springframework.web.bind.annotation.*;
 public class AuthenticationController {
     private String currentUsername;
 
+    @Autowired
     private AuthenticationManager authenticationManager;
 
-    private JwtTokenUtil jwtTokenUtil;
-
-    private UserService userService;
+    @Autowired
+    private TokenProvider jwtTokenUtil;
 
     @Autowired
-    public AuthenticationController(final AuthenticationManager authenticationManager, final JwtTokenUtil jwtTokenUtil, final UserService userService) {
-        this.authenticationManager = authenticationManager;
-        this.jwtTokenUtil = jwtTokenUtil;
-        this.userService = userService;
-    }
+    private UserService userService;
 
     @RequestMapping(value = "/generate-token", method = RequestMethod.POST)
-    public ResponseEntity<?> register(@RequestBody final LoginUser loginUser) throws AuthenticationException {
+    public ResponseEntity<?> register(@RequestBody LoginUser loginUser) throws AuthenticationException {
 
         final Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
@@ -46,10 +41,8 @@ public class AuthenticationController {
                 )
         );
         SecurityContextHolder.getContext().setAuthentication(authentication);
-        final User user = userService.findOne(loginUser.getUsername());
-        final String token = jwtTokenUtil.generateToken(user);
+        final String token = jwtTokenUtil.generateToken(authentication);
         currentUsername = jwtTokenUtil.getUsernameFromToken(token);
-
         return ResponseEntity.ok(new AuthToken(token));
     }
 

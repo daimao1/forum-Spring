@@ -4,13 +4,15 @@
         <form (ngSubmit)="onAddComment()" #f="ngForm">
             <div class="form-group">
                 <textarea
+                    [disabled]="!authService.isAuthenticated()"
+                    [placeholder]="!authService.isAuthenticated() ? 'Zaloguj się, aby dodać komentarz.' : ''"
                     class="form-control"
                     rows="4"
                     required
                     ngModel
                     name="content"></textarea>
             </div>
-            <button type="submit" class="btn btn-primary">Wyślij</button>
+            <button [disabled]="!authService.isAuthenticated()" type="submit" class="btn btn-primary">Wyślij</button>
         </form>
     </div>
 </div>

@@ -26,7 +26,7 @@ import java.util.Set;
 @RestController
 @RequestMapping("/token")
 public class AuthenticationController {
-    private String currentUsername;
+    public String currentUsername;
 
     @Autowired
     private AuthenticationManager authenticationManager;

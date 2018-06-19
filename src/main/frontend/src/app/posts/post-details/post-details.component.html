@@ -11,16 +11,20 @@
             <hr>
             <p>{{ post.content }}</p>
             <div class="text-right">
-                <button mat-raised-button color="primary" aria-pressed="false" [disabled]="!allowRate"
+                <button mat-raised-button color="primary" aria-pressed="false"
+                        [disabled]="!allowRate || !authService.isAuthenticated()"
                         (click)="onRate(1)">Fajne
                 </button>
-                <button mat-raised-button color="warn" aria-pressed="false" [disabled]="!allowRate"
+                <button mat-raised-button color="warn" aria-pressed="false"
+                        [disabled]="!allowRate || !authService.isAuthenticated()"
                         (click)="onRate(0)">Słabe
                 </button>
             </div>
             <span *ngIf="!allowRate" class="float-right mt-1">Zagłosowano!</span>
             <div class="text-left">
-                <button type="button" class="btn btn-light" [routerLink]="['/posts/edit/',post.id]">Edytuj</button>
+                <button *ngIf="authService.isAuthenticated()" type="button" class="btn btn-light"
+                        [routerLink]="['/posts/edit/',post.id]">Edytuj
+                </button>
             </div>
             <hr>
             <app-comments></app-comments>

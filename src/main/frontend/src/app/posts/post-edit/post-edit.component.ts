@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {PostService} from "../../service/post.service";
-import {ActivatedRoute, Params} from "@angular/router";
+import {ActivatedRoute, Params, Router} from "@angular/router";
 import {Post} from "../../model/post.model";
 import {NgForm} from "@angular/forms";
 import {User} from "../../model/user.model";
@@ -19,12 +19,12 @@ export class PostEditComponent implements OnInit {
     isImageSelect: boolean;
     currentUser = {} as User;
 
-    constructor(private postService: PostService, private userService: UserService, private router: ActivatedRoute) {
+    constructor(private postService: PostService, private userService: UserService, private route: ActivatedRoute, private router: Router) {
     }
 
     ngOnInit() {
         this.isSend = false;
-        this.router.params.subscribe(
+        this.route.params.subscribe(
             (params: Params) => {
                 this.id = +params['id'];
                 this.postService.getPostById(this.id)
@@ -64,5 +64,6 @@ export class PostEditComponent implements OnInit {
             this.postService.updatePost(updatedPost, file);
         }
         this.isSend = true;
+        this.router.navigate(['posts-list']);
     }
 }

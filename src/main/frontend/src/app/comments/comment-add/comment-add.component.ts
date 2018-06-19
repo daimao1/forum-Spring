@@ -8,6 +8,7 @@ import {Comment} from "../../model/comment.model";
 import {PostDetailsComponent} from "../../posts/post-details/post-details.component";
 import {User} from "../../model/user.model";
 import {UserService} from "../../service/user.service";
+import {AuthService} from "../../auth/auth.service";
 
 @Component({
     selector: 'app-comment-add',
@@ -21,17 +22,19 @@ export class CommentAddComponent implements OnInit {
     currentUser = {} as User;
 
     constructor(private commentService: CommentService, private postService: PostService, private userService: UserService, private router: ActivatedRoute,
-                private postDetailsComponent: PostDetailsComponent) {
+                private postDetailsComponent: PostDetailsComponent, private authService: AuthService) {
     }
 
     ngOnInit() {
-        this.userService.getCurrentUser().subscribe(
-            (data: User) => {
-                this.currentUser = data;
-                console.log(this.currentUser);
-            },
-            (error) => console.log(error)
-        );
+        if (this.authService.isAuthenticated()) {
+            this.userService.getCurrentUser().subscribe(
+                (data: User) => {
+                    this.currentUser = data;
+                    console.log(this.currentUser);
+                },
+                (error) => console.log(error)
+            );
+        }
     }
 
     onAddComment() {

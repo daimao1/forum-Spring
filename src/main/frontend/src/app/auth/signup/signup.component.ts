@@ -11,6 +11,7 @@ import {User} from "../../model/user.model";
 })
 export class SignupComponent implements OnInit {
     @ViewChild('f') signupUserForm: NgForm;
+    isSendButtonActivated = true;
 
     constructor(private authService: AuthService, private router: Router) {
     }
@@ -19,6 +20,7 @@ export class SignupComponent implements OnInit {
     }
 
     onSignup() {
+        this.isSendButtonActivated = false;
         const value = this.signupUserForm.value;
         const user = new User(value.username, value.password, value.email, value.firstName, value.lastName, null);
         this.authService.signupUser(user);

@@ -7,6 +7,7 @@ import com.damiankoziel.forum.dto.UserDto;
 import com.damiankoziel.forum.exceptions.UserException;
 import com.damiankoziel.forum.repository.RoleRepository;
 import com.damiankoziel.forum.repository.UserRepository;
+import com.damiankoziel.forum.security.TokenProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -16,6 +17,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import com.damiankoziel.forum.controller.AuthenticationController;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -48,14 +50,16 @@ public class UserService implements UserDetailsService {
         User adminAccount = new User();
         adminAccount.setUsername("admin");
         adminAccount.setPassword(bCryptPasswordEncoder.encode(("admin")));
-        Role role = roleRepository.findRoleByName("ADMIN");
+        Role adminRole = roleRepository.findRoleByName("ADMIN");
+        Role userRole = roleRepository.findRoleByName("USER");
         Set<Role> roles = new HashSet<>();
-        roles.add(role);
+        roles.add(adminRole);
+        roles.add(userRole);
         adminAccount.setRoles(roles);
         this.userRepository.save(adminAccount);
     }
 
-    //       @PreAuthorize("hasRole('USER')")
+    @PreAuthorize("hasRole('ADMIN')")
     public Collection<UserDto> getAll() {
         Collection<User> users = this.userRepository.findAll();
         return users.stream()
@@ -63,6 +67,7 @@ public class UserService implements UserDetailsService {
                 .collect(Collectors.toList());
     }
 
+    @PreAuthorize("hasRole('USER')")
     public UserDto getById(final Long id) {
         User user = this.userRepository.findById(id).orElseThrow(
                 () -> new UserException("Can't get. User not found!")
@@ -70,6 +75,7 @@ public class UserService implements UserDetailsService {
         return ToDtoConverter.userToDto(user);
     }
 
+    @PreAuthorize("hasRole('USER')")
     public UserDto update(final User user) {
         this.userRepository.findById(user.getId()).orElseThrow(
                 () -> new UserException("Can't update. User not found!")
@@ -78,6 +84,7 @@ public class UserService implements UserDetailsService {
         return ToDtoConverter.userToDto(user);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     public UserDto deactivate(final Long id) {
         User user = this.userRepository.findById(id).orElseThrow(
                 () -> new UserException("Can't deactivate. User not found!")
@@ -85,6 +92,7 @@ public class UserService implements UserDetailsService {
         user.setIsActive(false);
         return ToDtoConverter.userToDto(user);
     }
+
 
     public User findOne(final String username) {
         return userRepository.findByUsername(username);
@@ -106,4 +114,5 @@ public class UserService implements UserDetailsService {
         });
         return authorities;
     }
+
 }

@@ -1,12 +1,14 @@
 package com.damiankoziel.forum.service;
 
 import com.damiankoziel.forum.domain.Comment;
+import com.damiankoziel.forum.domain.Role;
 import com.damiankoziel.forum.dto.DtoConverter.ToDtoConverter;
 import com.damiankoziel.forum.domain.Post;
 import com.damiankoziel.forum.dto.PostDto;
 import com.damiankoziel.forum.exceptions.PostException;
 import com.damiankoziel.forum.repository.CommentRepository;
 import com.damiankoziel.forum.repository.PostRepository;
+import com.damiankoziel.forum.security.TokenProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
@@ -22,7 +24,6 @@ import java.util.stream.Collectors;
 
 @Service
 public class PostService {
-
     private final PostRepository postRepository;
     private final CommentRepository commentRepository;
 
@@ -32,12 +33,14 @@ public class PostService {
         this.commentRepository = commentRepository;
     }
 
+    //    @PreAuthorize("hasRole('USER')")
     public PostDto create(final Post post) {
         this.postRepository.save(post);
         return ToDtoConverter.postToDto(post);
     }
 
     public Collection<PostDto> getAll() {
+
         Collection<Post> posts = this.postRepository.findAll();
         return posts.stream()
                 .sorted(Comparator.comparing(Post::getDateTimeOfPost).reversed())
@@ -51,6 +54,8 @@ public class PostService {
         return ToDtoConverter.postToDto(post);
     }
 
+    //
+    @PreAuthorize("hasRole('USER')")
     public PostDto update(final Post post) {
         this.postRepository.findById(post.getId()).orElseThrow(
                 () -> new PostException("Can't update. Post not found!")
@@ -59,6 +64,7 @@ public class PostService {
         return ToDtoConverter.postToDto(post);
     }
 
+    @PreAuthorize("hasRole('USER')")
     public void delete(final Long id) {
         Collection<Comment> relatedComments = commentRepository.findByPost_Id(id);
         if (relatedComments.size() > 0) {
@@ -81,6 +87,7 @@ public class PostService {
         postRepository.save(foundPost);
     }
 
+    @PreAuthorize("hasRole('USER')")
     public void rate(final Long id, final Integer buttonState) {
         Post foundPost = postRepository.findById(id).get();
         if (buttonState.equals(0)) {

@@ -50,7 +50,8 @@
                         ngModel
                         name="lastName">
                 </div>
-                <button type="submit" class="btn btn-primary col-lg-3 mx-auto d-block mb-4 mt-3">Zarejestruj się
+                <button type="submit" [disabled]="!isSendButtonActivated"
+                        class="btn btn-primary col-lg-3 mx-auto d-block mb-4 mt-3">Zarejestruj się
                 </button>
             </form>
         </div>

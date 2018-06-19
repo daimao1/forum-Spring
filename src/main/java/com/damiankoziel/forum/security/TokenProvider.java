@@ -21,6 +21,7 @@ import static com.damiankoziel.forum.domain.Constants.SIGNING_KEY;
 
 @Component
 public class TokenProvider implements Serializable {
+    private String generatedToken;
 
     public String getUsernameFromToken(String token) {
         return getClaimFromToken(token, Claims::getSubject);
@@ -35,7 +36,7 @@ public class TokenProvider implements Serializable {
         return claimsResolver.apply(claims);
     }
 
-    private Claims getAllClaimsFromToken(String token) {
+    public Claims getAllClaimsFromToken(String token) {
         return Jwts.parser()
                 .setSigningKey(SIGNING_KEY)
                 .parseClaimsJws(token)
@@ -51,13 +52,14 @@ public class TokenProvider implements Serializable {
         final String authorities = authentication.getAuthorities().stream()
                 .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.joining(","));
-        return Jwts.builder()
+        generatedToken = Jwts.builder()
                 .setSubject(authentication.getName())
                 .claim(AUTHORITIES_KEY, authorities)
                 .signWith(SignatureAlgorithm.HS256, SIGNING_KEY)
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + ACCESS_TOKEN_VALIDITY_SECONDS * 1000))
                 .compact();
+        return generatedToken;
     }
 
     public Boolean validateToken(String token, UserDetails userDetails) {
@@ -81,5 +83,9 @@ public class TokenProvider implements Serializable {
                         .collect(Collectors.toList());
 
         return new UsernamePasswordAuthenticationToken(userDetails, "", authorities);
+    }
+
+    public String getGeneratedToken() {
+        return generatedToken;
     }
 }

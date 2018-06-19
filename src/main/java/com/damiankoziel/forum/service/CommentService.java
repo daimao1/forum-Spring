@@ -5,6 +5,7 @@ import com.damiankoziel.forum.dto.DtoConverter.ToDtoConverter;
 import com.damiankoziel.forum.dto.CommentDto;
 import com.damiankoziel.forum.exceptions.CommentException;
 import com.damiankoziel.forum.repository.CommentRepository;
+import com.damiankoziel.forum.security.TokenProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
@@ -38,13 +39,7 @@ public class CommentService {
                 .collect(Collectors.toList());
     }
 
-    public CommentDto getById(final Long id) {
-        Comment comment = this.commentRepository.findById(id).orElseThrow(
-                () -> new CommentException("Can't get. Comment not found!")
-        );
-        return ToDtoConverter.commentToDto(comment);
-    }
-
+    @PreAuthorize("hasRole('USER')")
     public CommentDto update(final Comment comment) {
         this.commentRepository.findById(comment.getId()).orElseThrow(
                 () -> new CommentException("Can't update. Comment not found!")
@@ -53,6 +48,7 @@ public class CommentService {
         return ToDtoConverter.commentToDto(comment);
     }
 
+    @PreAuthorize("hasRole('USER')")
     public void delete(final Long id) {
         this.commentRepository.deleteById(id);
     }

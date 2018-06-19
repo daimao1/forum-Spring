@@ -12,6 +12,7 @@ import {UserService} from "../../service/user.service";
 })
 export class SigninComponent implements OnInit {
     @ViewChild('f') signinUserForm: NgForm;
+    isSendButtonActivated = true;
 
     constructor(private authService: AuthService, private token: TokenStorage, private router: Router, private userService: UserService) {
     }
@@ -38,6 +39,7 @@ export class SigninComponent implements OnInit {
                         }
                     }
                 );
+                this.isSendButtonActivated = false;
                 this.router.navigate(['posts-list']);
             }
         );

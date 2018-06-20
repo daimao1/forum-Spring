@@ -1,7 +1,7 @@
 package com.damiankoziel.forum;
 
 import com.damiankoziel.forum.controller.PostController;
-import com.damiankoziel.forum.domain.Post;
+import com.damiankoziel.forum.model.Post;
 import com.damiankoziel.forum.service.PostService;
 import org.junit.Test;
 import org.junit.runner.RunWith;

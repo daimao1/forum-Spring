@@ -1,10 +1,10 @@
 package com.damiankoziel.forum;
 
 import com.damiankoziel.forum.commons.Category;
-import com.damiankoziel.forum.domain.Comment;
-import com.damiankoziel.forum.domain.Post;
-import com.damiankoziel.forum.domain.Role;
-import com.damiankoziel.forum.domain.User;
+import com.damiankoziel.forum.model.Comment;
+import com.damiankoziel.forum.model.Post;
+import com.damiankoziel.forum.model.Role;
+import com.damiankoziel.forum.model.User;
 import com.damiankoziel.forum.repository.RoleRepository;
 import com.damiankoziel.forum.repository.UserRepository;
 import com.damiankoziel.forum.service.CommentService;
@@ -13,8 +13,6 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.security.access.prepost.PreAuthorize;
-
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -31,9 +29,11 @@ public class ForumApplication {
     @Bean
     CommandLineRunner runner(CommentService commentService, RoleRepository roleRepository, UserService userService, UserRepository userRepository) {
         return args -> {
+
             User user1 = new User();
             user1.setUsername("User1");
             user1.setPassword("pass123");
+            user1.setEmail("email@email.com");
             Role role = roleRepository.findRoleByName("USER");
             Set<Role> roles = new HashSet<>();
             roles.add(role);

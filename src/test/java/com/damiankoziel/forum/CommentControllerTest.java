@@ -1,7 +1,7 @@
 package com.damiankoziel.forum;
 
 import com.damiankoziel.forum.controller.CommentController;
-import com.damiankoziel.forum.domain.Comment;
+import com.damiankoziel.forum.model.Comment;
 import com.damiankoziel.forum.service.CommentService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -30,25 +30,13 @@ public class CommentControllerTest {
     }
 
     @Test
-    public void shouldGetAllCategoriesTest() {
-        comment = new Comment();
-        Comment comment2 = new Comment();
-        commentController = new CommentController(commentService);
-        commentController.createComment(comment);
-        commentController.createComment(comment2);
-
-        commentController.getAllComments();
-        verify(commentService).getAll();
-    }
-
-    @Test
-    public void shouldGetCommentById() {
+    public void shouldGetCommentsByPostId() {
         comment = new Comment();
         commentController = new CommentController(commentService);
         commentController.createComment(comment);
 
-        commentController.getCommentById(1L);
-        verify(commentService).getById(1L);
+        commentController.getCommentsByPostId(1L);
+        verify(commentService).getAllByPostId(1L);
     }
 
     @Test

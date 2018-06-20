@@ -1,7 +1,7 @@
 package com.damiankoziel.forum;
 
 import com.damiankoziel.forum.controller.UserController;
-import com.damiankoziel.forum.domain.User;
+import com.damiankoziel.forum.model.User;
 import com.damiankoziel.forum.service.UserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -24,9 +24,9 @@ public class UserControllerTest {
     public void shouldCreateUserTest() {
         user = new User();
         userController = new UserController(userService);
-        userController.createUser(user);
+        userController.signUpUser(user);
 
-        verify(userService).create(user);
+        verify(userService).signUp(user);
     }
 
     @Test
@@ -34,8 +34,8 @@ public class UserControllerTest {
         user = new User();
         User user2 = new User();
         userController = new UserController(userService);
-        userController.createUser(user);
-        userController.createUser(user2);
+        userController.signUpUser(user);
+        userController.signUpUser(user2);
         userController.getAllUsers();
 
         verify(userService).getAll();
@@ -45,7 +45,7 @@ public class UserControllerTest {
     public void shouldGetUserByIdTest() {
         user = new User();
         userController = new UserController(userService);
-        userController.createUser(user);
+        userController.signUpUser(user);
 
         userController.getUserById(1L);
         verify(userService).getById(1L);

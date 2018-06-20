@@ -1,13 +1,11 @@
 package com.damiankoziel.forum.dto.DtoConverter;
 
-import com.damiankoziel.forum.domain.Comment;
-import com.damiankoziel.forum.domain.Post;
-import com.damiankoziel.forum.domain.User;
+import com.damiankoziel.forum.model.Comment;
+import com.damiankoziel.forum.model.Post;
+import com.damiankoziel.forum.model.User;
 import com.damiankoziel.forum.dto.CommentDto;
 import com.damiankoziel.forum.dto.PostDto;
 import com.damiankoziel.forum.dto.UserDto;
-
-import java.util.List;
 
 public final class ToDtoConverter {
 

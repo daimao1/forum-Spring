@@ -46,7 +46,7 @@ import {UserService} from "./service/user.service";
         CommentsListComponent,
         TimeAgoPipe,
         SignupComponent,
-        SigninComponent
+        SigninComponent,
     ],
     imports: [
         BrowserModule,

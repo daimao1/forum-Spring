@@ -1,4 +1,4 @@
-package com.damiankoziel.forum.domain;
+package com.damiankoziel.forum.model;
 
 import lombok.Data;
 

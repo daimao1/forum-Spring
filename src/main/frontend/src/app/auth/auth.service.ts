@@ -6,23 +6,33 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 import {User} from "../model/user.model";
 import {UserService} from "../service/user.service";
+import {Router} from "@angular/router";
 
 @Injectable()
 export class AuthService {
     adminMode = false;
     badCredentials = false;
-
     user = {} as User;
+    loginOrEmailNotAvailable = false;
+    registered;
 
-    constructor(private http: HttpClient, private token: TokenStorage) {
+    constructor(private http: HttpClient, private token: TokenStorage, private router: Router) {
     }
 
     signupUser(user: User) {
         this.http.post('/api/users/signup', user).subscribe(
             () => {
+                this.loginOrEmailNotAvailable = false;
                 console.log("User signed up!");
+                this.registered = true;
+                this.router.navigate(['posts-list']);
+            },
+            (error) => {
+                this.loginOrEmailNotAvailable = true;
+                this.registered = false;
+                console.log(error);
             }
-        )
+        );
     }
 
     attemptAuth(username: string, password: string): Observable<any> {

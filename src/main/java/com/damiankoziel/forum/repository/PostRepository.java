@@ -1,6 +1,6 @@
 package com.damiankoziel.forum.repository;
 
-import com.damiankoziel.forum.domain.Post;
+import com.damiankoziel.forum.model.Post;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

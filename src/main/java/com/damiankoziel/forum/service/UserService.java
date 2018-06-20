@@ -1,13 +1,12 @@
 package com.damiankoziel.forum.service;
 
-import com.damiankoziel.forum.domain.Role;
+import com.damiankoziel.forum.model.Role;
 import com.damiankoziel.forum.dto.DtoConverter.ToDtoConverter;
-import com.damiankoziel.forum.domain.User;
+import com.damiankoziel.forum.model.User;
 import com.damiankoziel.forum.dto.UserDto;
 import com.damiankoziel.forum.exceptions.UserException;
 import com.damiankoziel.forum.repository.RoleRepository;
 import com.damiankoziel.forum.repository.UserRepository;
-import com.damiankoziel.forum.security.TokenProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -17,7 +16,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import com.damiankoziel.forum.controller.AuthenticationController;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -50,6 +48,7 @@ public class UserService implements UserDetailsService {
         User adminAccount = new User();
         adminAccount.setUsername("admin");
         adminAccount.setPassword(bCryptPasswordEncoder.encode(("admin")));
+        adminAccount.setEmail("email@admin.com");
         Role adminRole = roleRepository.findRoleByName("ADMIN");
         Role userRole = roleRepository.findRoleByName("USER");
         Set<Role> roles = new HashSet<>();

@@ -10,7 +10,14 @@
                         id="username"
                         required
                         ngModel
-                        name="username">
+                        name="username"
+                        minlength="4"
+                        maxlength="20"
+                        #username="ngModel"
+                    >
+                    <small *ngIf="!username.valid && username.touched" id="usernameHelp">Login powinien zawierać od 4 do
+                        20 znaków.
+                    </small>
                 </div>
                 <div class="form-group">
                     <label for="password">Hasło:*</label>
@@ -20,18 +27,32 @@
                         id="password"
                         required
                         ngModel
-                        name="password">
+                        name="password"
+                        minlength="6"
+                        maxlength="40"
+                        #password="ngModel">
+                    <small *ngIf="!password.valid && password.touched" id="passwordHelp">
+                        Hasło powinno zawierać od 6 do 40 znaków.
+                    </small>
                 </div>
                 <div class="form-group">
-                    <label for="firstName">Email:</label>
+                    <label for="email">Email:*</label>
                     <input
                         type="email"
                         class="form-control"
                         id="email"
                         ngModel
                         name="email"
-                        required>
+                        required
+                        email
+                        maxlength="40"
+                        #email="ngModel">
+                    <small *ngIf="!email.valid && email.touched" id="emailHelp">Podaj
+                        poprawny adres email.
+                    </small>
+
                 </div>
+
                 <div class="form-group">
                     <label for="firstName">Imię:</label>
                     <input
@@ -39,7 +60,8 @@
                         class="form-control"
                         id="firstName"
                         ngModel
-                        name="firstName">
+                        name="firstName"
+                        maxlength="30">
                 </div>
                 <div class="form-group">
                     <label for="lastName">Nazwisko:</label>
@@ -48,9 +70,14 @@
                         class="form-control"
                         id="lastName"
                         ngModel
-                        name="lastName">
+                        name="lastName"
+                        maxlength="30">
                 </div>
-                <button type="submit" [disabled]="!isSendButtonActivated"
+                <span id="signupInfo">* - pola obowiązkowe</span>
+                <div *ngIf="authService.loginOrEmailNotAvailable" class="alert alert-danger" role="alert">
+                    Dany użytkownik już istnieje!
+                </div>
+                <button type="submit" [disabled]="!isSendButtonActivated || !f.valid"
                         class="btn btn-primary col-lg-3 mx-auto d-block mb-4 mt-3">Zarejestruj się
                 </button>
             </form>

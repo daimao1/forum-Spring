@@ -15,9 +15,9 @@ import java.util.Date;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-import static com.damiankoziel.forum.domain.Constants.ACCESS_TOKEN_VALIDITY_SECONDS;
-import static com.damiankoziel.forum.domain.Constants.AUTHORITIES_KEY;
-import static com.damiankoziel.forum.domain.Constants.SIGNING_KEY;
+import static com.damiankoziel.forum.model.Constants.ACCESS_TOKEN_VALIDITY_SECONDS;
+import static com.damiankoziel.forum.model.Constants.AUTHORITIES_KEY;
+import static com.damiankoziel.forum.model.Constants.SIGNING_KEY;
 
 @Component
 public class TokenProvider implements Serializable {

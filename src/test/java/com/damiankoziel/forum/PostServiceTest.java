@@ -1,6 +1,8 @@
 package com.damiankoziel.forum;
 
-import com.damiankoziel.forum.domain.Post;
+import com.damiankoziel.forum.model.Post;
+import com.damiankoziel.forum.model.User;
+import com.damiankoziel.forum.repository.CommentRepository;
 import com.damiankoziel.forum.repository.PostRepository;
 import com.damiankoziel.forum.service.PostService;
 import org.junit.Test;
@@ -18,12 +20,18 @@ public class PostServiceTest {
     @Mock
     private PostRepository postRepository;
 
+    @Mock
+    private CommentRepository commentRepository;
+
     private PostService postService;
+
+    private User user = new User();
 
     @Test
     public void shouldCreatePostTest() {
         post = new Post();
-        postService = new PostService(postRepository);
+        post.setUser(user);
+        postService = new PostService(postRepository, commentRepository);
         postService.create(post);
 
         verify(postRepository).save(post);
@@ -33,7 +41,9 @@ public class PostServiceTest {
     public void shouldGetAllPostsTest() {
         post = new Post();
         Post post2 = new Post();
-        postService = new PostService(postRepository);
+        post.setUser(user);
+        post2.setUser(user);
+        postService = new PostService(postRepository, commentRepository);
         postService.create(post);
         postService.create(post2);
 
@@ -44,9 +54,9 @@ public class PostServiceTest {
     @Test
     public void shouldDeletePostByIdTest() {
         post = new Post();
-        postService = new PostService(postRepository);
+        postService = new PostService(postRepository, commentRepository);
+        post.setUser(user);
         postService.create(post);
-
         postService.delete(1L);
         verify(postRepository).deleteById(1L);
     }

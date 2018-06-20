@@ -1,6 +1,6 @@
 package com.damiankoziel.forum.controller;
 
-import com.damiankoziel.forum.domain.Comment;
+import com.damiankoziel.forum.model.Comment;
 import com.damiankoziel.forum.dto.CommentDto;
 import com.damiankoziel.forum.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;

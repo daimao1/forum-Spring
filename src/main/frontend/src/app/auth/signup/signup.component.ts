@@ -11,12 +11,14 @@ import {User} from "../../model/user.model";
 })
 export class SignupComponent implements OnInit {
     @ViewChild('f') signupUserForm: NgForm;
-    isSendButtonActivated = true;
+    isSendButtonActivated;
 
     constructor(private authService: AuthService, private router: Router) {
     }
 
     ngOnInit() {
+        this.isSendButtonActivated = true;
+        this.authService.loginOrEmailNotAvailable = false;
     }
 
     onSignup() {
@@ -24,7 +26,12 @@ export class SignupComponent implements OnInit {
         const value = this.signupUserForm.value;
         const user = new User(value.username, value.password, value.email, value.firstName, value.lastName, null);
         this.authService.signupUser(user);
-        this.router.navigate(['posts-list']);
-    }
+        /*        if (this.authService.loginOrEmailNotAvailable) {
+                    this.router.navigate(['posts-list']);
+                }*/
 
+        this.isSendButtonActivated = true;
+        this.signupUserForm.reset();
+
+    }
 }

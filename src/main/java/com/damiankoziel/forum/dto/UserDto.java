@@ -1,12 +1,11 @@
 package com.damiankoziel.forum.dto;
 
-import com.damiankoziel.forum.domain.Role;
+import com.damiankoziel.forum.model.Role;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
-import java.util.List;
 import java.util.Set;
 
 @Getter

@@ -18,16 +18,18 @@ export class SigninComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.authService.badCredentials = false;
     }
 
     onLogin(): void {
         const value = this.signinUserForm.value;
         const username = value.username;
         const password = value.password;
+        this.signinUserForm.reset();
         this.authService.attemptAuth(username, password).subscribe(
             data => {
-                this.token.saveToken(data.token);
 
+                this.token.saveToken(data.token);
                 this.userService.getCurrentUser().subscribe(
                     (currentUser: any) => {
                         if (currentUser.roles[0].name === "ADMIN") {

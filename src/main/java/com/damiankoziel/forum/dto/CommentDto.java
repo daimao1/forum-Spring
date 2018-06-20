@@ -1,7 +1,7 @@
 package com.damiankoziel.forum.dto;
 
-import com.damiankoziel.forum.domain.Post;
-import com.damiankoziel.forum.domain.User;
+import com.damiankoziel.forum.model.Post;
+import com.damiankoziel.forum.model.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;

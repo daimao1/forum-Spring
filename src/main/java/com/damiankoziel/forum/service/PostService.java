@@ -1,14 +1,12 @@
 package com.damiankoziel.forum.service;
 
-import com.damiankoziel.forum.domain.Comment;
-import com.damiankoziel.forum.domain.Role;
+import com.damiankoziel.forum.model.Comment;
 import com.damiankoziel.forum.dto.DtoConverter.ToDtoConverter;
-import com.damiankoziel.forum.domain.Post;
+import com.damiankoziel.forum.model.Post;
 import com.damiankoziel.forum.dto.PostDto;
 import com.damiankoziel.forum.exceptions.PostException;
 import com.damiankoziel.forum.repository.CommentRepository;
 import com.damiankoziel.forum.repository.PostRepository;
-import com.damiankoziel.forum.security.TokenProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;

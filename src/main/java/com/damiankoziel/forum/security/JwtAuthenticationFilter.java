@@ -16,8 +16,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import static com.damiankoziel.forum.domain.Constants.HEADER_STRING;
-import static com.damiankoziel.forum.domain.Constants.TOKEN_PREFIX;
+import static com.damiankoziel.forum.model.Constants.HEADER_STRING;
+import static com.damiankoziel.forum.model.Constants.TOKEN_PREFIX;
 
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 

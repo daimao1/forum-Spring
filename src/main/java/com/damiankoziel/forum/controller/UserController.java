@@ -1,6 +1,6 @@
 package com.damiankoziel.forum.controller;
 
-import com.damiankoziel.forum.domain.User;
+import com.damiankoziel.forum.model.User;
 import com.damiankoziel.forum.dto.UserDto;
 import com.damiankoziel.forum.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

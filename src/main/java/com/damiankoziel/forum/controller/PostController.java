@@ -4,6 +4,7 @@ import com.damiankoziel.forum.model.Post;
 import com.damiankoziel.forum.dto.PostDto;
 import com.damiankoziel.forum.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -60,5 +61,10 @@ public class PostController {
     public ResponseEntity<PostDto> ratePost(@PathVariable final Long id, @RequestBody final Integer buttonState) {
         this.postService.rate(id, buttonState);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @GetMapping("/page/{pageNumber}")
+    public ResponseEntity<Collection<PostDto>> getPostsPaginated(@PathVariable final Integer pageNumber) {
+        return new ResponseEntity<>(this.postService.getAllPaginated(pageNumber), HttpStatus.OK);
     }
 }

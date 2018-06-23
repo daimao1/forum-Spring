@@ -8,6 +8,9 @@ import com.damiankoziel.forum.exceptions.PostException;
 import com.damiankoziel.forum.repository.CommentRepository;
 import com.damiankoziel.forum.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -15,9 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.Collection;
-import java.util.Comparator;
-import java.util.UUID;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -39,9 +40,9 @@ public class PostService {
 
     public Collection<PostDto> getAll() {
 
-        Collection<Post> posts = this.postRepository.findAll();
+        Collection<Post> posts = this.postRepository.findAllSortedByDateReverse();
         return posts.stream()
-                .sorted(Comparator.comparing(Post::getDateTimeOfPost).reversed())
+//                .sorted(Comparator.comparing(Post::getDateTimeOfPost).reversed())
                 .map(ToDtoConverter::postToDto)
                 .collect(Collectors.toList());
     }
@@ -94,5 +95,11 @@ public class PostService {
             foundPost.setRatingPoints(foundPost.getRatingPoints() + 1);
         }
         postRepository.save(foundPost);
+    }
+
+    public Collection<PostDto> getAllPaginated(Integer pageNumber) {
+        Integer index = pageNumber - 1;
+        Page<Post> posts = this.postRepository.findAll(PageRequest.of(index, 20));
+        return posts.stream().map(ToDtoConverter::postToDto).collect(Collectors.toList());
     }
 }

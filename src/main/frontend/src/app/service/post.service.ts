@@ -6,12 +6,15 @@ import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 @Injectable()
 export class PostService {
 
+
     constructor(private http: HttpClient) {
 
     }
 
-    getPosts() {
-        return this.http.get('/api/posts');
+    //TODO
+    getPosts(pageNumber: number) {
+        // return this.http.get('/api/posts');
+        return this.http.get('/api/posts/page/' + pageNumber);
     }
 
     savePost(newPost: Post, file: File) {

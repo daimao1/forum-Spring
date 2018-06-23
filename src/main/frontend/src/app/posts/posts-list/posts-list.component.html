@@ -23,5 +23,21 @@
                 <div class="text-right mt-0"><span class="font-weight-light">Ocena:</span> {{ post.ratingPoints }}</div>
             </li>
         </ul>
+        <nav>
+            <ul class="pagination justify-content-center align-items-center text-center">
+                <li class="page-item" [ngClass]="{active:currentPage == 1}"><a class="page-link"
+                                                                               (click)="onPageChange(1)">Początek</a>
+                </li>
+                <li class="page-item"><a class="page-link" (click)="onPageChange(currentPage-1)"><- Poprzednia</a></li>
+                <li *ngFor="let page of createRange(totalPages)" class="page-item"
+                    [ngClass]="{active:currentPage === page}"><a class="page-link"
+                                                                 (click)="onPageChange(page)">{{page}}</a></li>
+                <li class="page-item"><a class="page-link" (click)="onPageChange(currentPage+1)">Następna -></a></li>
+                <li class="page-item" [ngClass]="{active:currentPage == totalPages}"><a class="page-link"
+                                                                                        (click)="onPageChange(totalPages)">Koniec</a>
+                </li>
+            </ul>
+        </nav>
     </div>
+
 </div>

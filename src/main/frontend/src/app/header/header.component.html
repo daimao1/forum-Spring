@@ -33,10 +33,13 @@
                 </li>
             </ng-template>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="tytuł, autor, kategoria" aria-label="Search">
+        <form class="form-inline my-2 my-lg-0" (ngSubmit)="onSearchPost()" #f="ngForm">
+            <input class="form-control mr-sm-2"
+                   type="search"
+                   placeholder="tytuł posta..."
+                   ngModel
+                   name="searchData">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Wyszukaj</button>
         </form>
-
     </div>
 </nav>

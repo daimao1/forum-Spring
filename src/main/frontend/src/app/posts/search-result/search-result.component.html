@@ -1,0 +1,28 @@
+<div class="row mt-4">
+    <mat-spinner *ngIf="searchedPosts.length == 0">Nie znaleziono wyników</mat-spinner>
+    <div class="col-lg-12" *ngIf="searchedPosts.length > 0">
+        <ul class="list-group mb-5">
+            <li *ngFor="let post of searchedPosts" class="list-group-item clearfix" id="postsList">
+                <a
+                    class="media mb-2 mt-2 ml-2 mr-2 mr-4"
+                    [routerLink]="['/posts/', post.id]">
+                    <figure class="figure mb-0">
+                        <img
+                            class="mr-4 rounded" width="300px"
+                            src="{{ post.imageUrl }}"
+                            alt="{{ post.title }}">
+                        <figcaption class="figure-caption text-center">{{ post.categories | categoriesFormat}}
+                        </figcaption>
+                    </figure>
+                    <div class="media-body">
+                        <h4 class="mt-0">{{ post.title }}</h4>
+                        {{ post.content | shorterContent }}
+                    </div>
+                    <small class="text-muted">{{ post.dateTimeOfPost | timeAgo}}</small>
+                </a>
+                <div class="text-right mt-0"><span class="font-weight-light">Ocena:</span> {{ post.ratingPoints }}</div>
+            </li>
+        </ul>
+    </div>
+
+</div>

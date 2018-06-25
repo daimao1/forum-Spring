@@ -28,6 +28,7 @@ import {Interceptor} from "./app.interceptor";
 import {TokenStorage} from "./token.storage";
 import {AuthGuard} from "./auth/auth-guard.service";
 import {UserService} from "./service/user.service";
+import {SearchResultComponent} from './posts/search-result/search-result.component';
 
 
 @NgModule({
@@ -47,6 +48,7 @@ import {UserService} from "./service/user.service";
         TimeAgoPipe,
         SignupComponent,
         SigninComponent,
+        SearchResultComponent,
     ],
     imports: [
         BrowserModule,
@@ -55,7 +57,7 @@ import {UserService} from "./service/user.service";
         FormsModule,
         MaterialModule
     ],
-    providers: [PostService, CommentService, UserService, AuthService, TokenStorage, {
+    providers: [PostService, CommentService, UserService, AuthService, TokenStorage, SearchResultComponent, {
         provide: HTTP_INTERCEPTORS,
         useClass: Interceptor,
         multi: true

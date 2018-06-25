@@ -13,7 +13,6 @@ export class PostService {
 
     //TODO
     getPosts(pageNumber: number) {
-        // return this.http.get('/api/posts');
         return this.http.get('/api/posts/page/' + pageNumber);
     }
 
@@ -74,5 +73,9 @@ export class PostService {
                 }
             }
         )
+    }
+
+    searchPost(searchData: string) {
+        return this.http.get("/api/posts/search?q=" + searchData)
     }
 }

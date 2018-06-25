@@ -4,6 +4,8 @@ import com.damiankoziel.forum.commons.Category;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Indexed;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
@@ -13,6 +15,7 @@ import java.time.LocalDateTime;
 import java.util.Collection;
 
 @Entity
+@Indexed
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -22,10 +25,12 @@ public class Post {
     @GeneratedValue
     private Long id;
 
+    @Field
     @NotNull
     @Size(min = 3, max = 40)
     private String title;
 
+    @Field
     @NotNull
     @Size(min = 5, max = 5000)
     @Column(columnDefinition = "TEXT")

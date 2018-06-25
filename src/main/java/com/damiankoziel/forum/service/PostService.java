@@ -7,6 +7,7 @@ import com.damiankoziel.forum.dto.PostDto;
 import com.damiankoziel.forum.exceptions.PostException;
 import com.damiankoziel.forum.repository.CommentRepository;
 import com.damiankoziel.forum.repository.PostRepository;
+import com.damiankoziel.forum.repository.PostSearch;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -25,11 +26,13 @@ import java.util.stream.Collectors;
 public class PostService {
     private final PostRepository postRepository;
     private final CommentRepository commentRepository;
+    private final PostSearch postSearch;
 
     @Autowired
-    public PostService(final PostRepository postRepository, final CommentRepository commentRepository) {
+    public PostService(final PostRepository postRepository, final CommentRepository commentRepository, final PostSearch postSearch) {
         this.postRepository = postRepository;
         this.commentRepository = commentRepository;
+        this.postSearch = postSearch;
     }
 
     //    @PreAuthorize("hasRole('USER')")
@@ -42,7 +45,6 @@ public class PostService {
 
         Collection<Post> posts = this.postRepository.findAllSortedByDateReverse();
         return posts.stream()
-//                .sorted(Comparator.comparing(Post::getDateTimeOfPost).reversed())
                 .map(ToDtoConverter::postToDto)
                 .collect(Collectors.toList());
     }
@@ -51,6 +53,12 @@ public class PostService {
         Post post = this.postRepository.findById(id).orElseThrow(
                 () -> new PostException("Can't get. Post not found!"));
         return ToDtoConverter.postToDto(post);
+    }
+
+    public Collection<PostDto> getAllPaginated(Integer pageNumber) {
+        Integer index = pageNumber - 1;
+        Page<Post> posts = this.postRepository.findAll(PageRequest.of(index, 20));
+        return posts.stream().map(ToDtoConverter::postToDto).collect(Collectors.toList());
     }
 
     //
@@ -97,9 +105,16 @@ public class PostService {
         postRepository.save(foundPost);
     }
 
-    public Collection<PostDto> getAllPaginated(Integer pageNumber) {
-        Integer index = pageNumber - 1;
-        Page<Post> posts = this.postRepository.findAll(PageRequest.of(index, 20));
-        return posts.stream().map(ToDtoConverter::postToDto).collect(Collectors.toList());
+    @SuppressWarnings("unchecked")
+    public Collection search(String q) {
+        Collection<Post> searchResults;
+        try {
+            System.out.println(postSearch.search(q));
+            searchResults = postSearch.search(q);
+            return searchResults.stream().map(ToDtoConverter::postToDto).collect(Collectors.toList());
+        } catch (Exception ignored) {
+
+        }
+        return null;
     }
 }

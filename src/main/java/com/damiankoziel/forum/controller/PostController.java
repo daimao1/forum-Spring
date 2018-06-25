@@ -11,8 +11,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.validation.constraints.Null;
 import java.io.IOException;
 import java.util.Collection;
+import java.util.List;
 
 @RestController
 @RequestMapping("/posts")
@@ -66,5 +68,10 @@ public class PostController {
     @GetMapping("/page/{pageNumber}")
     public ResponseEntity<Collection<PostDto>> getPostsPaginated(@PathVariable final Integer pageNumber) {
         return new ResponseEntity<>(this.postService.getAllPaginated(pageNumber), HttpStatus.OK);
+    }
+
+    @RequestMapping("/search")
+    public ResponseEntity<Collection<PostDto>> searchPost(String q) {
+        return new ResponseEntity<>(this.postService.search(q), HttpStatus.OK);
     }
 }

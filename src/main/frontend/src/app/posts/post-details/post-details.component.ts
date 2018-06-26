@@ -3,7 +3,6 @@ import {PostService} from "../../service/post.service";
 import {ActivatedRoute, Params} from "@angular/router";
 import {Post} from "../../model/post.model";
 import {AuthService} from "../../auth/auth.service";
-import {User} from "../../model/user.model";
 
 @Component({
     selector: 'app-post-details',

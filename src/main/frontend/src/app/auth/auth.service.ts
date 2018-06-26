@@ -5,7 +5,6 @@ import {TokenStorage} from "../token.storage";
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 import {User} from "../model/user.model";
-import {UserService} from "../service/user.service";
 import {Router} from "@angular/router";
 
 @Injectable()
@@ -73,5 +72,4 @@ export class AuthService {
     isBadCredentials() {
         return this.badCredentials;
     }
-
 }

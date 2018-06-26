@@ -55,13 +55,13 @@ public class PostService {
         return ToDtoConverter.postToDto(post);
     }
 
-    public Collection<PostDto> getAllPaginated(Integer pageNumber) {
+    public Collection<PostDto> getAllPaginated(final Integer pageNumber) {
         Integer index = pageNumber - 1;
         Page<Post> posts = this.postRepository.findAll(PageRequest.of(index, 20));
         return posts.stream().map(ToDtoConverter::postToDto).collect(Collectors.toList());
     }
 
-    //
+
     @PreAuthorize("hasRole('USER')")
     public PostDto update(final Post post) {
         this.postRepository.findById(post.getId()).orElseThrow(
@@ -106,11 +106,10 @@ public class PostService {
     }
 
     @SuppressWarnings("unchecked")
-    public Collection search(String q) {
+    public Collection search(final String query) {
         Collection<Post> searchResults;
         try {
-            System.out.println(postSearch.search(q));
-            searchResults = postSearch.search(q);
+            searchResults = postSearch.search(query);
             return searchResults.stream().map(ToDtoConverter::postToDto).collect(Collectors.toList());
         } catch (Exception ignored) {
 

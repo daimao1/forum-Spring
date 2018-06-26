@@ -38,7 +38,7 @@ public class UserServiceTest {
     }
 
     @Test
-    public void shouldGetAllCategoriesTest() {
+    public void shouldGetAllUsersTest() {
         user = new User();
         User user2 = new User();
         userService = new UserService(userRepository, roleRepository, bCryptPasswordEncoder);
@@ -48,4 +48,6 @@ public class UserServiceTest {
         userService.getAll();
         verify(userRepository).findAll();
     }
+
+
 }

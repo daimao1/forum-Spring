@@ -16,7 +16,6 @@ export class PostsListComponent implements OnInit {
     currentPage = 1;
     totalElements: number;
     totalPages: number;
-    pagesArray = [];
     elementsPerPage = 20;
 
     constructor(private postService: PostService, private authService: AuthService, private router: Router) {

@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {PostService} from "../../service/post.service";
 import {Post} from "../../model/post.model";
-import {Route, Router} from "@angular/router";
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'app-search-result',
@@ -15,7 +15,6 @@ export class SearchResultComponent implements OnInit {
     constructor(private postService: PostService, private router: Router) {
     }
 
-    //TODO
     ngOnInit() {
         this.router.routerState.root.queryParams.subscribe(
             params => {
@@ -32,5 +31,4 @@ export class SearchResultComponent implements OnInit {
                 (error) => console.log(error)
             );
     }
-
 }

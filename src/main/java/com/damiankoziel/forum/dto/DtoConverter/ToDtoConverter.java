@@ -9,10 +9,6 @@ import com.damiankoziel.forum.dto.UserDto;
 
 public final class ToDtoConverter {
 
-    private ToDtoConverter() {
-
-    }
-
     public static CommentDto commentToDto(final Comment comment) {
         return new CommentDto(
                 comment.getId(),

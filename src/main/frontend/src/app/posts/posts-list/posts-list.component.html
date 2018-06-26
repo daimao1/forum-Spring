@@ -28,11 +28,19 @@
                 <li class="page-item" [ngClass]="{active:currentPage == 1}"><a class="page-link"
                                                                                (click)="onPageChange(1)">Początek</a>
                 </li>
-                <li class="page-item"><a class="page-link" (click)="onPageChange(currentPage-1)"><- Poprzednia</a></li>
+                <li>
+                    <a class="page-link" href="#" aria-label="Previous" (click)="onPageChange(currentPage-1)">
+                        <span aria-hidden="true">&laquo;</span>
+                        <span class="sr-only">Poprzednia</span>
+                    </a>
+                </li>
                 <li *ngFor="let page of createRange(totalPages)" class="page-item"
                     [ngClass]="{active:currentPage === page}"><a class="page-link"
                                                                  (click)="onPageChange(page)">{{page}}</a></li>
-                <li class="page-item"><a class="page-link" (click)="onPageChange(currentPage+1)">Następna -></a></li>
+                <li><a class="page-link" href="#" aria-label="Next" (click)="onPageChange(currentPage+1)">
+                    <span aria-hidden="true">&raquo;</span>
+                    <span class="sr-only">Następna</span>
+                </a></li>
                 <li class="page-item" [ngClass]="{active:currentPage == totalPages}"><a class="page-link"
                                                                                         (click)="onPageChange(totalPages)">Koniec</a>
                 </li>

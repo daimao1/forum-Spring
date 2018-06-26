@@ -17,7 +17,7 @@ public class PostSearch {
     @PersistenceContext
     private EntityManager entityManager;
 
-    public List search(String text) {
+    public List search(final String text) {
 
 
         FullTextEntityManager fullTextEntityManager =

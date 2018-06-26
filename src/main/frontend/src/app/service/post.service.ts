@@ -11,7 +11,6 @@ export class PostService {
 
     }
 
-    //TODO
     getPosts(pageNumber: number) {
         return this.http.get('/api/posts/page/' + pageNumber);
     }

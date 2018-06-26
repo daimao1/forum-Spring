@@ -3,7 +3,7 @@ import {NgForm} from "@angular/forms";
 import {CommentService} from "../../service/comment.service";
 import {Post} from "../../model/post.model";
 import {PostService} from "../../service/post.service";
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute} from "@angular/router";
 import {Comment} from "../../model/comment.model";
 import {PostDetailsComponent} from "../../posts/post-details/post-details.component";
 import {User} from "../../model/user.model";

@@ -23,32 +23,32 @@ import static com.damiankoziel.forum.model.Constants.SIGNING_KEY;
 public class TokenProvider implements Serializable {
     private String generatedToken;
 
-    public String getUsernameFromToken(String token) {
+    public String getUsernameFromToken(final String token) {
         return getClaimFromToken(token, Claims::getSubject);
     }
 
-    public Date getExpirationDateFromToken(String token) {
+    public Date getExpirationDateFromToken(final String token) {
         return getClaimFromToken(token, Claims::getExpiration);
     }
 
-    public <T> T getClaimFromToken(String token, Function<Claims, T> claimsResolver) {
+    public <T> T getClaimFromToken(final String token, final Function<Claims, T> claimsResolver) {
         final Claims claims = getAllClaimsFromToken(token);
         return claimsResolver.apply(claims);
     }
 
-    public Claims getAllClaimsFromToken(String token) {
+    public Claims getAllClaimsFromToken(final String token) {
         return Jwts.parser()
                 .setSigningKey(SIGNING_KEY)
                 .parseClaimsJws(token)
                 .getBody();
     }
 
-    private Boolean isTokenExpired(String token) {
+    private Boolean isTokenExpired(final String token) {
         final Date expiration = getExpirationDateFromToken(token);
         return expiration.before(new Date());
     }
 
-    public String generateToken(Authentication authentication) {
+    public String generateToken(final Authentication authentication) {
         final String authorities = authentication.getAuthorities().stream()
                 .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.joining(","));
@@ -62,7 +62,7 @@ public class TokenProvider implements Serializable {
         return generatedToken;
     }
 
-    public Boolean validateToken(String token, UserDetails userDetails) {
+    public Boolean validateToken(final String token, final UserDetails userDetails) {
         final String username = getUsernameFromToken(token);
         return (
                 username.equals(userDetails.getUsername())
@@ -85,7 +85,4 @@ public class TokenProvider implements Serializable {
         return new UsernamePasswordAuthenticationToken(userDetails, "", authorities);
     }
 
-    public String getGeneratedToken() {
-        return generatedToken;
-    }
 }

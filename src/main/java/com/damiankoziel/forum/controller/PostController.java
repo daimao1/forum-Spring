@@ -4,17 +4,14 @@ import com.damiankoziel.forum.model.Post;
 import com.damiankoziel.forum.dto.PostDto;
 import com.damiankoziel.forum.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.validation.constraints.Null;
 import java.io.IOException;
 import java.util.Collection;
-import java.util.List;
 
 @RestController
 @RequestMapping("/posts")
@@ -70,7 +67,7 @@ public class PostController {
         return new ResponseEntity<>(this.postService.getAllPaginated(pageNumber), HttpStatus.OK);
     }
 
-    @RequestMapping("/search")
+    @GetMapping("/search")
     public ResponseEntity<Collection<PostDto>> searchPost(String q) {
         return new ResponseEntity<>(this.postService.search(q), HttpStatus.OK);
     }

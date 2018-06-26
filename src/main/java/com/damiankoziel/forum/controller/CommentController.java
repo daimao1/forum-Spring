@@ -31,11 +31,6 @@ public class CommentController {
         return new ResponseEntity<>(this.commentService.getAllByPostId(id), HttpStatus.OK);
     }
 
-/*    @GetMapping("/{id}")
-    public ResponseEntity<CommentDto> getCommentById(@PathVariable final Long id) {
-        return new ResponseEntity<>(this.commentService.getById(id), HttpStatus.OK);
-    }*/
-
     @PutMapping
     public ResponseEntity<CommentDto> updateComment(@RequestBody final Comment comment) {
         return new ResponseEntity<>(this.commentService.update(comment), HttpStatus.OK);
